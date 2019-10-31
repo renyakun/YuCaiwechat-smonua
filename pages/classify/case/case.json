@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "i-toast": "../../../colorui/dist/toast/index",
+    "i-collapse": "../../../colorui/dist/collapse/index",
+    "i-collapse-item": "../../../colorui/dist/collapse-item/index",
+    "i-load-more": "../../../colorui/dist/load-more/index"
+  }
+}
+
+

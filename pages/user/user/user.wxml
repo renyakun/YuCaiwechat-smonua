@@ -1,0 +1,100 @@
+<!--pages/user/user.wxml-->
+<cu-custom bgColor="bg-gradual-blue">
+  <view slot="backText">返回</view>
+  <view slot="content">个人中心</view>
+</cu-custom>
+
+<scroll-view scroll-y class="scrollPage padding-bottom " style="margin-bottom:90rpx">
+
+  <view class=" padding-top-xl padding-bottom-sm bg-gradual-blue" style="position:relative">
+    <view class="flex justify-center margin-bottom-sm">
+      <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn round bg-green shadow'> 获取头像昵称 </button>
+      <block wx:else>
+        <view class='text-center'>
+          <view class="cu-avatar xl round solids" style="background-image:url({{userInfo.avatarUrl}})" mode="cover"></view>
+          <view class="padding">{{userInfo.nickName}}</view>
+        </view>
+      </block>
+    </view>
+
+    <!-- <view style="height:0.8vh;" class="userimg ">
+      <image src="../../../images/wave.gif" mode="scaleToFill" class="gif-black response" style="height:10vh"></image>
+    </view> -->
+
+    <view class="flex text-center nav useritem" style="">
+      <view class="flex-sub " wx:for="{{navList}}" wx:key bindtap="navSelect" data-id="{{index}}" style="color:#fff">
+        <text class="text-xs">{{item.num=='0'?'--':item.num}}</text>
+        <view class="">
+          <text class="cuIcon-{{item.icon}}"></text> {{item.name}}
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <i-notice-bar icon="systemprompt" loop class=" margin-bottom-lg">
+    2018年世界杯,将于6月14日至7月15日举行;2018年世界杯,将于6月14日至7月15日举行;
+  </i-notice-bar>
+
+     <button class="margin bg-gradual-blue" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+
+
+  <view class="bg-white margin-top-xs margin-bootom-lg">
+    <i-card title="我的订单" extra="查看更多" class="padding  shadow">
+      <view slot="content" class="flex justify-between align-center">
+        <view class="flex align-center">
+          <view class="cu-avatar xl round margin-left bg-blue">
+            <text class="avatar-text">需求</text>
+          </view>
+          <view class="flex-sub margin-left">
+            <view>留下需求</view>
+            <text class="text-black text-bold">免费获取方案和报价</text>
+          </view>
+        </view>
+        <view class="btn-rg text-center">
+          立即获取
+        </view>
+      </view>
+    </i-card>
+  </view>
+
+  <view class="bg-white margin-top-xs">
+    <i-card title="常用功能" class="padding">
+      <view slot="content">
+        <view class="cu-list grid col-4 {{gridBorder?'':'no-border'}}">
+          <view class="cu-item" wx:for="{{iconList}}" wx:key wx:if="{{index<4*2}}" bindtap="userjump">
+            <view class="cuIcon-{{item.icon}} text-{{item.color}}">
+              <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
+                <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
+              </view>
+            </view>
+            <text>{{item.name}}</text>
+          </view>
+        </view>
+      </view>
+    </i-card>
+  </view>
+
+  <view class="bg-white  padding-left-xs padding-right-xs">
+    <i-divider Color="#2d8cf0" lineColor="#2d8cf0">为你推荐</i-divider>
+  </view>
+
+  <view class="cu-card article no-card  margin-top-xs  margin-left-sm margin-right-sm radius  bg-black shadow" wx:for="{{tablist}}" wx:key>
+    <view class="cu-item">
+      <view class="title">
+        <view class="text-cut">{{item.tabtit}}</view>
+      </view>
+      <view class="content">
+        <image src="{{item.img}}" mode="aspectFill"></image>
+        <view class="desc">
+          <view class="text-content">{{item.tabcon}}</view>
+          <view>
+            <view class="cu-tag bg-red light sm round">{{item.tag1}}</view>
+            <view class="cu-tag bg-green light sm round">{{item.tag2}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</scroll-view>

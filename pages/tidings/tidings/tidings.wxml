@@ -1,0 +1,9 @@
+<!--pages/tidings/tidings/tidings.wxml-->
+<cu-custom bgColor="bg-gradual-blue">
+  <view slot="content">消息</view>
+</cu-custom>
+<i-toast id="toast" />
+
+<scroll-view scroll-y class=" padding-bottom   margin-bottom-xl">
+
+</scroll-view>

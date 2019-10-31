@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "i-toast": "../../../colorui/dist/toast/index",
+    "i-card": "../../../colorui/dist/card/index"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "home": "/pages/user/home/home",
+    "seek": "/pages/seek/seek/seek",
+    "send": "/pages/send/send/send",
+    "user": "/pages/user/user/user",
+    "about": "/pages/user/about/about",
+    "classify": "/pages/classify/home/home",
+    "tidings": "/pages/tidings/tidings/tidings"
+  }
+}

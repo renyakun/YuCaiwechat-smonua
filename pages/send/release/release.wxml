@@ -1,0 +1,44 @@
+<!--pages/send/release/release.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">发布需求</view>
+</cu-custom>
+<i-toast id="toast" />
+
+<scroll-view scroll-y class="scrollPage ">
+  <i-message id="message" />
+  <!-- <view class="cu-bar bg-white justify-start ">
+    <view class="action sub-title">
+      <text class="text-xl text-bold text-blue">需求描述</text>
+      <text class="text-Abc text-blue">describe</text>
+    </view>
+  </view> -->
+
+  <view class="bg-blue padding margin-top margin-bottom margin-sm cu-card no-card radius shadow">
+    <text class="">审核工作时间：工作日8:00-21:30,周末8:30-20:30。预计10分钟完成审核</text>
+  </view>
+  <i-message id="message" />
+  <view class="bg-white margin-xs cu-card no-card radius shadow">
+    <form bindsubmit='formSubmit'>
+      <view class="cu-form-group margin-top margin-xs bg-gray cu-card no-card">
+        <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
+        <view class="title margin-left-xs">需求</view>
+        <input value="" name="title"></input>
+      </view>
+      <view class="cu-form-group margin-top margin-xs bg-gray cu-card no-card">
+        <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
+        <view class="title">手机号</view>
+        <input name="mobile" type="number" maxlength="11" value="{{mobile}}"></input>
+      </view>
+      <view class="cu-form-group margin-top margin-xs bg-gray cu-card no-card">
+        <view class="title">验证码</view>
+        <input name="code" placeholder="输入验证码" type="number" maxlength="6"></input>
+        <button class="cu-btn bg-gradual-blue radius shadow">获取验证码</button>
+      </view>
+      <view class="padding">
+        <button class="cu-btn bg-gradual-blue margin-tb-sm " formType="submit">点击发布</button>
+      </view>
+    </form>
+  </view>
+
+</scroll-view>

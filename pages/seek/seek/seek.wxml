@@ -1,0 +1,171 @@
+<!--pages/seek/seek.wxml-->
+<cu-custom bgColor="bg-gradual-blue">
+  <view slot="content">找人才</view>
+</cu-custom>
+
+<scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}} ">
+  <view class="flex justify-center ">
+    <navigator url="/pages/seek/indexes/indexes" class="flex-sub padding-xs radius flex justify-center">
+      <text class="cuIcon-location margin-left-xs" style="font-size:40rpx;"></text>
+      <text class="margin-top txt-mf">深圳</text>
+    </navigator>
+
+    <view class="flex-treble bg-white margin-xs round flex padding-xs " style="width:100rpx">
+      <text class="cuIcon-search txt-sea" style="font-size:30rpx; color:#000"></text>
+      <navigator url="/pages/seek/search/search" class="bg-white">
+        <input type="text" class=" margin-left-xs txt-inp padding-left-xs bg-white" placeholder="热门搜索" ></input>
+      </navigator>
+    </view>
+   
+    <view class=" round  padding-sm margin-xs radius search-left">
+      <text class="cuIcon-qrcode margin-left-xs txt-icon" style="font-size:40rpx; color:#000;" bindtap="showModal" data-target="viewModal"></text>
+    </view>
+  </view>
+
+  <view class="" style="position: relative">
+    <!-- bottom-modal -->
+
+    <scroll-view scroll-x class="bg-white nav text-center padding-left padding-right" scroll-with-animation scroll-left="{{scrollLeft}}">
+      <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{navnum}}" wx:key bindtap="navSelect" data-id="{{index}}">
+        Tab{{index}}
+      </view>
+    </scroll-view>
+
+    <view wx:for="{{navnum}}" wx:key wx:if="{{index==TabCur}}" class="text-center padding-left-sm padding-right-sm" style="margin-bottom:250rpx">
+      <view class="cu-card article no-card  margin-top-xs radius bg-black shadow " wx:for="{{tablist}}" wx:key>
+        <view class="cu-item shadow">
+          <view class="title">
+            <view class="text-cut">{{item.tabtit}}</view>
+          </view>
+          <view class="content">
+            <image src="{{item.img}}" mode="aspectFill"></image>
+            <view class="desc">
+              <view class="text-content">{{item.tabcon}}</view>
+              <view>
+              <view class="cu-tag bg-red light sm round">{{index}}</view>
+                <view class="cu-tag bg-red light sm round">{{item.tag1}}</view>
+                <view class="cu-tag bg-green light sm round">{{item.tag2}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>     
+    </view>
+
+  </view>
+</scroll-view>
+
+<view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
+  <text class="cuIcon-pullright"></text>
+</view>
+<scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-lg shadow-lg">
+
+    <view class="VerticalBox">
+      <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(107vh - 375rpx)">
+        <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+          Tab-{{item.name}}
+        </view>
+      </scroll-view>
+      <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(107vh - 375rpx)" scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain">
+
+        <view class="padding-top padding-lr" wx:for="{{list}}" wx:key id="main-{{index}}">
+          <view class='cu-bar solid-bottom bg-white'>
+            <view class='action'>
+              <text class='cuIcon-title text-green'></text> Tab-{{item.name}} </view>
+          </view>
+
+
+          <view class="cu-list menu-avatar">
+            <view class="cu-item">
+              <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+              <view class="content">
+                <view class="text-grey">凯尔</view>
+                <view class="text-gray text-sm flex">
+                  <text class="text-cut">
+										<text class="cuIcon-infofill text-red  margin-right-xs"></text> 我已天理为凭，踏入这片荒芜，不再受凡人的枷锁遏制。我已天理为凭，踏入这片荒芜，不再受凡人的枷锁遏制。
+                  </text>
+                </view>
+              </view>
+              <view class="action">
+                <view class="text-grey text-xs">22:20</view>
+                <view class="cu-tag round bg-grey sm">5</view>
+              </view>
+            </view>
+            <view class="cu-item">
+              <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/img/champion/Taric.png);">
+                <view class="cu-tag badge">99+</view>
+              </view>
+              <view class="content">
+                <view class="text-grey">
+                  <text class="text-cut">瓦洛兰之盾-塔里克</text>
+                  <view class="cu-tag round bg-orange sm">战士</view>
+                </view>
+                <view class="text-gray text-sm flex">
+                  <text class="text-cut">
+										塔里克是保护者星灵，用超乎寻常的力量守护着符文之地的生命、仁爱以及万物之美。塔里克由于渎职而被放逐，离开了祖国德玛西亚，前去攀登巨神峰寻找救赎，但他找到的却是来自星界的更高层的召唤。现在的塔里克与古代巨神族的神力相融合，以瓦洛兰之盾的身份，永不疲倦地警惕着阴险狡诈的虚空腐化之力。
+									</text>
+                </view>
+              </view>
+              <view class="action">
+                <view class="text-grey text-xs">22:20</view>
+                <view class="cuIcon-notice_forbid_fill text-gray"></view>
+              </view>
+            </view>
+            <view class="cu-item ">
+              <view class="cu-avatar radius lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/img/champion/Morgana.png);"></view>
+              <view class="content">
+                <view class="text-pink">
+                  <text class="text-cut">莫甘娜</text>
+                </view>
+                <view class="text-gray text-sm flex">
+                  <text class="text-cut">凯尔，你被自己的光芒变的盲目！</text>
+                </view>
+              </view>
+              <view class="action">
+                <view class="text-grey text-xs">22:20</view>
+                <view class="cu-tag round bg-red sm">5</view>
+              </view>
+            </view>
+            <view class="cu-item grayscale">
+              <view class="cu-avatar radius lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big81007.jpg);"></view>
+              <view class="content">
+                <view>
+                  <text class="text-cut">伊泽瑞尔</text>
+                  <view class="cu-tag round bg-orange sm">断开连接...</view>
+                </view>
+                <view class="text-gray text-sm flex">
+                  <text class="text-cut"> 等我回来一个打十个</text>
+                </view>
+              </view>
+              <view class="action">
+                <view class="text-grey text-xs">22:20</view>
+                <view class="cu-tag round bg-red sm">5</view>
+              </view>
+            </view>
+            <view class="cu-item cur">
+              <view class="cu-avatar radius lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big81020.jpg);">
+                <view class="cu-tag badge"></view>
+              </view>
+              <view class="content">
+                <view>
+                  <text class="text-cut">瓦罗兰大陆-睡衣守护者-新手保护营</text>
+                  <view class="cu-tag round bg-orange sm">6人</view>
+                </view>
+                <view class="text-gray text-sm flex">
+                  <text class="text-cut"> 伊泽瑞尔：<text class="cuIcon-locationfill text-orange margin-right-xs"></text> 传送中...</text>
+                </view>
+              </view>
+              <view class="action">
+                <view class="text-grey text-xs">22:20</view>
+                <view class="cuIcon-notice_forbid_fill text-gray"></view>
+              </view>
+            </view>
+          </view>
+
+        </view>
+      </scroll-view>
+    </view>
+
+  </view>
+</scroll-view>

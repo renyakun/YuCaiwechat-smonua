@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "i-notice-bar": "../../../colorui/dist/notice-bar/index",
+    "i-card": "../../../colorui/dist/card/index",
+    "i-load-more": "../../../colorui/dist/load-more/index",
+    "i-divider": "../../../colorui/dist/divider/index"
+  }
+}

@@ -1,0 +1,43 @@
+<!--pages/classify/order/order.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">{{title}}</view>
+</cu-custom>
+<i-toast id="toast" />
+
+<view class=" ">
+  <view class="bg-gradual-blue" style="height:15vh">
+
+    <scroll-view scroll-x class="nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+      <view class="cu-item {{item.id==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="{{item.id}}" wx:for="{{tablist}}" wx:key>
+        <text class="text-center">{{item.flag}}</text>
+      </view>
+    </scroll-view>
+    <!-- margin-xs {{item.badge}}-->
+    <block wx:if="{{TabCur==item.id}}" wx:for="{{tablist}}" wx:key class="">
+      <scroll-view scroll-y class="bg-white margin-top-lg  radius shadow" style="height:80vh;width:94%; margin-left:3%">
+        {{item.flag}}
+        <view class="bg-white margin-top-sm cu-card no-card radius shadow shadow-lg case padding-top padding-bottom" wx:for="{{listitem}}" wx:key bindtap="showModal" data-target="{{item}}" style="position: relative;height:30vh;">
+          <view class="cu-item">
+            <view class=" bg-{{item.color}} text-center  padding-bottom " style="width:20vh;position: absolute;top:-5vh;right:-8vh; z-index:3;transform: rotate(45deg);  padding-top:9vh">{{item.flag}}</view>
+            <view class="cu-list menu-avatar">
+              <view class="cu-item">
+                <view class="cu-avatar round lg" style="background-image:url({{item.img}});"></view>
+                <view class="content flex-sub">
+                  <view class="text-black">
+                    <text class="text-cut" style="width:40vh">{{item.tit}}</text>
+                  </view>
+                  <view class="text-grey text-sm flex justify-between">
+                    <text class="text-cut" style="width:18vh">{{item.con}}</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </block>
+
+  </view>
+
+</view>

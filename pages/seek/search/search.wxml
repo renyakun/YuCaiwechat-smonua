@@ -1,0 +1,44 @@
+<!--pages/seek/search/search.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isCustom="{{true}}">
+  <view slot="content">搜索</view>
+</cu-custom>
+<i-toast id="toast" />
+<scroll-view scroll-y>
+  <view class="cu-bar bg-white  search fixed margin-bottom-xl" style="top:{{CustomBar}}px;">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="输入搜索的关键词" confirm-type="search" value="{{searchval}}" bindinput="searchput">{{searchval}}</input>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-gradual-blue shadow-blur round" bindtap="searchbtn" data-target="{{searchval}}">搜索</button>
+    </view>
+  </view>
+
+  <view class="bg-white margin-left-sm margin-right-sm  radius" style="margin-top:9vh">
+    <view class="flex justify-center bg-blue padding-top-sm padding-bottom-sm  radius">
+      <text class="">热门搜索</text>
+    </view>
+    <view class="padding flex flex-wrap bg-gray">
+      <view class="padding-xs " wx:for="{{searchList}}" wx:key>
+        <navigator url="/pages/seek/Item/Item?item={{item}}" class="cu-tag line-{{item}} radius bg-white" bindtap="tagshow" data-item="{{item}}">{{item}}</navigator>
+      </view>
+    </view>
+    <view class="padding-xs flex justify-center padding-top padding-bottom  radius bg-blue" style="min-height:10rpx;">
+      <text class="text-center">搜索历史</text>
+    </view>
+    <view class="padding  flex justify-center" wx:if="{{historyflag}}">
+      <text class="text-center">搜索历史为空</text>
+    </view>
+    <scroll-view scroll-y class="padding-ms margin-botom-xs" style="min-height:50rpx;max-height:48vh ;" wx:else>
+      <view class="padding-xs flex justify-between" wx:for="{{seahistoryList}}" wx:key>
+        <navigator url="/pages/seek/Item/Item?item={{item}}" class="radius text-cut bg-white" style="min-width:20rpx; max-width:350rpx" bindtap="tagshow" data-item="{{item}}">{{item}}</navigator>
+        <view class="cu-tag  radius" bindtap="clearhistoryitem" data-item="{{item}}">删除</view>
+      </view>
+    </scroll-view>
+    <view class="padding-xs flex justify-center" style="min-height:10rpx;">
+      <text class="text-center" bindtap="clearhistory">清空历史</text>
+    </view>
+
+  </view>
+
+</scroll-view>

@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/user/home/home",
+    "pages/seek/seek/seek",
+    "pages/send/send/send",
+    "pages/user/user/user",
+    "pages/user/about/about",
+    "pages/seek/indexes/indexes",
+    "pages/user/logs/logs",
+    "pages/seek/search/search",
+    "pages/seek/Item/Item",
+    "pages/classify/home/home",
+    "pages/classify/certification/certification",
+    "pages/classify/authentication/authentication",
+    "pages/classify/enterprise/enterprise",
+    "pages/classify/case/case",
+    "pages/classify/policy/policy",
+    "pages/classify/hot/hot",
+    "pages/classify/train/train",
+    "pages/classify/order/order",
+    "pages/classify/news/news",
+    "pages/classify/about/about",
+    "pages/send/release/release",
+    "pages/classify/RealName/RealName",
+    "pages/tidings/tidings/tidings"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "ColorUI",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "white"
+  },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "sitemapLocation": "sitemap.json"
+}

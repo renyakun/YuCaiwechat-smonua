@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "i-alert": "../../../colorui/dist/alert/index"
+  }
+}

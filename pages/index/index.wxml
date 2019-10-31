@@ -1,0 +1,26 @@
+<send wx:if="{{PageCur=='send'}}"></send>
+<user wx:if="{{PageCur=='user'}}"></user>
+<tidings wx:if="{{PageCur=='tidings'}}"></tidings>
+
+<view class="cu-bar tabbar  shadow foot" style="background: #fff">
+  <view class="action" bindtap="NavChange" data-cur="send">
+    <view class='cuIcon-cu-image'>
+      <image src="/images/tabbar/send{{PageCur=='send'?'_cur':''}}.png"></image>
+    </view>
+    <view class="{{PageCur=='send'?'text-blue':'text-gray'}}">首页</view>
+  </view>
+
+  <view class="action add-action" bindtap="NavChange" data-cur="tidings">
+    <view class='cuIcon-cu-image'>
+      <image src="/images/tabbar/tidings{{PageCur=='tidings'?'_cur':''}}.png"></image>
+    </view>
+    <view class="{{PageCur=='tidings'?'text-blue':'text-gray'}}">消息</view>
+  </view>
+
+  <view class="action" bindtap="NavChange" data-cur="user">
+    <view class='cuIcon-cu-image'>
+      <image src="/images/tabbar/user{{PageCur=='user'?'_cur':''}}.png"></image>
+    </view>
+    <view class="{{PageCur=='user'?'text-blue':'text-gray'}}">我的</view>
+  </view>
+</view>

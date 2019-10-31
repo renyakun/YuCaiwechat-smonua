@@ -1,0 +1,62 @@
+<!--pages/classify/policy/policy.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">{{title}}</view>
+</cu-custom>
+<i-toast id="toast" />
+
+
+<scroll-view scroll-y class=" DrawerPage {{modalName=='viewModal'?'show':''}} margin-bottom-xl">
+  <view class="bg-white margin-top-sm margin-xs cu-card no-card radius shadow case padding-top padding-bottom" wx:for="{{listitem}}" wx:key bindtap="showModal" data-target="{{item}}">
+    <view class="cu-item">
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url({{item.img}});"></view>
+          <view class="content flex-sub">
+            <view class="text-black">
+              <text class="text-cut" style="width:40vh">{{item.tit}}</text>
+            </view>
+            <view class="text-grey text-sm flex justify-between">
+              <text class="text-cut" style="width:18vh">{{item.con}}</text>
+              <view class="text-gray text-sm">
+                <text class="cuIcon-attentionfill margin-lr-xs"></text> {{item.browse}}
+                <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{item.praise}}
+                <text class="cuIcon-messagefill margin-lr-xs"></text> {{item.message}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view>
+    <i-load-more tip="加载已经完成,没有其他数据" loading="{{ false }}" />
+  </view>
+</scroll-view>
+
+
+<view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
+  <text class="cuIcon-pullright"></text>
+</view>
+<scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+  <view class="padding-xs flex align-center">
+    <view class="flex-sub">
+      <view class="solid-bottom text-xl padding  text-center">
+        <text class="text-black text-bold">{{txtcon.tit}}</text>
+      </view>
+      <view class="padding text-center">
+        <view class="text-gray text-sm">
+          <text class="cuIcon-attentionfill margin-lr-xs"></text> {{txtcon.browse}}
+          <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{txtcon.praise}}
+          <text class="cuIcon-messagefill margin-lr-xs"></text> {{txtcon.message}}
+        </view>
+      </view>
+      <view class="padding">
+        <view class="text-black text-lg">
+          <text class="margin-lr-xs" ></text> {{txtcon.con}}
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
