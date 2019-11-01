@@ -5,7 +5,35 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    newslist: [{
+      id: 1,
+      img: '../../../images/icon/notice.png',
+      con: '通知',
+      tit: '暂无通知',
+      icon: 'infofill',
+      timer: ''
+    }, {
+      id: 2,
+      img: '../../../images/icon/see.png',
+      con: '今日暂无查看',
+      tit: '今日共有0名劳务查看',
+      icon: '',
+      timer: ''
+    }, {
+      id: 3,
+      img: '../../../images/icon/subscribe.png',
+      con: '订阅消息',
+      tit: '暂无订阅消息',
+      icon: 'infofill',
+      timer: ''
+    }, {
+      id: 4,
+      img: '../../../images/YuCai.jpg',
+      con: '御材劳务官方助手',
+      tit: '暂无消息',
+      icon: '',
+      timer: '22:20'
+    }]
   },
   // ListTouch触摸开始
   ListTouchStart(e) {
@@ -36,7 +64,7 @@ Page({
       ListTouchDirection: null
     })
   },
-  
+
   /**
    * 生命周期函数--监听页面加载
    */

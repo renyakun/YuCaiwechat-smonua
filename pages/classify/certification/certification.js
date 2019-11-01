@@ -18,7 +18,8 @@ Page({
   onLoad: function(options) {
     this.setData({
       title: options.title,
-      TabCur: options.cur
+      TabCur: options.cur,
+      tokendata: options.tokendata,
     })
     let token = wx.getStorageSync('token') || {};
     let enterprise = wx.getStorageSync('tokenmsg') || {};

@@ -26,6 +26,7 @@ Page({
   },
   // 判定输入为非空字符
   formSubmit(e) {
+    let accessToken = wx.getStorageSync('accessToken') || [];
     let title = e.detail.value.title;
     let mobile = e.detail.value.mobile;
     let code = e.detail.value.code;
@@ -40,6 +41,7 @@ Page({
           title: title,
           mobile: mobile,
           code: code,
+          accessToken: accessToken ,
         },
         header: {
           'content-type': 'application/json'
@@ -72,10 +74,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    let mobile = wx.getStorageSync('mobile') || [];
-    this.setData({
-      mobile: mobile
-    })
+
   },
 
   /**

@@ -63,13 +63,6 @@ Page({
         icon: 'group'
       },
       {
-        title: '新闻资讯',
-        name: 'news',
-        color: 'grey',
-        badge: 0,
-        icon: 'news'
-      },
-      {
         title: '关于我们',
         name: 'about',
         color: 'cyan',
@@ -170,8 +163,8 @@ Page({
         this.url('certification', '认证信息', 2)
       }, 2500)
     } else {
-      //this.url(name, title)
-      this.showToast('即将上线，敬请期待!', 'none', 3000)
+      this.url(name, title)
+      //this.showToast('即将上线，敬请期待!', 'none', 3000)
     }
   },
   release(e) {

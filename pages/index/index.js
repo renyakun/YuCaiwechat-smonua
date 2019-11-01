@@ -5,7 +5,8 @@ Page({
   data: {
     PageCur: 'send',
     token: [],
-    businesstoken: []
+    businesstoken: [],
+    badge:0
   },
   NavChange(e) {
     let PageCurs = e.currentTarget.dataset.cur;
@@ -45,6 +46,7 @@ Page({
   },
   onReady: function() {
     let accessToken = wx.getStorageSync('accessToken') || [];
+    let rawData = wx.getStorageSync('rawData') || {};
     //console.log(accessToken);
     wx.request({
       url: 'http://192.168.101.7:81/user/UserCertification',

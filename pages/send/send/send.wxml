@@ -61,11 +61,11 @@
           <view class="cu-form-group bg-gray margin-top radius shadow">
             <view class="title">验证码</view>
             <input name="code" placeholder="输入验证码" type="number" maxlength="6" bindinput="codeNum" disabled="{{disabput?'':'disabled'}}"></input>
-            <button class="cu-btn bg-gradual-blue radius shadow " style="width:11vh" disabled="{{disabcode?'':'disabled'}}" bindtap="codetxt" data-target="{{codetit}}">{{codetit}}</button>
+            <button class="cu-btn bg-gradual-blue radius shadow-blur" style="width:11vh" disabled="{{disabcode?'':'disabled'}}" bindtap="codetxt" data-target="{{codetit}}">{{codetit}}</button>
           </view>
         </view>
         <view class="padding flex flex-direction">
-          <button class="cu-btn lg  bg-gradual-{{item.color}} animation-{{animation==item.name?item.name:''}}  shadow" data-class="{{item.name}}" wx:for="{{list}}" wx:key="{{index}}" formType="submit" disabled="{{disabsub?'':'disabled'}}" style="width:100%">马上为我推荐</button>
+          <button class="cu-btn lg  bg-gradual-{{item.color}} animation-{{animation==item.name?item.name:''}}  shadow-blur" data-class="{{item.name}}" wx:for="{{list}}" wx:key="{{index}}" formType="submit" disabled="{{disabsub?'':'disabled'}}" style="width:100%">马上为我推荐</button>
         </view>
       </form>
     </view>

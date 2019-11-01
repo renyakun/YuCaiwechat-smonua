@@ -31,6 +31,7 @@ Page({
     });
   },
   formSubmit(e) {
+    let accessToken = wx.getStorageSync('accessToken') || [];
     let companyNick = e.detail.value.companyNick;
     let idNumber = e.detail.value.idNumber;
     let legalName = e.detail.value.legalName;
@@ -47,7 +48,8 @@ Page({
           companyNick: companyNick,
           idNumber: idNumber,
           legalName: legalName,
-          mobile: mobile
+          mobile: mobile,
+          accessToken: accessToken,
         },
         header: {
           'content-type': 'application/json'
@@ -55,7 +57,7 @@ Page({
         success: res => {
           console.log(res)
           if (res.data.success) {
-            this.Toast(res.data.msg, 'success', 3)
+            this.Toast(res.data.data, 'success', 3)
             setTimeout(() => {
               this.url('certification', '认证信息', 2)
             }, 3500)

@@ -14,6 +14,11 @@ Page({
     mobile: '',
     idCard: '',
   },
+  url(name, title, cur) {
+    wx.navigateTo({
+      url: '/pages/classify/' + name + '/' + name + '?title=' + title + '&&cur=' + cur + '&&tokendata=' + tokendata,
+    });
+  },
   Toast(tit, icon, timer) {
     $Toast({
       content: tit,
@@ -32,9 +37,9 @@ Page({
     if (realName == "" || mobile == "" || idCard == "") {
       this.Toast('请输入完整信息！', 'warning', 3)
     } else {
-      console.log(e.detail.value);
+      //console.log(e.detail.value);
+      let tokendata = e.detail.value;
       wx.request({
-        //?accessToken=' + accessToken
         url: 'http://192.168.101.7:81/user/UserCertification/add',
         method: 'post',
         data: {
@@ -50,12 +55,10 @@ Page({
         success: res => {
           console.log(res)
           if (res.data.success) {
-            this.Toast('认证成功', 'success', 3)
+            this.Toast(res.data.data, 'success', 3)
             setTimeout(() => {
-              wx.navigateTo({
-                url: '/pages/index/index',
-              })
-            }, 500)
+              this.url('certification', '认证信息', 2, tokendata)
+            }, 3500)
           } else {
             this.Toast(res.data.msg, 'warning', 3)
           }

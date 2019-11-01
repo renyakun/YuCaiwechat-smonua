@@ -19,7 +19,6 @@ App({
     wx.login({
       success: res => {
         //wx.setStorageSync('code', res.code)
-        let rawData = wx.getStorageSync('rawData') || {};
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         if (res.code) {
           //console.log('获取用户登录凭证：' + res.code);
@@ -29,7 +28,6 @@ App({
             method: 'POST',
             data: {
               code: res.code,
-              RawData: rawData
             },
             header: {
               'content-type': 'application/json'

@@ -13,6 +13,9 @@
   <view class="action add-action" bindtap="NavChange" data-cur="tidings">
     <view class='cuIcon-cu-image'>
       <image src="/images/tabbar/tidings{{PageCur=='tidings'?'_cur':''}}.png"></image>
+      <view class="cu-tag badge" wx:if="{{item.badge!=0}}" wx:for="{{badge}}" wx:key>
+        <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
+      </view>
     </view>
     <view class="{{PageCur=='tidings'?'text-blue':'text-gray'}}">消息</view>
   </view>
