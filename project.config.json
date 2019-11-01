@@ -4,17 +4,26 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"coverView": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.1",
-	"appid": "wxef80070bd7008e35",
-	"projectname": "ColorUI-template",
+	"appid": "wx884ebfcbccc0468b",
+	"projectname": "YuCai-ColorUI",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

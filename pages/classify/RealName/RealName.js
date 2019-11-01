@@ -23,6 +23,8 @@ Page({
   },
   // 判定输入为非空字符
   formSubmit(e) {
+    let accessToken = wx.getStorageSync('accessToken') || [];
+    console.log(accessToken);
     let realName = e.detail.value.realName;
     let mobile = e.detail.value.mobile;
     let idCard = e.detail.value.idCard;
@@ -32,6 +34,7 @@ Page({
     } else {
       console.log(e.detail.value);
       wx.request({
+        //?accessToken=' + accessToken
         url: 'http://192.168.101.7:81/user/UserCertification/add',
         method: 'post',
         data: {
@@ -39,6 +42,7 @@ Page({
           mobile: mobile,
           idCard: idCard,
           code: code,
+          accessToken: accessToken,
         },
         header: {
           'content-type': 'application/json'
@@ -46,7 +50,6 @@ Page({
         success: res => {
           console.log(res)
           if (res.data.success) {
-            wx.setStorageSync('mobile', mobile)
             this.Toast('认证成功', 'success', 3)
             setTimeout(() => {
               wx.navigateTo({

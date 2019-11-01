@@ -159,7 +159,7 @@ Page({
     if (name == "certification" && tokenflag) {
       this.url(name, title, 1)
     } else if (name == "certification" && !tokenflag) {
-      this.showModal(token.data.msg, 'RealName', '实名认证')
+      this.showModal('请先实名认证', 'RealName', '实名认证')
     } else if (name == "authentication" && msg == "您还未进行企业认证") {
       this.url(name, title)
     } else if (name == "authentication" && msg == "您还未进行实名认证，请先实名认证再企业认证") {

@@ -16,27 +16,33 @@ App({
       }
     })
 
-    // 登录
     wx.login({
       success: res => {
-        let url = 'http://192.168.233.1:81/wx/login';
-        let data = {
-          code: res.data
-        };
-        wx.setStorageSync('code', res.code)
+        //wx.setStorageSync('code', res.code)
+        let rawData = wx.getStorageSync('rawData') || {};
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         if (res.code) {
-          console.log('获取用户登录凭证：' + res.code);
+          //console.log('获取用户登录凭证：' + res.code);
           //发起网络请求
           wx.request({
-            url: url,
+            url: 'http://192.168.101.7:81/user/wx/login',
             method: 'POST',
-            data: data,
+            data: {
+              code: res.code,
+              RawData: rawData
+            },
+            header: {
+              'content-type': 'application/json'
+            },
             success: res => {
+              console.log(res)
+              wx.setStorageSync('accessToken', res.data.data.accessToken)
+            },
+            fail: res => {
               console.log(res);
+              console.log('is failed')
             }
           })
-
         } else {
           console.log('登录失败！' + res.errMsg)
         }
@@ -58,7 +64,7 @@ App({
               if (this.userInfoReadyCallback) {
                 this.userInfoReadyCallback(res)
               }
-              wx.setStorageSync('users', res.userInfo)
+              wx.setStorageSync('rawData', res.userInfo)
             }
           })
         }
