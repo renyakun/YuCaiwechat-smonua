@@ -303,8 +303,8 @@ Page({
     // }, 3000)
     let val = "";
     this.request(val);
-    let color = ['red', 'cyan', 'yellow', 'green', 'mauva', 'blue', 'orange', 'olive', 'purple', 'mauve', 'pink', 'brown'];
-    let coloritem = color[Math.floor(Math.random() * 10)]
+    // let color = ['red', 'cyan', 'yellow', 'green', 'mauva', 'blue', 'orange', 'olive', 'purple', 'mauve', 'pink', 'brown'];
+    // let coloritem = color[Math.floor(Math.random() * 10)]
 
 
 
