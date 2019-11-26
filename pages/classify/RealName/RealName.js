@@ -1,9 +1,13 @@
 // pages/classify/RealName/RealName.js
+
 const {
-  $Toast
-} = require('../../../colorui/dist/base/index');
+  url
+} = require('../../../utils/url.js');
+import {
+  showToast,
+  navigateTo,
+} from '../../../utils/WeChatfction';
 Page({
-  /*页面的初始数据*/
   data: {
     indicatorDots: false,
     autoplay: false,
@@ -13,18 +17,6 @@ Page({
     realName: '',
     mobile: '',
     idCard: '',
-  },
-  url(name, title, cur) {
-    wx.navigateTo({
-      url: '/pages/classify/' + name + '/' + name + '?title=' + title + '&&cur=' + cur + '&&tokendata=' + tokendata,
-    });
-  },
-  Toast(tit, icon, timer) {
-    $Toast({
-      content: tit,
-      type: icon,
-      duration: timer
-    });
   },
   // 判定输入为非空字符
   formSubmit(e) {
@@ -39,14 +31,15 @@ Page({
     } else {
       //console.log(e.detail.value);
       let tokendata = e.detail.value;
+      console.log(tokendata);
       wx.request({
-        url: 'http://192.168.101.7:81/user/UserCertification/add',
+        url: url+'/user/UserCertification/add',
         method: 'post',
         data: {
           realName: realName,
           mobile: mobile,
           idCard: idCard,
-          code: code,
+          //code: code,
           accessToken: accessToken,
         },
         header: {
@@ -55,12 +48,10 @@ Page({
         success: res => {
           console.log(res)
           if (res.data.success) {
-            this.Toast(res.data.data, 'success', 3)
-            setTimeout(() => {
-              this.url('certification', '认证信息', 2, tokendata)
-            }, 3500)
+            showToast(res.data.data, 'success', 3000);
+            navigateTo('/pages/classify/certification/certification?title=认证信息&&cur=1');
           } else {
-            this.Toast(res.data.msg, 'warning', 3)
+            showToast(res.data.msg, 'none', 3000)
           }
         }
       })
@@ -88,10 +79,7 @@ Page({
     if (str.test(datauser)) {
       return true
     } else {
-      wx.showToast({
-        title: '请输入中文',
-        icon: 'none',
-      })
+      showToast('请输入中文', 'none',3000)
       return false
     }
   },

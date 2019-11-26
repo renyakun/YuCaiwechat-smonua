@@ -1,38 +1,52 @@
 // pages/tidings/tidings/tidings.js
+const {
+  url
+} = require('../../../utils/url.js');
+import {
+  showToast,
+  navigateTo,
+  setBarTitle,
+  setBarColor,
+} from '../../../utils/WeChatfction';
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     newslist: [{
       id: 1,
       img: '../../../images/icon/notice.png',
-      con: '通知',
-      tit: '暂无通知',
+      con: '评价消息通知',
+      tit: '暂无消息',
+      notice: '2018年世界杯,将于6月14日至7月15日举行;2018年世界杯,将于6月14日至7月15日举行;',
       icon: 'infofill',
-      timer: ''
+      timer: '',
+      badge: 6,
+
     }, {
       id: 2,
       img: '../../../images/icon/see.png',
       con: '今日暂无查看',
-      tit: '今日共有0名劳务查看',
+      tit: '暂无劳务查看',
+      notice: '2018年世界杯,将于6月14日至7月15日举行;2018年世界杯,将于6月14日至7月15日举行;',
       icon: '',
-      timer: ''
+      timer: '',
+      badge: 7,
     }, {
       id: 3,
       img: '../../../images/icon/subscribe.png',
       con: '订阅消息',
       tit: '暂无订阅消息',
+      notice: '2018年世界杯,将于6月14日至7月15日举行;2018年世界杯,将于6月14日至7月15日举行;',
       icon: 'infofill',
-      timer: ''
+      timer: '',
+      badge: 8,
     }, {
       id: 4,
       img: '../../../images/YuCai.jpg',
       con: '御材劳务官方助手',
       tit: '暂无消息',
+      notice: '2018年世界杯,将于6月14日至7月15日举行;2018年世界杯,将于6月14日至7月15日举行;',
       icon: '',
-      timer: '22:20'
+      timer: '22:20',
+      badge: 9,
     }]
   },
   // ListTouch触摸开始
@@ -65,18 +79,52 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  cussjump(){
+    navigateTo('/pages/tidings/discuss/discuss')
+  },
+  emptytap(){
+    let badge = 'newslist[0].badge';
+    let notice = 'newslist[0].notice';
+    this.setData({
+      [notice]: '',
+      [badge]: 0
+    })
+  },
   onLoad: function(options) {
+    let accessToken = wx.getStorageSync('accessToken') || [];
+    wx.request({
+      url: url + '/invitation/myAcceptEvaluation',
+      data: {
+        accessToken: accessToken,
+      },
+      success: res => {
+        //console.log(res)
+        if (res.data.success) {
+          //console.log(res.data.data)
+          let data = res.data.data;
+          let badge = 'newslist[0].badge';
+          let notice = 'newslist[0].notice';
+          let timer = 'newslist[0].timer';
+          this.setData({
+            [badge]: data.length,
+            [notice]: data[0].evaluationName + ' : ' + data[0].message,
+            [timer]: data[0].createTime
+          })
+        } else {
+          showToast(res.data.msg, 'none', 3000)
+        }
+      }
+    })
 
+    setBarColor('#ffffff', '#0081ff', 1500, 'ease');
+    setBarTitle('消息');
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    
   },
 
   /**
@@ -104,7 +152,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    this.onLoad()
   },
 
   /**

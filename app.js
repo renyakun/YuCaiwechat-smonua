@@ -1,21 +1,30 @@
 //app.js
+// "enablePullDownRefresh": true
+const {
+  url
+} = require('utils/url.js');
 App({
-  onLaunch: function() {
+  onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
     wx.checkSession({
-      success() {
+      success(res) {
         //session_key 未过期，并且在本生命周期一直有效
+        //console.log(res)
+        console.log("处于登录态");
       },
-      fail() {
+      fail(res) {
+        //console.log(res)
         // session_key 已经失效，需要重新执行登录流程
+        console.log("需要重新登录");
         wx.login() //重新登录
       }
     })
 
+    // 登录
     wx.login({
       success: res => {
         //wx.setStorageSync('code', res.code)
@@ -24,7 +33,7 @@ App({
           //console.log('获取用户登录凭证：' + res.code);
           //发起网络请求
           wx.request({
-            url: 'http://192.168.101.7:81/user/wx/login',
+            url: url+'/user/wx/login',
             method: 'POST',
             data: {
               code: res.code,
@@ -46,7 +55,6 @@ App({
         }
       }
     })
-
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -54,7 +62,6 @@ App({
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
             success: res => {
-              //console.log(res)
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
@@ -62,22 +69,8 @@ App({
               if (this.userInfoReadyCallback) {
                 this.userInfoReadyCallback(res)
               }
-              wx.setStorageSync('rawData', res.userInfo)
             }
           })
-        }
-      }
-    })
-    // 获取系统状态栏信息
-    wx.getSystemInfo({
-      success: e => {
-        this.globalData.StatusBar = e.statusBarHeight;
-        let capsule = wx.getMenuButtonBoundingClientRect();
-        if (capsule) {
-          this.globalData.Custom = capsule;
-          this.globalData.CustomBar = capsule.bottom + capsule.top - e.statusBarHeight;
-        } else {
-          this.globalData.CustomBar = e.statusBarHeight + 50;
         }
       }
     })

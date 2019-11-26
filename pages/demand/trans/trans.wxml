@@ -1,0 +1,163 @@
+<!--pages/demand/trans/trans.wxml-->
+<scroll-view scroll-y class="scrollPage margin-bottom-xl" style="margin-bottom:10vh" scrollTop="{{scrollTop}}">
+  <scroll-view scroll-x class="bg-gradual-blue nav text-center fixed  shadow-blur" style="top:{{CustomBar}}px; padding-bottom:0.3vh">
+    <view class="cu-item {{item.id==TabCur?'text-white cur':''}}" wx:for="{{navlist}}" wx:key bindtap="tabSelect" data-id="{{item.id}}">
+      {{item.nav}}
+    </view>
+  </scroll-view>
+
+  <view >
+    <swiper class="screen-swiper square-dot " style="margin-top:9vh" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+      <swiper-item wx:for="{{swiperList}}" wx:key>
+        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+        <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+      </swiper-item>
+    </swiper>
+
+    <view class="cu-card article no-card margin-bottom">
+      <view class="cu-item">
+        <view class="title">
+          <view class="">{{demanditem.jobName}}</view>
+        </view>
+        <view class="content">
+          <view class="bg-white" style="width:55%">
+            <view class="margin-top-xs">{{demanditem.jobType}} | {{demanditem.ageRequire}}岁</view>
+            <!-- <view class="margin-top-sm text-cut" style="width:20vh">
+            <text class="cuIcon-location">{{demanditem.city}}</text>
+          </view> -->
+            <view class=" flex flex-wrap " style="width:100%">
+              <view class="padding-xs" wx:for="{{label}}" wx:key>
+                <view class="cu-tag bg-blue round">{{item}}</view>
+              </view>
+            </view>
+          </view>
+          <view class=" margin-left bg-white" style="width:45%">
+            <view class="margin-top-xs flex justify-end">￥{{demanditem.salary}}元/月</view>
+            <!-- <view class="margin-top flex justify-end">{{demanditem.deadline}}更新</view> -->
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="cu-card article no-card margin-bottom cardpost">
+      <view class="cu-bar bg-white ">
+        <view class="action">
+          <text class="cuIcon-titles text-blue"></text>
+          <text class="text-xl text-bold">岗位发布者</text>
+        </view>
+      </view>
+      <view class="bg-white">
+        <i-card title="" extra="" class="padding  shadow">
+          <view slot="content" class="flex justify-between align-center">
+            <view class="flex align-center">
+              <view class="cu-avatar xl round margin-left bg-blue">
+                <text class="avatar-text">需求</text>
+              </view>
+              <view class="flex-sub margin-left">
+                <view>留下需求</view>
+                <text class="text-black text-bold">免费获取方案和报价</text>
+              </view>
+            </view>
+            <view class="btn-rg text-center">
+              立即获取
+            </view>
+          </view>
+        </i-card>
+      </view>
+    </view>
+
+    <view class="cu-card article no-card margin-bottom">
+      <view class="cu-bar bg-white">
+        <view class="action">
+          <text class="cuIcon-titles text-blue"></text>
+          <text class="text-xl text-bold">岗位要求</text>
+        </view>
+      </view>
+      <view class="cu-item  ">
+        <view class="content padding-top padding-bottom">
+          <view class=" text-cut" style="width:100%">
+            <text class="text-black">{{demanditem.jobRequire}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="cu-card article no-card margin-bottom">
+      <view class="cu-bar bg-white">
+        <view class="action">
+          <text class="cuIcon-titles text-blue"></text>
+          <text class="text-xl text-bold">办公地址</text>
+        </view>
+      </view>
+      <view class="cu-item  ">
+        <view class="content padding-top padding-bottom">
+          <view class="">
+            <text class="text-black">{{demanditem.city}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="cu-card article no-card margin-bottom cardcuss" style=" display: {{demlen != 0?'':'none'}}">
+      <view class="cu-bar bg-white">
+        <view class="action">
+          <text class="cuIcon-titles text-blue"></text>
+          <text class="text-xl text-bold">热门评论</text>
+        </view>
+      </view>
+      <view class="cu-card dynamic no-card">
+        <view class="cu-item shadow">
+          <view class="cu-list menu-avatar comment solids-top">
+            <view class="cu-item" wx:for="{{cusslist}}" wx:key>
+              <view class="cu-avatar round" style="background-image:url(https://ossweb-img.qq.com/images/lol/img/champion/Morgana.png);"></view>
+              <view class="content">
+                <view class="text-grey">{{item.evaluationName}}</view>
+                <view class="text-grey flex align-end">
+                  <i-rate disabled="{{true}}" value="{{item.star}}" size="24">
+                  </i-rate>
+                  {{item.createTime}}
+                </view>
+                <view class="text-gray text-content text-df margin-top-xs">{{item.message}}</view>
+                <view class="bg-grey light padding-xs radius margin-top-sm  text-sm" style=" display: {{item.replyMessage!=null?'':'none'}}">
+                  <view class="flex">
+                    <view>{{item.acceptName}}：</view>
+                    <view class="flex-sub">{{item.replyMessage}}</view>
+                  </view>
+                </view>
+                <view class="margin-top-sm flex justify-between">
+                  <view class="text-black text-df"></view>
+                  <view>
+                    <text class="cuIcon-appreciatefill text-gray">点赞</text>
+                    <text class="cuIcon-messagefill text-gray margin-left-xl">回复</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+  </view>
+
+</scroll-view>
+
+<view class="cu-bar foot tabbar cur shop bg-white" style="bottom:{{InputBottom}}px">
+  <button class="action margin-left" bindtap="tapind" style="width:12vh">
+    <view class="cuIcon-home "></view>回首页
+  </button>
+  <button class="action margin-left" style="width:10vh" bindtap="tapshare">
+    <view class="cuIcon-forward text-blue">
+    </view> 分享
+  </button>
+  <!-- <button class="action margin-left" open-type="contact" style="width:10vh">
+    <view class="cuIcon-service text-red">
+    </view> 客服
+  </button> -->
+  <button class="action margin-left" bindtap="taptel" data-target="{{demanditem.mobile}}" style="width:10vh">
+    <view class="cuIcon-phone text-blue">
+    </view> 电话
+  </button>
+  <button class="cu-btn bg-blue round shadow-blur" style="width:16vh;" bindtap="tappush">推送名片</button>
+</view>

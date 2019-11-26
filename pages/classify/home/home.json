@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "i-load-more": "../../../colorui/dist/load-more/index",
+    "i-card": "../../../colorui/dist/card/index"
+  }
+}

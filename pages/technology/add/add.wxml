@@ -1,0 +1,138 @@
+<!--pages/technology/add/add.wxml-->
+<scroll-view scroll-y class="scrollPage padding-bottom " scrollTop="{{scrollTop}}">
+  <view class="cu-bar bg-white justify-start fixed" style="top:{{CustomBar}}px;">
+    <view class="action sub-title">
+      <text class="text-xl text-bold text-blue">我的名片</text>
+      <text class="text-Abc text-blue">card</text>
+    </view>
+  </view>
+
+  <view class="margin-top-xs margin-left-xs margin-right-xs" style="margin-top:10vh;">
+    <form bindsubmit='formSubmit' class="margin-top-xs">
+
+      <view class="bg-white margin-xs  cu-card no-card  shadow margin-bottom">
+
+        <view class="cu-bar justify-start bg-white">
+          <view class="action border-title">
+            <text class="text-xl text-bold text-blue">个人信息</text>
+            <text class="bg-gradual-blue" style="width:3rem"></text>
+          </view>
+        </view>
+
+        <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
+          <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
+          <view class="title margin-left-xs">姓名</view>
+          <input name="realName"></input>
+        </view>
+
+        <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
+          <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
+          <view class="title margin-left-xs">年龄</view>
+          <input name="age"></input>
+        </view>
+
+        <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
+          <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
+          <view class="title margin-left-xs">性别</view>
+          <view>
+            <radio-group class="block" name="sex">
+              <label>
+                <radio class="blue radio" value="男" checked="{{check}}" />
+                <text class="margin-left-xs">男</text>
+              </label>
+              <label>
+                <radio class="blue radio margin-left-sm" value="女" checked="{{!check}}" />
+                <text class="margin-left-xs">女</text>
+              </label>
+            </radio-group>
+          </view>
+          <input disabled></input>
+        </view>
+
+        <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
+          <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
+          <view class="title margin-left-xs">期望职位</view>
+          <input name="dreamPosition"></input>
+        </view>
+
+        <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
+          <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
+          <view class="title margin-left-xs">手机号</view>
+          <input name="mobile" type="number" maxlength="11"></input>
+        </view>
+
+        <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
+          <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
+          <view class="title margin-left-xs">邮箱</view>
+          <input name="email"></input>
+        </view>
+
+      </view>
+
+      <view class="bg-white margin-xs  cu-card no-card  shadow showcard" style="display:{{showflag?'':'none'}}">
+
+        <view class="cu-bar justify-start bg-white">
+          <view class="action border-title">
+            <text class="text-xl text-bold text-blue">其他信息</text>
+            <text class="bg-gradual-blue" style="width:3rem"></text>
+          </view>
+        </view>
+
+        <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
+          <view class="title">专业</view>
+          <input name="profession"></input>
+        </view>
+
+        <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
+          <view class="title ">学历</view>
+          <input name="education"></input>
+        </view>
+
+        <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
+          <view class="title ">毕业时间</view>
+          <input name="graduationTime"></input>
+        </view>
+
+        <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
+          <view class="title ">毕业院校</view>
+          <input name="school"></input>
+        </view>
+
+        <view class="cu-form-group align-start margin-xs bg-gray cu-card no-card">
+          <view class="title ">工作经历</view>
+          <view class="flex align-end  margin-bottom-xs " style="width:76%;">
+            <textarea class="" maxlength="500" name="experience" placeholder="请输入工作经历"></textarea>
+          </view>
+        </view>
+
+        <view class="cu-form-group align-start margin-xs bg-gray cu-card no-card">
+          <view class="title ">个人标签</view>
+          <view class="flex align-end  margin-bottom-xs " style="width:76%;">
+            <textarea class="" maxlength="500" name="label" placeholder="请输入个人标签"></textarea>
+          </view>
+        </view>
+
+        <view class="cu-form-group align-start margin-xs bg-gray cu-card no-card" style="position: relative">
+          <view class="title">自我描述</view>
+          <view class="flex align-end  margin-bottom-xs " style="width:76%;">
+            <textarea class="" maxlength="500" name="description" placeholder="请输入自我描述"></textarea>
+          </view>
+        </view>
+
+      </view>
+
+      <view class="padding  flex justify-end margin-top-xl">
+        <button class="cu-btn bg-gradual-blue shadow-blur margin-right" formType="submit" style="width:20vh">创建并保存</button>
+        <button class="cu-btn bg-gradual-blue shadow-blur " formType="reset" style="width:20vh">重置</button>
+      </view>
+
+    </form>
+  </view>
+
+
+  <view class="shadow-blur bg-gradual-blue round justify-start align-center padding-left" style="display:{{showflag?'none':''}};width:15vh;height:6vh;line-height:6vh;left:70%" bindtap="dishow">
+    <text class="">更多信息</text>
+    <text class="cuIcon-unfold"></text>
+  </view>
+
+</scroll-view>

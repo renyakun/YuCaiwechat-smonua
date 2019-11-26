@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "i-index": "../../../colorui/dist/index/index",
-    "i-index-item": "../../../colorui/dist/index-item/index"
-  }
-}

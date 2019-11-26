@@ -2,11 +2,16 @@
 const {
   $Toast
 } = require('../../../colorui/dist/base/index');
+const {
+  url
+} = require('../../../utils/url.js');
+import {
+  showToast,
+  pagesurl,
+  setBarTitle,
+} from '../../../utils/WeChatfction';
 Page({
-
-  /**
-   * 页面的初始数据
-   */
+  /* 页面的初始数据*/
   data: {
     indicatorDots: false,
     autoplay: false,
@@ -17,11 +22,6 @@ Page({
     idNumber: '',
     legalName: '',
     mobile: ''
-  },
-  url(name, title, cur) {
-    wx.navigateTo({
-      url: '/pages/classify/' + name + '/' + name + '?title=' + title + '&&cur=' + cur,
-    });
   },
   Toast(tit, icon, timer) {
     $Toast({
@@ -41,43 +41,46 @@ Page({
       this.Toast('请输入完整信息！', 'warning', 3)
     } else {
       //console.log(e.detail.value);
-      wx.request({
-        url: 'http://192.168.101.7:81/company/companyCertification/add',
-        method: 'post',
-        data: {
-          companyNick: companyNick,
-          idNumber: idNumber,
-          legalName: legalName,
-          mobile: mobile,
-          accessToken: accessToken,
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: res => {
-          console.log(res)
-          if (res.data.success) {
-            this.Toast(res.data.data, 'success', 3)
-            setTimeout(() => {
-              this.url('certification', '认证信息', 2)
-            }, 3500)
-          } else {
-            this.Toast(res.data.msg, 'warning', 3)
-          }
-        }
+      wx.showLoading({
+        title: '加载中',
       })
-
+      setTimeout(() => {
+        wx.hideLoading()
+      }, 3000)
+      setTimeout(() => {
+        wx.request({
+          url: url +'/company/companyCertification/add',
+          method: 'post',
+          data: {
+            companyNick: companyNick,
+            idNumber: idNumber,
+            legalName: legalName,
+            mobile: mobile,
+            accessToken: accessToken,
+          },
+          header: {
+            'content-type': 'application/json'
+          },
+          success: res => {
+            console.log(res)
+            if (res.data.success) {
+              this.Toast(res.data.data, 'success', 3)
+              setTimeout(() => {
+                pagesurl('certification', '认证信息', 2)
+              }, 3500)
+            } else {
+              this.Toast(res.data.msg, 'warning', 3)
+            }
+          }
+        })
+      }, 3000)
     }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    wx.showToast({
-      title: '正在加载',
-      icon: 'loading',
-      duration: 3000
-    })
+    setBarTitle(options.title)
     this.setData({
       title: options.title
     })

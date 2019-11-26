@@ -1,3 +1,0 @@
-<!--pages/about/about.wxml-->
-<cu-custom bgColor="bg-gradual-blue" isCustom="{{true}}"><view slot="content">活动</view></cu-custom>
-<text>pages/about/about.wxml</text>

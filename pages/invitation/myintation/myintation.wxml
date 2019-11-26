@@ -1,0 +1,87 @@
+<!--pages/invitation/myintation/myintation.wxml-->
+
+<view class="bg-white" style="" wx:if="{{demandflag}}" style="height:100vh">
+  <image src="/images/rhomb-white.gif" mode="aspectFit" class="gif-white response"></image>
+</view>
+
+<block wx:else>
+
+  <scroll-view scroll-y class="scrollPage" scrollTop="{{scrollTop}}">
+    <view class="cu-bar search  fixed indigo shadow-blur" style="height:9vh;top:{{CustomBar}}px;">
+      <scroll-view scroll-x class="nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+        <view class="cu-item {{item.id==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="{{item.id}}" wx:for="{{tablist}}" wx:key>
+          <text class="text-center">{{item.flag}}</text>
+        </view>
+      </scroll-view>
+    </view>
+
+    <view style="margin-top:9.5vh" class=" margin-left-xs margin-right-xs margin-bottom-xl round">
+      <block wx:if="{{TabCur==item.id}}" wx:for="{{tablist}}" wx:key class="">
+        <scroll-view scroll-y class="bgwhite shadow scrollPage" style=" ">
+          <block wx:if="{{item.id== 2}}">
+
+            <view class="cu-card article no-card  margin-top margin-botttom-xl  margin-left-sm margin-right-sm padding-top-xs padding-bottom-xs radius  bg-white shadow" wx:for="{{interdemand}}" wx:key>
+              <view class="cu-item">
+                <view class="title">
+                  <view class="text-cut">{{item.jobName}}</view>
+                </view>
+                <view class="content">
+                  <view class="bg-white" style="width:55%">
+                    <view class="margin-top-xs">{{item.jobType}} | {{item.ageRequire}}岁</view>
+                    <view class="margin-top-sm text-cut" style="width:20vh">
+                      <text class="">{{item.city}}</text>
+                    </view>
+                    <view class="cu-tag bg-green round margin-top-lg">{{item.releaseType}}认证</view>
+                  </view>
+                  <view class=" margin-left bg-white" style="width:45%">
+                    <view class="margin-top-xs flex justify-end">￥{{item.salary}}元/月</view>
+                    <view class="flex justify-end margin-top-sm">{{item.createTime}}</view>
+                    <view class="flex justify-end align-end margin-top-xl">
+                      <text bindtap="Seedels" data-target="{{item.demandId}}">查看详情</text>
+                      <text class="cuIcon-right"></text>
+                    </view>
+                  </view>
+
+                </view>
+
+              </view>
+
+            </view>
+
+          </block>
+
+          <block wx:elif="{{item.id== 3}}">
+
+            <view class="cu-list menu-avatar">
+              <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}} margin-top-xs padding-top-xl padding-bottom-xl" style="min-height:15vh" wx:for="{{evaldemand}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd"
+                data-target="move-box-{{index}}">
+                <view class="content">
+                  <view class="text-black text-sm text-bold">{{item.demandHistroy.jobName}}</view>
+                  <view class="text-grey text-sm text-cut" style="width:100%">
+                    <text class="cuIcon-locationfill text-blue text-df margin-right-xs"></text>面试地点：{{item.address}}</view>
+                  <view class="text-grey text-sm">
+                    <text class="cuIcon-timefill text-blue text-df margin-right-xs"></text>面试时间：{{item.invitationTime}}</view>
+                </view>
+                <view class="action">
+                  <view class="text-black text-sm">{{item.demandHistroy.jobType}}</view>
+                </view>
+                <view class="move bg-white ">
+
+                  <view class="padding-xs">
+                    <view class="cu-tag bg-gradual-blue round shadow shadow-lg" data-item="{{item}}" bindtap="demanditem">评价</view>
+                  </view>
+
+                </view>
+              </view>
+            </view>
+
+          </block>
+
+          <view wx:else>{{item.flag}}</view>
+
+        </scroll-view>
+      </block>
+    </view>
+
+  </scroll-view>
+</block>

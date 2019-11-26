@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "i-message": "../../../colorui/dist/message/index",
-    "i-toast": "../../../colorui/dist/toast/index"
-  }
-}

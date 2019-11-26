@@ -1,9 +1,10 @@
+/**app.wxss**/
 @import "colorui/main.wxss";
 @import "colorui/icon.wxss";
-@import "colorui/animation.wxss";
 
 .scrollPage {
-  height: 100vh;
+  min-height: 100vh;
+  background: #e7e2e2;
 }
 
 .nav-list {
@@ -105,4 +106,12 @@
 
 .text-light {
   font-weight: 300;
+}
+
+.indigo {
+  background: linear-gradient(45deg, #0081ff, #1cbbb4);
+}
+
+.bgwhite {
+  background: #ffffff;
 }

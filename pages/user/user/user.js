@@ -1,7 +1,19 @@
 // pages/user/user.js
-const app = getApp();
+//获取应用实例
+const app = getApp()
+const {
+  url
+} = require('../../../utils/url.js');
+import {
+  showToast,
+  pagesurl,
+  showModal,
+  navigateTo,
+  showLoading,
+  setBarTitle,
+  pageScrollTo
+} from '../../../utils/WeChatfction';
 Page({
-  /* 页面的初始数据*/
   data: {
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
@@ -11,8 +23,8 @@ Page({
     scrollTop: 0,
     navList: [{
         id: 1,
-        icon: 'camerafill',
-        name: "我的收藏",
+        icon: 'cartfill',
+        name: "已推送",
         num: 25,
       },
       {
@@ -28,87 +40,195 @@ Page({
         num: 12,
       },
     ],
-    iconList: [{
+    ctionList: [{
       icon: 'service',
       color: 'red',
       badge: 0,
-      name: '官方客服'
-    }, {
-      icon: 'tag',
-      color: 'orange',
-      badge: 0,
-      name: '帮助'
+      name: 'cstomer',
+      title: '官方客服'
     }, {
       icon: 'message',
+      color: 'orange',
+      badge: 199,
+      title: '消息',
+      name: 'tidings'
+    }, {
+      icon: 'edit',
       color: 'yellow',
       badge: 1,
-      name: '建议留言'
+      title: '建议留言',
+      name: 'message'
     }, {
       icon: 'newshotfill',
       color: 'blue',
       badge: 0,
-      name: '服务估价'
+      title: '服务估价',
+      name: 'evaluation'
     }],
-    tablist: [{
-      id: 1,
-      tabtit: '123无意者 烈火焚身; 以正义的烈火拔出黑暗。我有自己的正义，见证至高的烈火吧。',
-      tabcon: '折磨生出苦难，苦难又会加剧折磨，凡间这无穷的循环，将有我来终结！真正的恩典因不完整而美丽，因情感而真诚，因脆弱而自由！',
-      img: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
-      tag1: '正义天使',
-      tag2: '史诗',
+    atteslist: [{
+      icon: 'profilefill',
+      name: 'certification',
+      color: 'cyan',
+      badge: 0,
+      title: '认证信息',
     }, {
-      id: 2,
-      tabtit: '234无意者 烈火焚身; 以正义的烈火拔出黑暗。我有自己的正义，见证至高的烈火吧。',
-      tabcon: '折磨生出苦难，苦难又会加剧折磨，凡间这无穷的循环，将有我来终结！真正的恩典因不完整而美丽，因情感而真诚，因脆弱而自由！',
-      img: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
-      tag1: '正义天使',
-      tag2: '史诗',
-    }, {
-      id: 3,
-      tabtit: '345无意者 烈火焚身; 以正义的烈火拔出黑暗。我有自己的正义，见证至高的烈火吧。',
-      tabcon: '折磨生出苦难，苦难又会加剧折磨，凡间这无穷的循环，将有我来终结！真正的恩典因不完整而美丽，因情感而真诚，因脆弱而自由！',
-      img: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
-      tag1: '正义天使',
-      tag2: '史诗',
-    }, {
-      id: 4,
-      tabtit: '456无意者 烈火焚身; 以正义的烈火拔出黑暗。我有自己的正义，见证至高的烈火吧。',
-      tabcon: '折磨生出苦难，苦难又会加剧折磨，凡间这无穷的循环，将有我来终结！真正的恩典因不完整而美丽，因情感而真诚，因脆弱而自由！',
-      img: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
-      tag1: '正义天使',
-      tag2: '史诗',
-    }, {
-      id: 5,
-      tabtit: '567无意者 烈火焚身; 以正义的烈火拔出黑暗。我有自己的正义，见证至高的烈火吧。',
-      tabcon: '折磨生出苦难，苦难又会加剧折磨，凡间这无穷的循环，将有我来终结！真正的恩典因不完整而美丽，因情感而真诚，因脆弱而自由！',
-      img: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
-      tag1: '正义天使',
-      tag2: '史诗',
-    }, {
-      id: 6,
-      tabtit: '678无意者 烈火焚身; 以正义的烈火拔出黑暗。我有自己的正义，见证至高的烈火吧。',
-      tabcon: '折磨生出苦难，苦难又会加剧折磨，凡间这无穷的循环，将有我来终结！真正的恩典因不完整而美丽，因情感而真诚，因脆弱而自由！',
-      img: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
-      tag1: '正义天使',
-      tag2: '史诗',
-    }, {
-      id: 7,
-      tabtit: '789无意者 烈火焚身; 以正义的烈火拔出黑暗。我有自己的正义，见证至高的烈火吧。',
-      tabcon: '折磨生出苦难，苦难又会加剧折磨，凡间这无穷的循环，将有我来终结！真正的恩典因不完整而美丽，因情感而真诚，因脆弱而自由！',
-      img: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg',
-      tag1: '正义天使',
-      tag2: '史诗',
-    }]
+      icon: 'vipcard',
+      color: 'orange',
+      name: 'authentication',
+      badge: 0,
+      title: '企业认证'
+    }],
+    demandlist: [{
+      icon: 'repeal',
+      name: 'lauched',
+      color: 'blue',
+      badge: 0,
+      title: '已发布',
+    }],
+    techtit: '我的名片',
+    launNum: 0,
+    pushmeNum: 0,
+    pushNum: 0,
+    pageflag: true,
   },
+
   userjump(e) {
-    wx.showToast({
-      title: '即将上线，敬请期待！',
-      icon: 'none',
-      duration: 2000
+    let name = e.currentTarget.dataset.target.name;
+    let title = e.currentTarget.dataset.target.title;
+    if (name == "tidings") {
+      navigateTo('/pages/tidings/tidings/tidings')
+    } else {
+      showToast('即将上线，敬请期待!', 'none', 3000)
+    }
+  },
+  attesjump(e) {
+    let token = wx.getStorageSync('token') || {};
+    let tokenflag = token.data.success;
+    let tokenmsg = wx.getStorageSync('tokenmsg') || {};
+    let msg = tokenmsg.data.msg;
+    let name = e.currentTarget.dataset.target.name;
+    let title = e.currentTarget.dataset.target.title;
+    console.log(token.data, tokenmsg.data)
+    if (name == "certification" && tokenflag) {
+      pagesurl(name, title, 1)
+    } else if (name == "certification" && !tokenflag) {
+      showModal('请先实名认证', 'RealName', '实名认证')
+    } else if (tokenflag && name == "authentication" && msg == "您还未进行企业认证") {
+      pagesurl(name, title)
+    } else if (tokenflag && name == "authentication" && msg == "您还未进行实名认证，请先实名认证再企业认证") {
+      showModal(tokenmsg.data.msg, 'RealName', '实名认证')
+    } else if (name == "authentication" && msg == "成功") {
+      showToast('您已企业认证！正在为您跳转认证信息', 'none', 2000)
+      setTimeout(() => {
+        pagesurl('certification', '认证信息', 2)
+      }, 2500)
+    } else if (name == "whole") {
+      navigateTo('/pages/classify / home / home');
+    } else {
+      pagesurl(name, title)
+      //showToast('即将上线，敬请期待!', 'none', 3000)
+    }
+  },
+  demandjump(e) {
+    navigateTo('/pages/demand/lauched/lauched');
+  },
+  phmejump(e) {
+    navigateTo('/pages/technology/phmecard/phmecard');
+  },
+
+  techjump(e) {
+    console.log(e.currentTarget.dataset.target);
+    let tit = e.currentTarget.dataset.target;
+    //navigateTo('/pages/technology/add/add');
+    if (tit == "我的名片") {
+      navigateTo('/pages/technology/add/add');
+    } else if (tit == "个人主页") {
+      navigateTo('/pages/technology/card/card');
+    }
+  },
+
+  navSelect(e) {
+    let users = wx.getStorageSync('users') || [];
+    console.log(users);
+    this.setData({
+      userInfo: users.userInfo,
+      hasUserInfo: users.hasUserInfo
     })
   },
-  /* 生命周期函数--监听页面加载*/
-  onLoad: function(options) {
+
+  cordjump() {
+    navigateTo('/pages/record/record/record');
+  },
+
+  managejump(){
+    navigateTo('/pages/manage/manage/manage');
+  },
+
+  paegswitch() {
+    let pageflag = this.data.pageflag;
+    showLoading();
+    pageScrollTo(0,500)
+    setTimeout(() => {
+      this.setData({
+        pageflag: !pageflag
+      })
+    }, 3500)
+  },
+
+  number(website, num) {
+    let accessToken = wx.getStorageSync('accessToken') || [];
+    wx.request({
+      url: url + website,
+      data: {
+        accessToken: accessToken
+      },
+      success: res => {
+        //console.log(res.data.data)
+        if (res.data.success) {
+          wx.hideLoading()
+          if (num == "launNum") {
+            this.setData({
+              launNum: res.data.data.length,
+            })
+          } else if (num == "pushNum") {
+            this.setData({
+              pushNum: res.data.data.length,
+            })
+          } else if (num == "pushmeNum") {
+            this.setData({
+              pushmeNum: res.data.data.length,
+            })
+          } else if (num == "inviNum") {
+            this.setData({
+              inviNum: res.data.data.length,
+            })
+          } else {
+            showToast(res.data.msg, 'none', 3000)
+          }
+        }
+      }
+    })
+  },
+  token(website, tokentxt) {
+    let accessToken = wx.getStorageSync('accessToken') || [];
+    wx.request({
+      url: url + website,
+      data: {
+        accessToken: accessToken,
+      },
+      success: res => {
+        //console.log(res)
+        wx.setStorageSync(tokentxt, res);
+        //wx.setStorageSync('mobile', res.data.data.mobile);
+      }
+    })
+  },
+
+  onLoad: function() {
+    wx.showLoading({
+      title: '加载中',
+    });
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -136,11 +256,41 @@ Page({
       })
     }
 
+    setTimeout(() => {
+      let accessToken = wx.getStorageSync('accessToken') || [];
+      wx.request({
+        url: url + '/technology/getMyBusinessCard',
+        data: {
+          accessToken: accessToken,
+        },
+        success: res => {
+          if (res.data.success) {
+            this.setData({
+              techtit: '个人主页'
+            })
+          } else {
+            this.setData({
+              techtit: '我的名片'
+            })
+          }
+        }
+      })
+      this.token('/user/UserCertification', 'token')
+      this.token('/company/companyCertification', 'tokenmsg')
+      this.number('/technology/mySendBusinessCard', 'pushNum')
+      this.number('/demand/getMyDemands', 'launNum')
+      this.number('/technology/acceptBusinessCards', 'pushmeNum')
+    }, 2000);
+
+    setBarTitle('个人中心');
   },
+
+  onReady: function() {
+
+  },
+
   getUserInfo: function(e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.userInfo)
-    console.log(e.detail.rawData)
+    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -148,55 +298,7 @@ Page({
     })
   },
 
-  navSelect(e) {
-    let users = wx.getStorageSync('users') || [];
-    console.log(users);
-    this.setData({
-      userInfo: users.userInfo,
-      hasUserInfo: users.hasUserInfo
-    })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-    let users = wx.getStorageSync('users') || {};
-    console.log(users)
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {},
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {},
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
   onPullDownRefresh: function() {
-    console.log('onPullDownRefresh')
+    this.onLoad()
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-    console.log('onReachBottom')
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {}
 })
