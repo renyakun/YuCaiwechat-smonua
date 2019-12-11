@@ -53,7 +53,7 @@
   </view>
 
   <view class="bg-white radius shadow margin-top-xs margin-sm">
-    <view class="cu-timeline " wx:for="{{linelist}}" wx:key>
+    <view class="cu-timeline " wx:for="{{linelist}}" wx:key="id">
       <view class="cu-time">{{item.years}}</view>
       <view class="cu-item text-red">
         <view class="content bg-gradual-blue">

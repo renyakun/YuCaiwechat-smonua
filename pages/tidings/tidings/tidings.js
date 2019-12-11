@@ -91,15 +91,21 @@ Page({
           wx.navigateTo({
             url: '/pages/tidings/messageInfo/messageInfo?id=1',
           });
+          return;
         case 2: //面试邀请(待面试)
           wx.navigateTo({
             url: '/pages/record/record/record?id=2',
           });
+          return;
         case 3: //评论消息
           wx.navigateTo({
             url: '/pages/record/record/record?id=3',
           });
-        default:;
+          return;
+        default:
+          wx.navigateTo({
+            url: '/pages/tidings/messageInfo/messageInfo?id=1',
+          });
       }
         
       

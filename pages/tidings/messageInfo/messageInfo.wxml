@@ -9,7 +9,7 @@
 <scroll-view class="messageList">
 
   <view class="cu-list menu-avatar">
-    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{messageList}}" wx:key bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}" data-target="{{item}}" bindtap="Seedels">
+    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{messageList}}" wx:key="id" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}" data-target="{{item}}" bindtap="Seedels">
       <view class="cu-avatar round lg" style="margin-left:-9.5vh;background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big2100{{index+1}}.jpg);"></view>
       <view class="content flex flex-direction justify-around">
         <view class="text-grey text-lg text-bold text-black">{{item.jobName}} </view>

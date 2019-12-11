@@ -103,6 +103,13 @@
 					"pathName": "pages/star/star",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "热招职位调试页面",
+					"pathName": "pages/demand/morejobs/morejobs",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

@@ -1,1 +1,11 @@
 /* pages/demand/trans/trans.wxss */
+
+
+/* 图标的大小修改 */
+.iconfont {
+  font-size: 60rpx;
+}
+.iconfont .icon-shimingrenzheng
+{
+  font-size: 50rpx;
+}

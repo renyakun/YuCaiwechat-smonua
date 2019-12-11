@@ -1,9 +1,9 @@
 <!--my-component/star.wxml-->
 <view class="my-star">
-  <block wx:for="{{one_1}}">
+  <block wx:for="{{one_1}}" wx:key="id">
     <image src='../images/star/star-gray.png'></image>
   </block>
-  <block wx:for="{{two_1}}">
+  <block wx:for="{{two_1}}" wx:key="id">
     <image src='../images/star/star-bling.png'></image>
   </block>
 </view>

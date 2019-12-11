@@ -192,8 +192,6 @@ Page({
         } else {
           showToast(res.data.msg, 'none', 1000)
         }
-
-
       },
     })
 
@@ -219,12 +217,53 @@ Page({
     })
   },
 
+  // 获取岗位发布者详情
+  getPublisher(options){
+    let accessToken = wx.getStorageSync('accessToken') || [];
+    wx.request({
+      url: url + '/demand/getReleaseMessage',
+      data: {
+        accessToken: accessToken,
+        demandId: options.demandId
+      },
+      header: {
+        'content-type': 'application/json'
+      },  
+      success: res => {
+        let publisherInfo = res.data.data;
+        console.log(publisherInfo);
+        if (res.data.success) {
+            this.setData({
+              publisherInfo: publisherInfo,
+              userId: res.data.data.userId
+            })
+        } else {
+          showToast(res.data.msg, 'none', 1000)
+        }
+      },
+    })
+  },
+// 查看更多的招聘职位,页面跳转
+  toMoreJobs(){
+    console.log('查看热招职位跳转');
+    let userId = this.data.userId;
+    setTimeout(function(){
+      wx.navigateTo({
+        url: '/pages/demand/morejobs/morejobs?userId=' + userId,
+        success: function (res) { },
+        fail: function (res) { },
+        complete: function (res) { },
+      })  
+    },500)   
+  },
+
   onLoad: function(options) {
     this.setData({
       demandId: options.demandId,
       jobName: options.jobName
     })
-    this.request(options)
+    this.request(options);
+    this.getPublisher(options);
   },
 
   onReady: function() {

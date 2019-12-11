@@ -6,7 +6,7 @@
     <i-card title="常用功能" class="padding">
       <view slot="content">
         <view class="cu-list grid col-3 {{gridBorder?'':'no-border'}}">
-          <view class="cu-item" wx:for="{{iconList}}" wx:key wx:if="{{index<9}}" bindtap="homejump" data-target="{{item}}">
+          <view class="cu-item" wx:for="{{iconList}}" wx:key="id" wx:if="{{index<9}}" bindtap="homejump" data-target="{{item}}">
             <view class="cuIcon-{{item.icon}} text-{{item.color}}">
               <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
                 <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>

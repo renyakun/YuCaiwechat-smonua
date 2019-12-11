@@ -1,0 +1,54 @@
+<!--pages/demand/morejobs.wxml-->
+<cu-custom isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content" class="margin-top-xs">热招职位</view>
+</cu-custom>
+
+<!-- 加载动画 -->
+<view class="bg-white" style="" wx:if="{{demandflag}}" style="height:100vh;width:100%">
+    <image src="/images/rhomb-white.gif" mode="aspectFit" class="gif-white response"></image>
+</view>
+    <!-- wx:for="{{citylist}}" wx:for-item="cityitem" wx:key  wx:for="{{item.label}}"  wx:key-->
+    <block wx:else>
+      <view class="cu-card article no-card  margin-top-sm   margin-left-sm margin-right-sm padding-top-xs padding-bottom-xs radius  bgwhite bgshadow" wx:for="{{jobLists}}" wx:key="id" bindtap="Seedels" data-target="{{item}}">
+        <view class="cu-item">
+          <view class="title">
+            <view class="text-cut">{{item.jobName}}</view>
+          </view>
+          <view class="content">
+            <view class="bg-white" style="width:55%">
+              <view class="margin-top-xs">{{item.jobType}} | {{item.ageRequire}}岁</view>
+              <view class="margin-top-sm text-cut" style="width:20vh">
+                <text class="">{{item.city}}</text>
+              </view>
+              <view class="cu-tag bggreen round margin-top-lg" style="color:white">{{item.releaseType}}认证</view>
+            </view>
+            <view class=" margin-left bg-white" style="width:45%">
+              <view class="margin-top-xs flex justify-end">￥{{item.salary}}元/月</view>
+              <view class="flex justify-end margin-top-sm">{{item.createTime}}</view>
+              <view class="flex justify-end align-end margin-top-xl">
+                <text bindtap="Seedels" data-target="{{item}}">查看详情</text>
+                <text class="cuIcon-right"></text>
+              </view>
+            </view>
+
+          </view>
+
+          <!-- <view class="flex justify-center align-end margin-top-xs">
+            <text>查看全部服务和案例</text>
+            <text class="cuIcon-right"></text>
+          </view> -->
+        </view>
+
+      </view>
+
+      <view class="margin-top-xl" wx:if="{{loadflag}}">
+        <i-load-more tip="{{tiptxt}}" loading="{{ false }}" />
+      </view> 
+
+      <view class="padding-top-xl bgwhite flex justify-center"  wx:else style="height:100vh;width:100%">
+        <image src="/images/nodata.jpg" mode="aspectFit"></image>
+      </view>
+
+    </block>
+

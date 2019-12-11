@@ -6,7 +6,7 @@
 <scroll-view scroll-y class="scrollPage" scrollTop="{{scrollTop}}">
   <view class="cu-bar search  fixed bgwhite shadow-blur" style="height:9vh;top:10vh;">
     <scroll-view scroll-x class="nav" scroll-with-animation scroll-left="{{scrollLeft}}">
-      <view class="cu-item {{item.id==TabCur?'text-black cur':''}}" style="color:black" bindtap="tabSelect" data-id="{{item.id}}" wx:for="{{tablist}}" wx:key>
+      <view class="cu-item {{item.id==TabCur?'text-black cur':''}}" style="color:black" bindtap="tabSelect" data-id="{{item.id}}" wx:for="{{tablist}}" wx:key="id">
         <text class="text-center">{{item.flag}}</text>
       </view>
     </scroll-view>
@@ -18,12 +18,12 @@
   <!-- 顶部tab栏 -->
   <block wx:else>
     <view style="margin-top:9.5vh" class=" margin-left-xs margin-right-xs round">
-      <block wx:if="{{TabCur==item.id}}" wx:for="{{tablist}}" wx:key class="">
+      <block wx:if="{{TabCur==item.id}}" wx:for="{{tablist}}" wx:key="id" class="">
         <scroll-view scroll-y class="bgwhite shadow scrollPage" style=" ">
           <!-- 全部 -->
           <block wx:if="{{item.id== 1}}">
             <view class="margin-top " wx:if="{{wholeflag}}">
-              <view class="cu-bar cu-card no-card bg-blue radius shadow margin-top-xs margin-left-xs margin-right-xs flex justify-center" wx:for="{{wholelist}}" wx:key data-id="{{item.id}}">
+              <view class="cu-bar cu-card no-card bg-blue radius shadow margin-top-xs margin-left-xs margin-right-xs flex justify-center" wx:for="{{wholelist}}" wx:key="id" data-id="{{item.id}}">
                 <view class="bg-white radius padding-top padding-bottom" style="width:99.5%;">
                   <view class="flex flex-wrap align-end">
                     <view class="padding-left text-bold text-blue">{{item.jobName}}</view>
@@ -50,7 +50,7 @@
           <!-- 待面试 -->
           <block wx:elif="{{item.id== 2}}">
             <view class="margin-top " wx:if="{{interflag}}">
-              <view class="cu-bar cu-card no-card bgblue radius shadow margin-top-xs margin-left-xs margin-right-xs flex justify-center" wx:for="{{interdemand}}" wx:key data-item="{{item}}" bindtap="detaitem">
+              <view class="cu-bar cu-card no-card bgblue radius shadow margin-top-xs margin-left-xs margin-right-xs flex justify-center" wx:for="{{interdemand}}" wx:key="id" data-item="{{item}}" bindtap="detaitem">
                 <view class="bg-white radius padding-top padding-bottom" style="width:99.5%;">
                   <view class="flex flex-wrap align-end">
                     <view class="padding-left text-bold text-blue">
@@ -85,7 +85,7 @@
           <!-- 以评价区域 -->
           <block wx:else>
             <view class="margin-top " wx:if="{{loadflag}}">
-                <view class="cu-list menu-avatar comment solids-bottom" wx:for="{{evaldemand}}" wx:key="{{item.id}}">
+                <view class="cu-list menu-avatar comment solids-bottom" wx:for="{{evaldemand}}" wx:key="id">
                   <view class="cu-item">
                     <view class="cu-avatar round" style="background-image:url({{item.avatar}});top:30rpx"></view>
                     <view class="content">
