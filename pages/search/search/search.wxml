@@ -1,8 +1,17 @@
 <!--pages/search/search/search.wxml-->
+<<<<<<< HEAD
+<cu-custom  isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content" class="margin-top-xs">搜索</view>
+</cu-custom>
+<scroll-view scroll-y>
+  <view class="cu-bar bg-white  search fixed margin-bottom-xl" style="top:10vh;">
+=======
 <text>pages/search/search/search.wxml</text>
 
 <scroll-view scroll-y>
   <view class="cu-bar bg-white  search fixed margin-bottom-xl" style="top:{{CustomBar}}px;">
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
     <view class="search-form round">
       <text class="cuIcon-search"></text>
       <input type="text" placeholder="输入搜索的关键词" confirm-type="search" value="{{searchval}}" bindinput="searchput">{{searchval}}</input>

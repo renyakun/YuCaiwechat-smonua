@@ -1,0 +1,92 @@
+<!--pages/record/details/details.wxml-->
+<cu-custom  isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content" class="margin-top-xs">面试详情</view>
+</cu-custom>
+<scroll-view scroll-y class="scrollPage" style="margin-bottom:10vh">
+
+
+  <view class="cu-card article no-card margin-bottom-xs">
+    <view class="cu-bar bg-white">
+      <view class="action">
+        <text class="cuIcon-titles text-blue"></text>
+        <text class="text-xl text-bold">投递需求</text>
+      </view>
+    </view>
+    <view class="cu-item  ">
+      <view class="content padding-top padding-bottom">
+        <view class="">
+          <text class="text-black">{{jobName}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="cu-card article no-card margin-bottom-xs">
+    <view class="cu-bar bg-white">
+      <view class="action">
+        <text class="cuIcon-titles text-blue"></text>
+        <text class="text-xl text-bold">面试地点</text>
+      </view>
+    </view>
+    <view class="cu-item  ">
+      <view class="content padding-top padding-bottom">
+        <view class="">
+          <text class="text-black">{{address}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="cu-card article no-card margin-bottom">
+    <view class="cu-bar bg-white">
+      <view class="action">
+        <text class="cuIcon-titles text-blue"></text>
+        <text class="text-xl text-bold">面试时间</text>
+      </view>
+    </view>
+    <view class="cu-item  ">
+      <view class="content padding-top padding-bottom">
+        <view class="">
+          <text class="text-black">{{timer}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <form bindsubmit='formSubmit'>
+
+    <view style="opacity:0" animation="{{animationData}}">
+      <view class="cu-bar bg-white">
+        <view class="action">
+          <view class="title">取消原因</view>
+        </view>
+      </view>
+      <view class="bg-white cu-card no-card  shadow">
+        <view class="cu-form-group align-start margin-xs bg-gray cu-card no-card" style=" height:20vh;">
+          <view class="flex align-end  margin-bottom-xs " style="width:100%;height:20vh;">
+            <textarea class="" maxlength="500" name="reason" bindinput="textareaBInput"  style="height:15vh;"></textarea>
+            <view class="" style="position: absolute;right:25rpx">
+              <text>{{txtput}}</text>/500</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="padding margin-bottom flex justify-center">
+        <button class="cu-btn bg-gradual-blue shadow-blur margin-right" formType="submit" style="width:20vh">确认取消</button>
+        <button class="cu-btn bg-gradual-blue shadow-blur " formType="reset" style="width:20vh">重置</button>
+      </view>
+    </view>
+  </form>
+
+</scroll-view>
+
+
+<view class="cu-bar foot tabbar cur shop bg-white" style="bottom:{{InputBottom}}px">
+  <button class="action margin-left" bindtap="tapind" style="width:12vh">
+    <view class="cuIcon-home "></view>回首页
+  </button>
+  <button class="cu-btn bg-blue round shadow-blur" style="width:16vh;" bindtap="tapcale">取消面试</button>
+  <button class="cu-btn bg-blue round shadow-blur" style="width:16vh;" bindtap="tapeval">立即评价</button>
+</view>

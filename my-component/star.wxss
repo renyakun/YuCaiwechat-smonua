@@ -1,0 +1,12 @@
+/* my-component/star.wxss */
+
+.my-star image{
+  height: 30rpx;
+  width: 30rpx;
+  display: inline-block
+}
+.my-star {
+  width: 200rpx;
+  height: 30rpx;
+  display: inline-block;
+}

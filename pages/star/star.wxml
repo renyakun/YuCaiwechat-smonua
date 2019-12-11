@@ -1,0 +1,23 @@
+<!--pages/star/star.wxml-->
+<!-- 星星测试页面 -->
+<!--pages/test/test.wxml-->
+<view>
+  <view>一:显示后台给的评分</view>
+  <block wx:for="{{one_1}}">
+    <image src='../../images/star/star-gray.png'></image>
+  </block>
+  <block wx:for="{{two_1}}">
+    <image src='../../images/star/star-bling.png'></image>
+  </block>
+</view>
+<view>这里num给的是几分就显示几颗星星</view>
+ 
+<view style='margin-top:60px;'>二:显示用户选择的评分</view>
+<block wx:for="{{one_2}}" wx:key="index">
+<image catchtap='in_xin' id='{{index+1}}' data-in='use_sc2' src='../../images/star/star-gray.png'></image>
+</block>
+<block wx:for="{{two_2}}" wx:key="index">
+<image catchtap='in_xin' id='{{index+1}}' data-in='use_sc' src='../../images/star/star-bling.png'></image>
+</block>
+<view>{{one_2}}星</view>
+

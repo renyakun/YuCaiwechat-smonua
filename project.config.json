@@ -22,7 +22,11 @@
 		}
 	},
 	"compileType": "miniprogram",
+<<<<<<< HEAD
+	"libVersion": "2.9.4",
+=======
 	"libVersion": "2.9.3",
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 	"appid": "wx884ebfcbccc0468b",
 	"projectname": "Yucai-wechat",
 	"debugOptions": {
@@ -40,13 +44,80 @@
 			"current": -1,
 			"list": []
 		},
+<<<<<<< HEAD
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+=======
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
+<<<<<<< HEAD
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "消息页面调试",
+					"pathName": "pages/tidings/tidings/tidings",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "邀请投递消息页",
+					"pathName": "pages/tidings/messageInfo/messageInfo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "投递记录页",
+					"pathName": "pages/record/record/record",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "具体面试评论",
+					"pathName": "pages/record/commentInfo/commentInfo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/technology/add/add",
+					"pathName": "pages/technology/add/add",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "职位详情页面调试",
+					"pathName": "pages/demand/trans/trans",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/star/star",
+					"pathName": "pages/star/star",
+					"query": "",
+					"scene": null
+				}
+			]
+=======
 		"miniprogram": {
 			"current": -1,
 			"list": []
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 		}
 	}
 }

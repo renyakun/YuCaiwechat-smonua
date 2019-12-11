@@ -10,7 +10,10 @@ import {
   showModal,
   navigateTo,
   showLoading,
+<<<<<<< HEAD
+=======
   setBarTitle,
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   pageScrollTo
 } from '../../../utils/WeChatfction';
 Page({
@@ -40,6 +43,36 @@ Page({
         num: 12,
       },
     ],
+<<<<<<< HEAD
+    ctionList: [
+      {
+        id:1,
+        icon: 'service',
+        color: '#e54d42',
+        badge: 0,
+        name: 'cstomer',
+        title: '官方客服'
+      }, {
+        id: 2,
+        icon: 'edit',
+        color: '#fbbd08',
+        badge: 1,
+        title: '建议留言',
+        name: 'message'
+      }, {
+        id: 3,
+        title: '关于我们',
+        name: 'about',
+        color: '#1cbbb4',
+        badge: 0,
+        icon: 'friendfill'
+      },
+    ],
+    techtit: '我的名片',
+  },
+
+  //功能跳转
+=======
     ctionList: [{
       icon: 'service',
       color: 'red',
@@ -92,11 +125,29 @@ Page({
     pageflag: true,
   },
 
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   userjump(e) {
     let name = e.currentTarget.dataset.target.name;
     let title = e.currentTarget.dataset.target.title;
     if (name == "tidings") {
       navigateTo('/pages/tidings/tidings/tidings')
+<<<<<<< HEAD
+    } else if (name == "about") {
+      navigateTo('/pages/classify/about/about')
+    } else {
+      showToast('即将上线，敬请期待!', 'none', 3000)
+    }
+    // else if(name == "record") {
+    //   navigateTo('/pages/record/record/record')
+    // }
+  },
+
+  cordjump() {
+    navigateTo('/pages/record/record/record');
+  },
+
+  //名片跳转
+=======
     } else {
       showToast('即将上线，敬请期待!', 'none', 3000)
     }
@@ -136,6 +187,7 @@ Page({
     navigateTo('/pages/technology/phmecard/phmecard');
   },
 
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   techjump(e) {
     console.log(e.currentTarget.dataset.target);
     let tit = e.currentTarget.dataset.target;
@@ -147,6 +199,20 @@ Page({
     }
   },
 
+<<<<<<< HEAD
+  //需求方跳转
+  paegswitch() {
+    wx.navigateToMiniProgram({
+      appId: 'wxb4a016efe2b335d6',
+      path: 'pages/user/user/user',
+      envVersion: 'trial',
+      success(res) {
+        // 打开成功
+        console.log(res, '打开成功')
+      },
+      fail(res) {
+        console.log(res, '打开失败')
+=======
   navSelect(e) {
     let users = wx.getStorageSync('users') || [];
     console.log(users);
@@ -220,15 +286,25 @@ Page({
         //console.log(res)
         wx.setStorageSync(tokentxt, res);
         //wx.setStorageSync('mobile', res.data.data.mobile);
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
       }
     })
   },
 
+<<<<<<< HEAD
+  onLoad: function (options) {
+    // wx.showLoading({
+    //   title: '加载中',
+    // });
+
+    //获取微信信息
+=======
   onLoad: function() {
     wx.showLoading({
       title: '加载中',
     });
 
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -256,6 +332,37 @@ Page({
       })
     }
 
+<<<<<<< HEAD
+    //获取名片状态值
+    let token = wx.getStorageSync('accessToken') || [];
+    wx.request({
+      url: url + '/technology/getMyBusinessCard',
+      data: {
+        accessToken: token,
+      },
+      success: res => {
+        if (res.data.success) {
+          setTimeout(()=>{
+            wx.hideLoading();
+          },1000)
+          this.setData({
+            techtit: '个人主页'
+          })
+        } else {
+          setTimeout(() => {
+            wx.hideLoading();
+          }, 1000)
+          this.setData({
+            techtit: '我的名片'
+          })
+        }
+      }
+    })
+
+    //console.log(options);
+
+  
+=======
     setTimeout(() => {
       let accessToken = wx.getStorageSync('accessToken') || [];
       wx.request({
@@ -283,6 +390,7 @@ Page({
     }, 2000);
 
     setBarTitle('个人中心');
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   },
 
   onReady: function() {
@@ -298,6 +406,14 @@ Page({
     })
   },
 
+<<<<<<< HEAD
+  onShow: function () {
+    this.onLoad()
+  },
+
+  //下拉刷新
+=======
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   onPullDownRefresh: function() {
     this.onLoad()
   },

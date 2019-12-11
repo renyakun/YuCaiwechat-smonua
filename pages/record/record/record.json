@@ -1,3 +1,9 @@
 {
+<<<<<<< HEAD
+  "usingComponents": {
+    "i-rate": "../../../my-component/star"
+  }
+=======
   "usingComponents": {}
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 }

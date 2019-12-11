@@ -1,6 +1,10 @@
 // pages/technology/mycard/card.js
 //获取应用实例
 const app = getApp()
+<<<<<<< HEAD
+var ctx = ""
+=======
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 const {
   url
 } = require('../../../utils/url.js');
@@ -13,6 +17,17 @@ import {
   setBarColor,
   setBarTitle,
 } from '../../../utils/WeChatfction';
+<<<<<<< HEAD
+
+Page({
+  data: {
+    InputBottom: 0,
+    demandflag: true,
+    url: ''
+  },
+
+  //跳转修改
+=======
 Page({
   /* 页面的初始数据*/
   data: {
@@ -20,11 +35,205 @@ Page({
     demandflag: true,
   },
 
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   techjump(e) {
     showLoading();
     navigateTo('/pages/technology/changecard/changecard');
   },
 
+<<<<<<< HEAD
+  //关闭模拟框
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+
+  // 获取屏幕宽高
+  getDevInfo() {
+    let that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          canvasWidth: res.windowWidth,//设置宽高为屏幕宽，高为屏幕高减去50
+          canvasHeight: res.windowHeight
+        })
+      },
+    })
+  },
+
+  getBase64Data: function () {
+    let str = this.data.avatar.toString();
+    let str1 = str.substring(22);
+    return str1;
+  },
+
+  //生成海报
+  tapjump(e) {
+    // let modalName = e.currentTarget.dataset.modal;
+    showToast('正在生成...', 'loading', 2000);
+    // setTimeout(() => {
+    //   this.setData({
+    //     modalName: modalName,
+    //   })
+    // }, 3000)
+    let that = this;
+
+    console.log(this.data.age);
+    // 获取到当前用户信息
+    let userInfo = this.data;
+    let promise = new Promise((resolve, reject) => {
+      const filePath = `${wx.env.USER_DATA_PATH}/temp_image.jpeg`;
+      const buffer = wx.base64ToArrayBuffer(this.getBase64Data());
+      wx.getFileSystemManager().writeFile({
+        filePath,
+        data: buffer,
+        encoding: 'binary',
+        success() {
+          resolve(filePath);
+        },
+        fail() {
+          reject(new Error('ERROR_BASE64SRC_WRITE'));
+        },
+      });
+    });
+    promise.then(res => {
+      console.log(res);
+      let data = { user: userInfo, avarUrl: res }
+      this.canvansWrite(data);
+      setTimeout(function () {
+        that.previewImg();
+      }, 3500)
+    }, err => {
+      console.log(err)
+    })
+    // 绘制画布
+    
+  },
+
+
+  // 绘制画布实现
+  canvansWrite(user) {
+
+    let that = this;
+    // 1.获取屏幕宽高
+    console.log(this.data);
+    // 2.获取头像的地址
+    let aver = user.avarUrl;
+    console.log(aver);
+
+    // 3.画布的参数
+    const data = {
+      x: 0,
+      y: 0,
+      wid: that.data.canvasWidth,
+      height: that.data.canvasHeight
+    }
+    // 4.开始绘制
+    ctx = wx.createCanvasContext('myCanvas')
+    ctx.drawImage('/images/bgcimg.png', data.x, data.y, data.wid, data.height)
+    // ctx.draw()
+
+    // 5.绘制头像
+    let avatarurl_width = data.wid * 0.2, //绘制的头像宽度
+      avatarurl_heigth = data.wid * 0.2, //绘制的头像高度
+      avatarurl_x = data.wid / 2 - avatarurl_width / 2, //绘制的头像在画布上的位置
+      avatarurl_y = 36;
+    ctx.save();
+
+    ctx.beginPath();
+    ctx.arc(avatarurl_width / 2 + avatarurl_x, avatarurl_heigth / 2 + avatarurl_y, avatarurl_width / 2, 0, Math.PI * 2, false);
+    ctx.clip();
+    ctx.drawImage(aver, avatarurl_x, avatarurl_y, avatarurl_width, avatarurl_heigth);
+    ctx.restore();
+
+    // 6.绘制用户名称
+    let nickName = user.user.realName;
+    console.log(nickName);
+    let nickLen = nickName.toString().length;// 用户名长度
+    let max_nickname_width = nickLen * 15;//一个汉字的宽度为15,获取文字总宽度
+
+    ctx.setFillStyle('#ffffff'); // 文字颜色
+    ctx.setFontSize(15); // 文字字号
+    ctx.fillText(nickName, data.wid / 2 - max_nickname_width / 2, avatarurl_y + avatarurl_heigth + 20);
+    ctx.font = 'normal 10px sans-serif';
+
+    // 7.绘制描述文字
+    let des = '扫码查看招聘需求';
+    console.log(nickName);
+    let desLen = des.toString().length;// 用户名长度
+    let max_des_width = desLen * 15;//一个汉字的宽度为10,获取文字总宽度
+
+    ctx.setFillStyle('#ffffff');
+    ctx.setFontSize(15);
+    ctx.fillText(des, data.wid / 2 - max_des_width / 2, data.height * 0.6);
+    ctx.font = 'normal 10px sans-serif';
+
+
+    // 8.绘制二维码
+    let twoImg_width = data.wid * 0.2, //绘制的二维码宽度
+      twoImg_heigth = data.wid * 0.2, //绘制的二维码高度
+      twoImg_x = data.wid / 2 - avatarurl_width / 2, //绘制的头像在画布上的位置
+      twoImg_y = 36;
+    ctx.save();   //
+    ctx.beginPath();
+
+    ctx.arc(avatarurl_width / 2 + avatarurl_x, data.height * 0.66 + twoImg_heigth / 2, avatarurl_width / 2, 0, Math.PI * 2, false);
+    ctx.clip();
+    ctx.drawImage('/images/TwoImg2.png', avatarurl_x, data.height * 0.66, avatarurl_width, avatarurl_heigth);
+    ctx.restore();
+    ctx.draw(false, function () {
+      console.info('绘制成功');
+      setTimeout(function () {
+        wx.canvasToTempFilePath({
+          canvasId: 'myCanvas',
+          quality: '1',
+          success: function (res) {
+            let tempFilePath = res.tempFilePath;
+            that.setData({
+              imagePath: tempFilePath,
+              hide_poster: false
+            });
+            console.log("图片下载到临时文件夹了")
+          },
+          fail: function (res) {
+            console.log(res);
+          }
+        }, that);
+      }, 3000);
+    });
+    //9.将canvas生成好的图片下载到临时文件夹
+
+    // ctx.draw(false, function () {
+
+    // });
+  },
+
+  //预览图片
+  previewImg() {
+    console.log(this.data.imagePath)
+    if (this.data.imagePath) {
+      //预览图片，预览后可长按保存或者分享给朋友
+      wx.previewImage({
+        urls: [this.data.imagePath]
+      })
+    }
+  },
+
+
+  /* 生命周期函数--监听页面加载*/
+  onLoad: function (options) {
+    setBarColor('#ffffff', '#0081ff', 1500, 'ease');
+    setBarTitle('个人主页');
+
+    this.getDevInfo();
+
+  },
+
+  onReady: function () {
+    let accessToken = wx.getStorageSync('accessToken') || [];
+    setTimeout(() => {
+=======
   /* 生命周期函数--监听页面加载*/
   onLoad: function(options) {
     setBarColor('#ffffff', '#0081ff', 1500, 'ease');
@@ -39,6 +248,7 @@ Page({
       })
     }, 3000)
     setTimeout(() => {
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
       wx.request({
         url: url + '/technology/getMyBusinessCard',
         data: {
@@ -48,8 +258,14 @@ Page({
           'content-type': 'application/json'
         },
         success: res => {
+<<<<<<< HEAD
+          //console.log(res.data.data)
+          if (res.data.success) {
+            let avatar = res.data.data.avatar;
+=======
           console.log(res.data.data)
           if (res.data.success) {
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
             let realName = res.data.data.realName;
             let dreamPosition = res.data.data.dreamPosition;
             let email = res.data.data.email;
@@ -63,6 +279,10 @@ Page({
             let label = res.data.data.label;
             let description = res.data.data.description;
             this.setData({
+<<<<<<< HEAD
+              avatar: avatar,
+=======
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
               realName: realName,
               dreamPosition: dreamPosition,
               email: email,
@@ -75,12 +295,38 @@ Page({
               experience: experience,
               label: label,
               description: description,
+<<<<<<< HEAD
+              demandflag: false,
+            });
+=======
             })
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           } else {
             showToast(res.data.msg, 'none', 3000)
           }
         }
       })
+<<<<<<< HEAD
+    }, 3000)
+
+
+  },
+
+  onShow: function () {
+
+  },
+
+  onHide: function () {
+
+  },
+
+  onUnload: function () {
+
+  },
+
+  onPullDownRefresh: function () {
+    this.onReady()
+=======
     }, 3100)
   },
 
@@ -98,19 +344,28 @@ Page({
 
   onPullDownRefresh: function() {
 
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
+<<<<<<< HEAD
+  onReachBottom: function () {
+=======
   onReachBottom: function() {
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 
   },
 
   /**
    * 用户点击右上角分享
    */
+<<<<<<< HEAD
+  onShareAppMessage: function () {
+=======
   onShareAppMessage: function() {
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 
   },
 })

@@ -1,1 +1,14 @@
+<<<<<<< HEAD
 /* pages/record/record/record.wxss */
+.jobName {
+  position: absolute;
+  font-size: 15rpx;
+  left:20rpx ;
+  top: 0rpx;
+}
+.cu-list.menu-avatar>.cu-item .content>view:first-child{
+  font-size:33rpx;
+}
+=======
+/* pages/record/record/record.wxss */
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609

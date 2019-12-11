@@ -1,14 +1,57 @@
 <!--pages/technology/changecard/changecard.wxml-->
+<<<<<<< HEAD
+<cu-custom  isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content" class="margin-top-xs">修改名片</view>
+</cu-custom>
+
+<scroll-view scroll-y class="scrollPage" style="position:relative">
+  <view class="cu-bar bgwhite solid-bottom">
+    <view class='action'>
+      <text class='cuIcon-titles' style="color:#0081ff"></text>我的名片({{flagtxt}})
+=======
 <scroll-view scroll-y class="scrollPage" style="position:relative">
   <view class="cu-bar bg-white solid-bottom">
     <view class='action'>
       <text class='cuIcon-titles text-blue '></text>我的名片({{flagtxt}})
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
     </view>
     <view class='action'>
       <switch class='sm' checked='{{chkflag}}' bindchange='checkflag'></switch>
     </view>
   </view>
 
+<<<<<<< HEAD
+  <view class="margin-top-xs margin-left-xs margin-right-xs">
+    <form bindsubmit='formSubmit' class="margin-top-xs  bgwhite">
+
+      <view class="bgwhite margin-xs  cu-card no-card  shadow margin-bottom">
+
+        <view class="cu-bar justify-start bgwhite">
+          <view class="action">
+            <text class="cuIcon-titles text-blue" style="color:#0081ff"></text>
+            <text class="text-xl text-bold">个人信息</text>
+          </view>
+        </view>
+
+        <view class="cu-form-group  margin-top-xs margin-left-xs margin-right-xs bg-gray cu-card no-card flex justify-start">
+          <text class="bgorange padding-left-xs padding-right-xs radius shadow text-xs" style="color:white">必填</text>
+          <view class="title margin-left-xs">头像</view>
+          <input disabled="disabled"></input>
+        </view>
+
+        <view class="cu-form-group bg-gray padding-bottom margin-left-xs margin-right-xs cu-card no-card">
+          <view class="grid col-4 grid-square flex-sub">
+            <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+              <image src='{{imgList}}' mode='aspectFit' style="width:160rpx;height:100%"></image>
+              <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+                <text class="cuIcon-close"></text>
+              </view>
+            </view>
+            <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<1}}">
+              <text class="cuIcon-cameraadd"></text>
+            </view>
+=======
   <view class="radius padding-top-xs padding-bottom-xl" style=" ">
     <form bindsubmit='formSubmit' class="">
 
@@ -18,16 +61,30 @@
           <view class="action border-title">
             <text class="text-xl text-bold text-blue">个人信息</text>
             <text class="bg-gradual-blue" style="width:3rem"></text>
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           </view>
         </view>
 
         <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
+<<<<<<< HEAD
+          <text class="bgorange padding-left-xs padding-right-xs radius shadow text-xs" style="color:white">必填</text>
+=======
           <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           <view class="title margin-left-xs">姓名</view>
           <input name="realName" value="{{realName}}"></input>
         </view>
 
         <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
+<<<<<<< HEAD
+          <text class="bgorange padding-left-xs padding-right-xs radius shadow text-xs" style="color:white">必填</text>
+          <view class="title margin-left-xs">年龄</view>
+          <input name="age" type="number" maxlength="3" value="{{age}}"></input>
+        </view>
+
+        <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
+          <text class="bgorange padding-left-xs padding-right-xs radius shadow text-xs" style="color:white">必填</text>
+=======
           <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
           <view class="title margin-left-xs">年龄</view>
           <input name="age" value="{{age}}"></input>
@@ -35,6 +92,7 @@
 
         <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
           <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           <view class="title margin-left-xs">性别</view>
           <view>
             <radio-group class="block" name="sex">
@@ -52,12 +110,26 @@
         </view>
 
         <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
+<<<<<<< HEAD
+          <text class="bgorange padding-left-xs padding-right-xs radius shadow text-xs" style="color:white">必填</text>
+=======
           <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           <view class="title margin-left-xs">期望职位</view>
           <input name="dreamPosition" value="{{dreamPosition}}"></input>
         </view>
 
         <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
+<<<<<<< HEAD
+          <text class="bgorange padding-left-xs padding-right-xs radius shadow text-xs" style="color:white">必填</text>
+          <view class="title margin-left-xs">手机号</view>
+          <input name="mobile" type="number" maxlength="11" value="{{mobile}}"></input>
+          <view class="title margin-left-xs">获取手机号</view>
+        </view>
+        <!--bindtap="teltap"  -->
+        <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
+          <text class="bgorange padding-left-xs padding-right-xs radius shadow text-xs" style="color:white">必填</text>
+=======
           <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
           <view class="title margin-left-xs">手机号</view>
           <input name="mobile" type="number" maxlength="11" value="{{mobile}}"></input>
@@ -65,18 +137,28 @@
 
         <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
           <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           <view class="title margin-left-xs">邮箱</view>
           <input name="email" value="{{email}}"></input>
         </view>
 
       </view>
 
+<<<<<<< HEAD
+      <view class="bgwhite margin-xs  cu-card no-card  shadow showcard" style="display:{{showflag?'':'none'}}">
+
+        <view class="cu-bar justify-start bg-white">
+          <view class="action">
+            <text class="cuIcon-titles text-blue" style="color:#0081ff"></text>
+            <text class="text-xl text-bold">其他信息</text>
+=======
       <view class="bg-white margin-xs  cu-card no-card  shadow showcard" style="display:{{showflag?'':'none'}}">
 
         <view class="cu-bar justify-start bg-white">
           <view class="action border-title">
             <text class="text-xl text-bold text-blue">其他信息</text>
             <text class="bg-gradual-blue" style="width:3rem"></text>
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           </view>
         </view>
 
@@ -103,39 +185,63 @@
         <view class="cu-form-group align-start margin-xs bg-gray cu-card no-card">
           <view class="title ">工作经历</view>
           <view class="flex align-end  margin-bottom-xs " style="width:76%;">
+<<<<<<< HEAD
+            <textarea class="" maxlength="500" name="experience" value="{{experience}}"></textarea>
+=======
             <textarea class="" maxlength="500" name="experience" value="{{experience}}" placeholder="请输入工作经历"></textarea>
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           </view>
         </view>
 
         <view class="cu-form-group align-start margin-xs bg-gray cu-card no-card">
           <view class="title ">个人标签</view>
           <view class="flex align-end  margin-bottom-xs " style="width:76%;">
+<<<<<<< HEAD
+            <textarea class="" maxlength="500" name="label" value="{{label}}"></textarea>
+=======
             <textarea class="" maxlength="500" name="label" value="{{label}}" placeholder="请输入个人标签"></textarea>
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           </view>
         </view>
 
         <view class="cu-form-group align-start margin-xs bg-gray cu-card no-card" style="position: relative">
           <view class="title">自我描述</view>
           <view class="flex align-end  margin-bottom-xs " style="width:76%;">
+<<<<<<< HEAD
+            <textarea class="" maxlength="500" name="description" value="{{description}}"></textarea>
+=======
             <textarea class="" maxlength="500" name="description" value="{{description}}" placeholder="请输入自我描述"></textarea>
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           </view>
         </view>
 
       </view>
 
+<<<<<<< HEAD
+      <view class="padding  flex justify-end margin-top-xl">
+        <button class="cu-btn indigo shadow-blur margin-right" formType="submit" style="width:20vh;color:white">创建并保存</button>
+        <button class="cu-btn indigo shadow-blur " formType="reset" bindtap="reset" style="width:20vh;color:white">重置</button>
+=======
       <view class="padding  flex justify-start margin-top-xl">
         <button class="cu-btn bg-gradual-blue shadow-blur margin-right" formType="submit" style="width:20vh">修改并保存</button>
         <navigator url="/pages/technology/card/card" class="margin-right-xl">
           <button class="cu-btn bg-gradual-blue shadow-blur " style="width:20vh">取消</button>
         </navigator>
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
       </view>
 
     </form>
   </view>
 
+<<<<<<< HEAD
+  <view class="shadow-blur indigo round justify-start align-center padding-left" style="display:{{showflag?'none':''}};width:16vh;height:6vh;line-height:6vh;left:70%" bindtap="dishow">
+    <text class="" style="color:white">更多信息</text>
+    <text class="cuIcon-unfold" style="color:white"></text>
+=======
   <view class="shadow-blur bg-gradual-blue round justify-start align-center padding-left" style="display:{{showflag?'none':''}};width:16vh;height:6vh;line-height:6vh;top:-4vh;left:70%" bindtap="dishow">
     <text class="">更多信息</text>
     <text class="cuIcon-unfold"></text>
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   </view>
 
 </scroll-view>

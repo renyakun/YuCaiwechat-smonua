@@ -1,3 +1,21 @@
+<<<<<<< HEAD
+<!-- pages/tidings/tidings/tidings.wxml -->
+<cu-custom isBack="{{false}}">
+  <view slot="content" class="margin-top-xs">消息</view>
+</cu-custom>
+<view> 
+  <view class="bgwhite margin-top margin-left-xs margin-right-xs" wx:for="{{newslist}}" wx:key data-target="move-box-{{index}}" catchtap="cussjump" data-id="{{item.id}}">
+    <view class="cu-list menu sm-border card-menu">
+      <view class="cu-item arrow">
+        <view class="content">
+          <text class="cuIcon-message text-black" ></text>
+          <text class="text-black">{{item.con}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+=======
 <!--pages/tidings/tidings/tidings.wxml-->
 
 <scroll-view scroll-y class=" padding-bottom margin-bottom-xl">
@@ -38,3 +56,4 @@
   </view>
 
 </scroll-view>
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609

@@ -1,0 +1,30 @@
+<!-- pages/record/commentInfo/commentInfo.wxml -->
+<cu-custom isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content" class="margin-top-xs">详细评论</view>
+</cu-custom>
+<scroll-view class="" scroll-x="false" scroll-y="false" upper-threshold="50" lower-threshold="50" scroll-top="0" scroll-left="0"  scroll-with-animation="false" enable-back-to-top="false">
+  <view class="cu-list menu-avatar comment solids-top" wx:for="{{commentsList}}" wx:key="{{item.id}}">
+    <view class="cu-item">
+      <view class="cu-avatar round" style="background-image:url({{item.avatar}});"></view>
+      <view class="content">
+        <view class="text-grey">{{item.evaluationName}}</view>
+        <view class="text-gray text-content text-df">{{item.message}}</view>
+        <view class="bg-grey padding-sm radius margin-top-sm  text-sm">
+          <view class="flex">
+            <view>{{item.acceptName}}：</view>
+            <view class="flex-sub">{{item.replyMessage}}</view>
+          </view>
+        </view>
+        <view class="margin-top-sm flex justify-between">
+          <view class="text-gray text-df">{{item.createTime}}</view>
+          <view>
+            <text class="cuIcon-appreciatefill text-red"></text>
+            <text class="cuIcon-messagefill text-gray margin-left-sm"></text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+  </view>
+</scroll-view>

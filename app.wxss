@@ -113,5 +113,53 @@
 }
 
 .bgwhite {
+<<<<<<< HEAD
+  background: #fff;
+}
+
+.bggrey {
+  background: #8799a3;
+}
+
+.bgblack {
+  background: #000;
+}
+
+.bgyellow {
+  background: #fbbd08;
+}
+
+.bgorange {
+  background: #f37b1d;
+}
+
+.bgolive {
+  background: #8dc63f;
+}
+
+.bgcyan {
+  background: #1cbbb4;
+}
+
+.bgred {
+  background: #e54d42;
+}
+
+.bgbrown {
+  background: #a5673f;
+}
+
+.bggreen {
+  background: #39b54a;
+}
+
+.bgblue {
+  background: #0081ff;
+}
+
+.bgshadow {
+  box-shadow: 6rpx 6rpx 8rpx #888;
+=======
   background: #ffffff;
+>>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 }
