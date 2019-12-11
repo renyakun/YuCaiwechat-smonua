@@ -1,5 +1,4 @@
 <!--pages/technology/add/add.wxml-->
-<<<<<<< HEAD
 <cu-custom  isBack="{{true}}">
   <view slot="backText">返回</view>
   <view slot="content" class="margin-top-xs">制作名片</view>
@@ -10,18 +9,10 @@
     <view class="action sub-title">
       <text class="text-xl text-bold" style="color:#0081ff">我的名片</text>
       <text class="text-Abc" style="color:#0081ff">card</text>
-=======
-<scroll-view scroll-y class="scrollPage padding-bottom " scrollTop="{{scrollTop}}">
-  <view class="cu-bar bg-white justify-start fixed" style="top:{{CustomBar}}px;">
-    <view class="action sub-title">
-      <text class="text-xl text-bold text-blue">我的名片</text>
-      <text class="text-Abc text-blue">card</text>
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
     </view>
   </view>
 
   <view class="margin-top-xs margin-left-xs margin-right-xs" style="margin-top:10vh;">
-<<<<<<< HEAD
     <form bindsubmit='formSubmit' class="margin-top-xs  bgwhite">
 
       <view class="bgwhite margin-xs  cu-card no-card  shadow margin-bottom">
@@ -50,31 +41,16 @@
             <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<1}}">
               <text class="cuIcon-cameraadd"></text>
             </view>
-=======
-    <form bindsubmit='formSubmit' class="margin-top-xs">
-
-      <view class="bg-white margin-xs  cu-card no-card  shadow margin-bottom">
-
-        <view class="cu-bar justify-start bg-white">
-          <view class="action border-title">
-            <text class="text-xl text-bold text-blue">个人信息</text>
-            <text class="bg-gradual-blue" style="width:3rem"></text>
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           </view>
         </view>
 
         <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
-<<<<<<< HEAD
           <text class="bgorange padding-left-xs padding-right-xs radius shadow text-xs" style="color:white">必填</text>
-=======
-          <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           <view class="title margin-left-xs">姓名</view>
           <input name="realName"></input>
         </view>
 
         <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
-<<<<<<< HEAD
           <text class="bgorange padding-left-xs padding-right-xs radius shadow text-xs" style="color:white">必填</text>
           <view class="title margin-left-xs">年龄</view>
           <input name="age" type="number" maxlength="3"></input>
@@ -82,15 +58,6 @@
 
         <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
           <text class="bgorange padding-left-xs padding-right-xs radius shadow text-xs" style="color:white">必填</text>
-=======
-          <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
-          <view class="title margin-left-xs">年龄</view>
-          <input name="age"></input>
-        </view>
-
-        <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
-          <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           <view class="title margin-left-xs">性别</view>
           <view>
             <radio-group class="block" name="sex">
@@ -108,17 +75,12 @@
         </view>
 
         <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
-<<<<<<< HEAD
           <text class="bgorange padding-left-xs padding-right-xs radius shadow text-xs" style="color:white">必填</text>
-=======
-          <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           <view class="title margin-left-xs">期望职位</view>
           <input name="dreamPosition"></input>
         </view>
 
         <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
-<<<<<<< HEAD
           <text class="bgorange padding-left-xs padding-right-xs radius shadow text-xs" style="color:white">必填</text>
           <view class="title margin-left-xs">手机号</view>
           <input name="mobile" type="number" maxlength="11"></input>
@@ -127,36 +89,18 @@
         <!--bindtap="teltap"  -->
         <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
           <text class="bgorange padding-left-xs padding-right-xs radius shadow text-xs" style="color:white">必填</text>
-=======
-          <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
-          <view class="title margin-left-xs">手机号</view>
-          <input name="mobile" type="number" maxlength="11"></input>
-        </view>
-
-        <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
-          <text class="bg-orange padding-left-xs padding-right-xs radius shadow text-xs">必填</text>
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           <view class="title margin-left-xs">邮箱</view>
           <input name="email"></input>
         </view>
 
       </view>
 
-<<<<<<< HEAD
       <view class="bgwhite margin-xs  cu-card no-card  shadow showcard" style="display:{{showflag?'':'none'}}">
 
         <view class="cu-bar justify-start bg-white">
           <view class="action">
             <text class="cuIcon-titles text-blue" style="color:#0081ff"></text>
             <text class="text-xl text-bold">其他信息</text>
-=======
-      <view class="bg-white margin-xs  cu-card no-card  shadow showcard" style="display:{{showflag?'':'none'}}">
-
-        <view class="cu-bar justify-start bg-white">
-          <view class="action border-title">
-            <text class="text-xl text-bold text-blue">其他信息</text>
-            <text class="bg-gradual-blue" style="width:3rem"></text>
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           </view>
         </view>
 
@@ -204,28 +148,16 @@
       </view>
 
       <view class="padding  flex justify-end margin-top-xl">
-<<<<<<< HEAD
         <button class="cu-btn indigo shadow-blur margin-right" formType="submit" style="width:20vh;color:white">创建并保存</button>
         <button class="cu-btn indigo shadow-blur " formType="reset" bindtap="reset" style="width:20vh;color:white">重置</button>
-=======
-        <button class="cu-btn bg-gradual-blue shadow-blur margin-right" formType="submit" style="width:20vh">创建并保存</button>
-        <button class="cu-btn bg-gradual-blue shadow-blur " formType="reset" style="width:20vh">重置</button>
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
       </view>
 
     </form>
   </view>
 
-<<<<<<< HEAD
   <view class="shadow-blur indigo round justify-start align-center padding-left" style="display:{{showflag?'none':''}};width:15vh;height:6vh;line-height:6vh;left:70%" bindtap="dishow">
     <text class="" style="color:white">更多信息</text>
     <text class="cuIcon-unfold" style="color:white"></text>
-=======
-
-  <view class="shadow-blur bg-gradual-blue round justify-start align-center padding-left" style="display:{{showflag?'none':''}};width:15vh;height:6vh;line-height:6vh;left:70%" bindtap="dishow">
-    <text class="">更多信息</text>
-    <text class="cuIcon-unfold"></text>
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   </view>
 
 </scroll-view>

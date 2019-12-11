@@ -1,11 +1,8 @@
 <!--pages/invitation/evaluate/evaluate.wxml-->
-<<<<<<< HEAD
 <cu-custom  isBack="{{true}}">
   <view slot="backText">返回</view>
   <view slot="content" class="margin-top-xs">评价</view>
 </cu-custom>
-=======
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 <view class="" style=" ">
 
   <form bindsubmit='formSubmit'>

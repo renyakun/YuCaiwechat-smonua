@@ -1,5 +1,4 @@
 <!--pages/technology/mycard/card.wxml-->
-<<<<<<< HEAD
   <canvas canvas-id="myCanvas" style='width:{{canvasWidth}}px; height:{{canvasHeight}}px;position:fixed;top: -10000px;'></canvas>
 <cu-custom  isBack="{{true}}">
   <view slot="backText">返回</view>
@@ -7,14 +6,10 @@
 </cu-custom>
 
 <view class="bg-white" wx:if="{{demandflag}}" style="height:100vh">
-=======
-<view class="bg-white" style="" wx:if="{{demandflag}}" style="height:100vh">
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   <image src="/images/rhomb-white.gif" mode="aspectFit" class="gif-white response"></image>
 </view>
 
 <block wx:else>
-<<<<<<< HEAD
   <scroll-view scroll-y class="scrollPage" style="position:relative;padding-bottom:100rpx;margin-bottom:100rpx">
 
     <view class=" padding-top-xl padding-bottom-xl bgwhite" style="height:30vh;"></view>
@@ -140,103 +135,4 @@
     </view>
   </view>
 
-=======
-<scroll-view scroll-y class="scrollPage" style="position:relative;margin-bottom:10vh">
-
-  <view class=" padding-top-xl padding-bottom-xl bg-white" style="height:30vh;"></view>
-
-  <view class="cu-bar bg-gradual-blue radius margin-left margin-right shadow-blur" style="margin-top:-25vh;z-index:99">
-    <view class="flex  margin-bottom-sm">
-      <view class='justify-start'>
-        <view class="margin-top cu-avatar round solids xl" style="background-image:url(https://i.loli.net/2017/08/21/599a521472424.jpg);"></view>
-        <view class="padding-left-xl padding-top-sm">{{realName}}</view>
-        <view class="padding-left padding-top-sm">{{sex}} | {{age}} | {{email}}</view>
-        <view class="padding-left padding-top-sm">期望职位：{{dreamPosition}}</view>
-        <view class="padding-left padding-top-sm" style="display: {{label!=''?'':'none'}}">个人标签：{{label}}</view>
-      </view>
-
-      <!-- <view class="shadow-blur shadow bg-black round  justify-start align-center padding-left" style="width:25vh;height:6vh;line-height:6vh;position: absolute;top:10vh;right:-11vh" bindtap="techjump">
-        <text class="">编辑名片</text>
-        <text class="cuIcon-right"></text>
-      </view> -->
-    </view>
-  </view>
-
-  <view class="radius padding-top-xl padding-bottom-xl bg-cyan" style="min-height:75vh;margin-top:-10vh;">
-
-    <view class="" style="margin-top:8vh;">
-      <view class="bg-white cu-card no-card shadow radius margin-left-xs margin-right-xs" style="display: {{profession==''&&education==''&&graduationTime==''&&school==''?'none':''}}">
-        <view class="cu-bar justify-start">
-          <view class="action border-title">
-            <text class="text-xl text-bold text-blue">院校信息</text>
-            <text class="bg-gradual-blue" style="width:3rem"></text>
-          </view>
-        </view>
-
-        <view class="padding-bottom-sm justify-start">
-          <view class="flex">
-            <view style="display: {{profession!=''?'':'none'}}">
-              <text class="text-df text-bold text-black margin-left">专业</text>
-              <text class=" margin-left-sm">{{profession}}</text>
-            </view>
-            <view class="{{profession==''?'':'margin-left-xl'}}" style="display: {{education!=''?'':'none'}}">
-              <text class="text-df text-bold text-black margin-left">学历</text>
-              <text class=" margin-left-sm">{{education}}</text>
-            </view>
-          </view>
-        </view>
-
-        <view class="padding-bottom-sm justify-start">
-          <view class="flex">
-            <view style="display: {{graduationTime!=''?'':'none'}}">
-              <text class="text-df text-bold text-black margin-left">毕业时间</text>
-              <text class=" margin-left-sm">{{graduationTime}}</text>
-            </view>
-            <view class="{{graduationTime==''?'':'margin-left-xl'}}" style="display: {{school!=''?'':'none'}}">
-              <text class="text-df text-bold text-black margin-left">毕业院校</text>
-              <text class=" margin-left-sm">{{school}}</text>
-            </view>
-          </view>
-        </view>
-
-
-      </view>
-
-      <view class="bg-white cu-card no-card shadow radius margin-left-xs margin-right-xs margin-top-sm " style="display: {{experience!=''?'':'none'}}">
-        <view class="cu-bar justify-start">
-          <view class="action border-title">
-            <text class="text-xl text-bold text-blue">工作经历</text>
-            <text class="bg-gradual-blue" style="width:3rem"></text>
-          </view>
-        </view>
-
-        <view class="cu-bar justify-center margin-bottom-sm">
-          <view class="" style="width:94%;text-align:justify;text-indent:2rem">{{experience}}</view>
-        </view>
-      </view>
-
-      <view class="bg-white cu-card no-card shadow radius margin-left-xs margin-right-xs margin-top-sm " style="display: {{description!=''?'':'none'}}">
-        <view class="cu-bar justify-start">
-          <view class="action border-title">
-            <text class="text-xl text-bold text-blue">自我描述</text>
-            <text class="bg-gradual-blue" style="width:3rem"></text>
-          </view>
-        </view>
-
-        <view class="cu-bar justify-center margin-bottom-sm">
-          <view class="" style="width:94%;text-align:justify;text-indent:2rem">{{description}}</view>
-        </view>
-      </view>
-
-    </view>
-  </view>
-
-</scroll-view>
-
-<view class="cu-bar foot tabbar cur shop padding-top-xs margin-bottom-xs bg-white" style="bottom:{{InputBottom}}px">
-  <button class="cu-btn line-black text-black shadow-blur" style="width:20vh" bindtap="techjump">编辑名片</button>
-  <button class="cu-btn bg-blue shadow margin-left" style="width:20vh">生成海报分享</button>
-</view>
-
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 </block>

@@ -2,7 +2,6 @@
   "pages": [
     "pages/index/index",
     "pages/user/user/user",
-<<<<<<< HEAD
     "pages/tidings/tidings/tidings",
     "pages/tidings/messageInfo/messageInfo",
     "pages/demand/trans/trans",
@@ -23,53 +22,17 @@
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
   },
-=======
-    "pages/release/release",
-    "pages/tidings/tidings/tidings",
-    "pages/tidings/discuss/discuss",
-    "pages/tidings/reply/reply",
-    "pages/demand/trans/trans",
-    "pages/demand/lauched/lauched",
-    "pages/demand/pushed/pushed",
-    "pages/demand/details/details",
-    "pages/classify/home/home",
-    "pages/classify/certification/certification",
-    "pages/classify/authentication/authentication",
-    "pages/classify/case/case",
-    "pages/classify/policy/policy",
-    "pages/classify/hot/hot",
-    "pages/classify/train/train",
-    "pages/classify/order/order",
-    "pages/classify/news/news",
-    "pages/classify/about/about",
-    "pages/classify/RealName/RealName",
-    "pages/technology/add/add",
-    "pages/technology/card/card",
-    "pages/technology/changecard/changecard",
-    "pages/technology/phmecard/phmecard",
-    "pages/search/search/search",
-    "pages/invitation/myintation/myintation",
-    "pages/record/record/record",
-    "pages/record/evaluate/evaluate",
-    "pages/manage/manage/manage",
-    "pages/logs/logs"
-  ],
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "御材智能劳务",
     "navigationBarTextStyle": "black",
-<<<<<<< HEAD
     "enablePullDownRefresh": true,
     "onReachBottomDistance": 50,
     "navigationStyle": "custom"
   },
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom"
-=======
-    "enablePullDownRefresh": true
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   },
   "tabBar": {
     "color": "#2c2c2c",
@@ -77,7 +40,6 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-<<<<<<< HEAD
         "iconPath": "images/tabbar/seek.png",
         "selectedIconPath": "images/tabbar/seek_cur.png",
         "text": "首页"
@@ -87,17 +49,6 @@
         "iconPath": "images/tabbar/tidings.png",
         "selectedIconPath": "images/tabbar/tidings_cur.png",
         "text": "消息"
-=======
-        "iconPath": "images/tabbar/send.png",
-        "selectedIconPath": "images/tabbar/send_cur.png",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/release/release",
-        "iconPath": "images/tabbar/release.png",
-        "selectedIconPath": "images/tabbar/release_cur.png",
-        "text": "发布"
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
       },
       {
         "pagePath": "pages/user/user/user",
@@ -109,12 +60,9 @@
   },
   "style": "v2",
   "debug": true,
-<<<<<<< HEAD
   "navigateToMiniProgramAppIdList": [
     "wxb4a016efe2b335d6"
   ],
-=======
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   "sitemapLocation": "sitemap.json",
   "networkTimeout": {
     "request": 10000,

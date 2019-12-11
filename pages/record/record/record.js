@@ -6,10 +6,6 @@ import {
   showToast,
   navigateTo,
   showLoading,
-<<<<<<< HEAD
-=======
-  setBarTitle,
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   pageScrollTo
 } from '../../../utils/WeChatfction';
 const app = getApp();
@@ -25,7 +21,6 @@ Page({
       flag: '全部',
     }, {
       id: 2,
-<<<<<<< HEAD
       flag: '待面试',
     }, {
       id: 3,
@@ -50,20 +45,6 @@ Page({
   Seedels(e) {
     let demandId = e.currentTarget.dataset.target;
     //console.log(demandId);
-=======
-      flag: '待面试沟通',
-    }, {
-      id: 3,
-      flag: '待评价',
-    }, {
-      id: 4,
-      flag: '不合适',
-    }],
-  },
-
-  Seedels(e) {
-    let demandId = e.currentTarget.dataset.target;
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
     showLoading();
     setTimeout(() => {
       wx.navigateTo({
@@ -72,18 +53,7 @@ Page({
     }, 3100)
   },
 
-<<<<<<< HEAD
   //评价跳转
-=======
-  tabSelect(e) {
-    pageScrollTo(0, 500);
-    this.setData({
-      TabCur: e.currentTarget.dataset.id,
-      scrollLeft: (e.currentTarget.dataset.id - 1) * 60,
-    })
-  },
-
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   demanditem(e) {
     console.log(e)
     let demanditem = e.currentTarget.dataset.item;
@@ -95,7 +65,6 @@ Page({
       wx.navigateTo({
         url: '/pages/record/evaluate/evaluate?demandId=' + demandId + '&userId=' + userId + '&realName=' + realName,
       });
-<<<<<<< HEAD
     }, 1000)
     console.log(demandId, userId, realName)
   },
@@ -164,26 +133,11 @@ Page({
       url: url + '/invitation/myAcceptInvitation',
       data: {
         accessToken: token
-=======
-    }, 3000)
-  },
-
-  onLoad: function (options) {
-    setBarTitle('投递记录')
-  },
-
-  evaluate(accessToken) {
-    wx.request({
-      url: url + '/invitation/myAcceptInvitation',
-      data: {
-        accessToken: accessToken
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
       },
       success: res => {
         console.log(res.data.data)
         let demand = res.data.data;
         if (res.data.success) {
-<<<<<<< HEAD
           if (demand.length != 0) {
             this.setData({
               interdemand: demand,
@@ -197,19 +151,11 @@ Page({
 
         } else {
           showToast(res.data.msg, 'none', 1000)
-=======
-          this.setData({
-            evaldemand: demand,
-          })
-        } else {
-          showToast(res.data.msg, 'none', 3000)
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
         }
       }
     })
   },
 
-<<<<<<< HEAD
   //获取已评价列表
   evaluate(token) {
     // this.setData({
@@ -221,19 +167,11 @@ Page({
       url: url + '/invitation/alreadyEvaluation',
       data: {
         accessToken: token
-=======
-  interview(accessToken) {
-    wx.request({
-      url: url + '/technology/mySendBusinessCard',
-      data: {
-        accessToken: accessToken
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
       },
       success: res => {
         console.log(res.data.data)
         let demand = res.data.data;
         if (res.data.success) {
-<<<<<<< HEAD
           if (demand.length != 0) {
             this.setData({
               evaldemand: [...demand],
@@ -244,11 +182,6 @@ Page({
               loadflag: false,
             })
           }
-=======
-          this.setData({
-            interdemand: demand,
-          })
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
         } else {
           showToast(res.data.msg, 'none', 3000)
         }
@@ -256,7 +189,6 @@ Page({
     })
   },
 
-<<<<<<< HEAD
   // commentInfo 评论详情页
   commentInfo(){
     wx.navigateTo({
@@ -269,15 +201,11 @@ Page({
 
 
   onReady: function() {
-=======
-  onReady: function () {
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
     setTimeout(() => {
       this.setData({
         demandflag: false,
       })
     }, 3000)
-<<<<<<< HEAD
     let token = wx.getStorageSync('accessToken') || [];
     this.interdemand(token)
     this.evaluate(token)
@@ -298,94 +226,18 @@ Page({
   },
 
   onPullDownRefresh: function() {
-=======
-    let accessToken = wx.getStorageSync('accessToken') || [];
-    this.evaluate(accessToken)
-    this.interview(accessToken)
-  },
-
-  // ListTouch触摸开始
-  ListTouchStart(e) {
-    this.setData({
-      ListTouchStart: e.touches[0].pageX
-    })
-  },
-
-  // ListTouch计算方向
-  ListTouchMove(e) {
-    this.setData({
-      ListTouchDirection: e.touches[0].pageX - this.data.ListTouchStart > 0 ? 'right' : 'left'
-    })
-  },
-
-  // ListTouch计算滚动
-  ListTouchEnd(e) {
-    if (this.data.ListTouchDirection == 'left') {
-      this.setData({
-        modalName: e.currentTarget.dataset.target
-      })
-    } else {
-      this.setData({
-        modalName: null
-      })
-    }
-    this.setData({
-      ListTouchDirection: null
-    })
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
     this.setData({
       demandflag: true,
     })
     this.onReady()
   },
 
-<<<<<<< HEAD
 
   onReachBottom: function() {
 
   },
 
   onShareAppMessage: function() {
-=======
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 
   }
 })

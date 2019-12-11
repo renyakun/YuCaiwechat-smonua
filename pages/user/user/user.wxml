@@ -1,10 +1,7 @@
 <!--pages/user/user.wxml-->
-<<<<<<< HEAD
 <cu-custom  isBack="{{false}}">
   <view slot="content" class="margin-top-xs">我的中心</view>
 </cu-custom>
-=======
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 <scroll-view scroll-y class="scrollPage ">
 
   <view class=" padding-top-xl padding-bottom-sm  indigo" style="position:relative">
@@ -19,11 +16,7 @@
       </block>
     </view>
 
-<<<<<<< HEAD
     <view class="shadow-blur bgwhite round  justify-start align-center padding-left" style="width:25vh;height:6vh;line-height:6vh;position: absolute;top:10vh;right:-8vh;" bindtap="techjump" data-target="{{techtit}}">
-=======
-    <view class="shadow-blur bgwhite round  justify-start align-center padding-left" style="width:25vh;height:6vh;line-height:6vh;position: absolute;top:10vh;right:-8vh; display: {{!pageflag?'':'none'}}" bindtap="techjump" data-target="{{techtit}}">
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
       <text class="">{{techtit}}</text>
       <text class="cuIcon-right"></text>
     </view>
@@ -34,22 +27,12 @@
     2018年世界杯,将于6月14日至7月15日举行;2018年世界杯,将于6月14日至7月15日举行;
   </i-notice-bar>
 
-<<<<<<< HEAD
-=======
-  <block wx:if="{{pageflag}}">
-
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
     <view class="bgwhite margin-xs">
       <i-card title="常用功能" class="padding">
         <view slot="content">
           <view class="cu-list grid col-4 {{gridBorder?'':'no-border'}}">
-<<<<<<< HEAD
             <view class="cu-item" wx:for="{{ctionList}}" wx:key wx:if="{{index<3}}" bindtap="userjump" data-target="{{item}}">
               <view class="cuIcon-{{item.icon}}" style="color:{{item.color}}">
-=======
-            <view class="cu-item" wx:for="{{ctionList}}" wx:key wx:if="{{index<4}}" bindtap="userjump" data-target="{{item}}">
-              <view class="cuIcon-{{item.icon}} text-{{item.color}}">
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
                 <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
                   <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
                 </view>
@@ -61,67 +44,12 @@
       </i-card>
     </view>
 
-<<<<<<< HEAD
     <view class="bgwhite margin-top-xs margin-left-xs margin-right-xs">
       <view class="cu-list menu sm-border card-menu">
         <view class="cu-item arrow" bindtap="cordjump">
           <view class="content">
             <text class="cuIcon-goodsnewfill text-grey"></text>
             <text class="text-grey">投递记录</text>
-=======
-    <view class="margin-xs margin-top-sm flex bgwhite padding">
-      <view class=" flex-sub">
-        <text class="text-black text-bold">我的认证</text>
-      </view>
-      <view class="flex-sub" wx:for="{{atteslist}}" wx:key>
-        <view bindtap="attesjump" data-target="{{item}}">
-          <text class="cuIcon-{{item.icon}} text-{{item.color}}"></text> {{item.title}}
-        </view>
-      </view>
-    </view>
-
-    <!-- <view class="margin-xs flex bgwhite padding">
-      <view class=" flex-sub" style="">
-        <text class="text-black text-bold">名片推送信息</text>
-      </view>
-
-      <view class="flex-sub text-center" bindtap="pushjump">
-        <view class="">由我推送{{pushNum==''?'':'('+pushNum+')'}}</view>
-      </view>
-
-      <view class="flex-sub margin-left" bindtap="phmejump">
-        <view class="">向我推送{{pushmeNum==''?'':'('+pushmeNum+')'}}</view>
-      </view>
-    </view> 
-
-    <view class="margin-xs flex bgwhite padding">
-      <view class=" flex-sub" style="">
-        <text class="text-black text-bold">需求信息</text>
-      </view>
-
-      <view class="flex-sub text-center" bindtap="demandjump">
-        <view class="">我的发布{{launNum==''?'':'('+launNum+')'}}</view>
-      </view>
-
-      <view class="" style="width:30vh">
-        <view class=""></view>
-      </view>
-    </view>-->
-
-
-    <view class="bgwhite margin-xs">
-      <view class="cu-list menu sm-border card-menu margin-top">
-        <view class="cu-item arrow" bindtap="demandjump">
-          <view class="content">
-            <text class="cuIcon-circlefill text-grey"></text>
-            <text class="text-grey">需求信息</text>
-          </view>
-        </view>
-        <view class="cu-item arrow" bindtap="managejump">
-          <view class="content">
-            <text class="cuIcon-circlefill text-grey"></text>
-            <text class="text-grey">名片管理</text>
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           </view>
         </view>
       </view>
@@ -132,66 +60,10 @@
       <text class="text-black">切换至发布需求方</text>
     </view>
 
-<<<<<<< HEAD
   <view class="padding-xs flex align-center">
     <view class="flex-sub text-center">
       <view class="solid-bottom text-xs padding">
         <text class="text-gray" style="color:#8799a3">御材科技官方客服热线400-123-456</text>
-=======
-  </block>
-
-  <block wx:else>
-
-    <view class="bgwhite margin-xs">
-      <i-card title="常用功能" class="padding">
-        <view slot="content">
-          <view class="cu-list grid col-4 {{gridBorder?'':'no-border'}}">
-            <view class="cu-item" wx:for="{{ctionList}}" wx:key wx:if="{{index<4}}" bindtap="userjump" data-target="{{item}}">
-              <view class="cuIcon-{{item.icon}} text-{{item.color}}">
-                <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
-                  <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
-                </view>
-              </view>
-              <text>{{item.title}}</text>
-            </view>
-          </view>
-        </view>
-      </i-card>
-    </view>
-
-    <view class="margin-xs flex bgwhite padding">
-      <view class=" flex-sub">
-        <text class="text-black text-bold">我的认证</text>
-      </view>
-      <view class="flex-sub" wx:for="{{atteslist}}" wx:key>
-        <view bindtap="attesjump" data-target="{{item}}">
-          <text class="cuIcon-{{item.icon}} text-{{item.color}}"></text> {{item.title}}
-        </view>
-      </view>
-    </view>
-
-    <view class="bgwhite margin-xs">
-      <view class="cu-list menu sm-border card-menu margin-top">
-        <view class="cu-item arrow"  bindtap="cordjump">
-          <view class="content">
-            <text class="cuIcon-circlefill text-grey"></text>
-            <text class="text-grey">投递记录</text>
-          </view>
-        </view>
-      </view>
-    </view>
-
-    <view class="margin-xs margin-top-lg flex bgwhite padding justify-center" bindtap="paegswitch">
-      <text class="text-black">切换至工作需求方</text>
-    </view>
-
-  </block>
-
-  <view class="padding-xs flex align-center">
-    <view class="flex-sub text-center">
-      <view class="solid-bottom text-xs padding">
-        <text class="text-gray">御材科技官方客服热线400-123-456</text>
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
       </view>
     </view>
   </view>

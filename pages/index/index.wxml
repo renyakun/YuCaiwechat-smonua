@@ -1,35 +1,21 @@
 <!--index.wxml-->
-<<<<<<< HEAD
 <cu-custom  isBack="{{false}}">
   <view slot="content" class="margin-top-xs">首页</view>
 </cu-custom>
 <scroll-view scroll-y class="scrollPage" scrollTop="{{scrollTop}}">
 
   <view class="cu-bar search  {{fixedflag?'fixed':''}} indigo shadow-blur" style="top:10vh;">
-=======
-<scroll-view scroll-y class="scrollPage" scrollTop="{{scrollTop}}">
-
-  <view class="cu-bar search  {{fixedflag?'fixed':''}} indigo shadow-blur" style="top:{{CustomBar}}px;">
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
     <navigator url="/pages/search/search/search" class="search-form round">
       <text class="cuIcon-search"></text>
       <input type="text" placeholder="输入搜索的关键词" confirm-type="search"></input>
     </navigator>
   </view>
 
-<<<<<<< HEAD
   <view class="margin margin-left-sm margin-right-sm radius bgshadow bg-black bgwhite" style="margin-top:10vh;">
     <view class="cu-list grid col-4 {{gridBorder?'':'no-border'}}">
       <view class="cu-item" wx:for="{{iconList}}" wx:key wx:if="{{index<7}}" bindtap="sendjump" data-target="{{item}}">
         <view class="cuIcon-{{item.icon}}" style="color:{{item.color}}">
           <view class="cu-tag badge" wx:if="{{item.badge!=0}}" style="color:white">
-=======
-  <view class="margin margin-left-sm margin-right-sm radius  shadow-blur bg-black " style="margin-top:10vh;">
-    <view class="cu-list grid col-4 {{gridBorder?'':'no-border'}}">
-      <view class="cu-item" wx:for="{{iconList}}" wx:key wx:if="{{index<7}}" bindtap="sendjump" data-target="{{item}}">
-        <view class="cuIcon-{{item.icon}} text-{{item.color}}">
-          <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
             <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
           </view>
         </view>
@@ -38,51 +24,15 @@
     </view>
   </view>
 
-<<<<<<< HEAD
   <view class="cu-bar indigo solid-bottom {{fixedflag?'':'fixed'}}  shadow-blur" style="top:{{CustomBar}}px;">
     <view class='action'>
       <scroll-view scroll-x class=" nav text-center">
         <view class="cu-item {{item.id==TabCur?'text-white cur':''}}" style="color:white" wx:for="{{navlist}}" wx:key bindtap="tabSelect" data-id="{{item.id}}">
-=======
-  <!-- <view class=" cu-card article no-card  margin-xs radius  shadow-blur bg-white" >
-    <text class=" bg-gradual-orange cu-tag radius padding-left padding-right margin-top margin-left shadow">找设计、开发、商标注册...填一下试试
-    </text>
-    <form bindsubmit='formSubmit'>
-      <view class='form margin-left margin-right'>
-        <view class="cu-form-group bg-gray margin-top radius shadow ">
-          <text class="title">发需求</text>
-          <input name="send" placeholder="可手动输入，如：logo设计"></input>
-        </view>
-        <view class="cu-form-group bg-gray margin-top radius shadow">
-          <view class="title">手机号</view>
-          <input name="mobile" type="number" maxlength="11" placeholder="信息保护中，请 放心填写" bindinput="telNum" value="{{mobile}}"></input>
-        </view>
-        <view class="cu-form-group bg-gray margin-top radius shadow">
-          <view class="title">验证码</view>
-          <input name="code" placeholder="输入验证码" type="number" maxlength="6" bindinput="codeNum" disabled="{{disabput?'':'disabled'}}"></input>
-          <button class="cu-btn bg-gradual-blue radius shadow-blur" style="width:11vh" disabled="{{disabcode?'':'disabled'}}" bindtap="codetxt" data-target="{{codetit}}">{{codetit}}</button>
-        </view>
-      </view>
-      <view class="padding flex flex-direction">
-        <button class="cu-btn lg  bg-gradual-{{item.color}} animation-{{animation==item.name?item.name:''}}  shadow-blur" data-class="{{item.name}}" wx:for="{{list}}" wx:key="{{index}}" formType="submit" disabled="{{disabsub?'':'disabled'}}" style="width:100%">马上为我推荐</button>
-      </view>
-    </form>
-  </view> -->
-
-  <view class="cu-bar indigo solid-bottom {{fixedflag?'':'fixed'}}  shadow-blur" style="top:{{CustomBar}}px;">
-    <view class='action'>
-      <scroll-view scroll-x class=" nav text-center">
-        <view class="cu-item {{item.id==TabCur?'text-white cur':''}}" wx:for="{{navlist}}" wx:key bindtap="tabSelect" data-id="{{item.id}}">
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           {{item.nav}}
         </view>
       </scroll-view>
     </view>
-<<<<<<< HEAD
     <view class='action' style="color:white" bindtap="showRegion">
-=======
-    <view class='action' bindtap="showRegion">
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
       <text>{{munitem}}</text>
       <text class="cuIcon-{{regionicon}}"></text>
     </view>
@@ -90,20 +40,12 @@
 
   <block wx:if="{{Modalflag}}" class="">
 
-<<<<<<< HEAD
     <view class="bg-white" style="" wx:if="{{demandflag}}" style="height:800rpx;width:100%">
-=======
-    <view class="bg-white" style="" wx:if="{{demandflag}}" style="height:89vh">
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
       <image src="/images/rhomb-white.gif" mode="aspectFit" class="gif-white response"></image>
     </view>
     <!-- wx:for="{{citylist}}" wx:for-item="cityitem" wx:key  wx:for="{{item.label}}"  wx:key-->
     <block wx:else>
-<<<<<<< HEAD
       <view class="cu-card article no-card  margin-top-sm   margin-left-sm margin-right-sm padding-top-xs padding-bottom-xs radius  bgwhite bgshadow" wx:for="{{demand}}" wx:key bindtap="Seedels" data-target="{{item}}">
-=======
-      <view class="cu-card article no-card  margin-top-xs margin-botttom  margin-left-sm margin-right-sm padding-top-xs padding-bottom-xs radius  bg-white shadow" wx:for="{{demand}}"  wx:key>
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
         <view class="cu-item">
           <view class="title">
             <view class="text-cut">{{item.jobName}}</view>
@@ -112,21 +54,12 @@
             <view class="bg-white" style="width:55%">
               <view class="margin-top-xs">{{item.jobType}} | {{item.ageRequire}}岁</view>
               <view class="margin-top-sm text-cut" style="width:20vh">
-<<<<<<< HEAD
                 <text class="">{{item.city}}</text>
               </view>
               <view class="cu-tag bggreen round margin-top-lg" style="color:white">{{item.releaseType}}认证</view>
             </view>
             <view class=" margin-left bg-white" style="width:45%">
               <view class="margin-top-xs flex justify-end">￥{{item.salary}}元/月</view>
-=======
-              <text class="" >{{item.city}}</text>
-              </view>
-              <view class="cu-tag bg-green round margin-top-lg">{{item.releaseType}}认证</view>
-            </view>
-            <view class=" margin-left bg-white" style="width:45%">
-            <view class="margin-top-xs flex justify-end" >￥{{item.salary}}元/月</view>
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
               <view class="flex justify-end margin-top-sm">{{item.createTime}}</view>
               <view class="flex justify-end align-end margin-top-xl">
                 <text bindtap="Seedels" data-target="{{item}}">查看详情</text>
@@ -144,17 +77,12 @@
 
       </view>
 
-<<<<<<< HEAD
       <view class="margin-top-xl" wx:if="{{loadflag}}">
         <i-load-more tip="{{tiptxt}}" loading="{{ false }}" />
       </view> 
 
       <view class="padding-top-xl bgwhite flex justify-center"  wx:else style="width:100%">
         <image src="/images/nodata.jpg" mode="aspectFit"></image>
-=======
-      <view class="margin-top-xl">
-        <i-load-more tip="{{tiptxt}}" loading="{{ false }}" />
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
       </view>
 
     </block>
@@ -164,11 +92,7 @@
   <block wx:if="{{!Modalflag}}" class="">
 
     <view class="" style="">
-<<<<<<< HEAD
       <view class=" bgwhite" style="width:100vh;height:100vh;">
-=======
-      <view class=" bg-white" style="width:100vh;height:100vh;">
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
         <view class="bg-gray margin-left" style="z-index:999;">
           <picker-view mode="region" indicator-style="height: 8vh;" style=" height: 40vh;" value="{{value}}" bindchange="bindChange">
             <picker-view-column style="width:30vh;">

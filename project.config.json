@@ -22,11 +22,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-<<<<<<< HEAD
 	"libVersion": "2.9.4",
-=======
-	"libVersion": "2.9.3",
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 	"appid": "wx884ebfcbccc0468b",
 	"projectname": "Yucai-wechat",
 	"debugOptions": {
@@ -44,18 +40,14 @@
 			"current": -1,
 			"list": []
 		},
-<<<<<<< HEAD
 		"plugin": {
 			"current": -1,
 			"list": []
 		},
-=======
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
-<<<<<<< HEAD
 		"gamePlugin": {
 			"current": -1,
 			"list": []
@@ -113,11 +105,6 @@
 					"scene": null
 				}
 			]
-=======
-		"miniprogram": {
-			"current": -1,
-			"list": []
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 		}
 	}
 }

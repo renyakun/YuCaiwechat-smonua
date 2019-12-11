@@ -5,20 +5,11 @@ const {
 import {
   showToast,
   switchTab,
-<<<<<<< HEAD
-=======
-  setBarColor,
-  setBarTitle,
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 } from '../../../utils/WeChatfction';
 Page({
   data: {
     star: 0,
-<<<<<<< HEAD
     txtput: 0,
-=======
-    txtput:0,
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
     message: ''
   },
   onChange(e) {
@@ -35,11 +26,7 @@ Page({
     let userId = this.data.userId;
     let realName = this.data.realName;
     if (message == "" || star == 0) {
-<<<<<<< HEAD
       showToast('请输入完整信息！', 'none', 1000)
-=======
-      showToast('请输入完整信息！', 'none', 3000)
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
     } else {
       console.log(star, message);
       wx.request({
@@ -59,7 +46,6 @@ Page({
         success: res => {
           console.log(res)
           if (res.data.success) {
-<<<<<<< HEAD
             showToast(res.data.data, 'success', 1000);
             setTimeout(() => {
               switchTab('/pages/record/record/record?id=3');
@@ -72,13 +58,6 @@ Page({
           wx.navigateTo({
             url: '/pages/record/record/record?id=3',
           })
-=======
-            showToast(res.data.data, 'success', 3000);
-            switchTab('/pages/user/user/user');
-          } else {
-            showToast(res.data.msg, 'none',3000)
-          }
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
         }
       })
     }
@@ -91,11 +70,7 @@ Page({
       txtput: len,
     })
     if (len > 499) {
-<<<<<<< HEAD
       showToast('输入值字数最大为500！', 'none', 1000)
-=======
-      showToast('输入值字数最大为500！', 'none', 3000)
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
     }
   },
   onLoad: function(options) {
@@ -105,12 +80,7 @@ Page({
       realName: options.realName
     })
 
-<<<<<<< HEAD
 
-=======
-    setBarColor('#ffffff', '#0081ff', 1500, 'ease');
-    setBarTitle('评价');
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   },
 
   onReady: function() {

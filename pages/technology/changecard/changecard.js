@@ -20,14 +20,10 @@ Page({
     mobile: '',
     email: '',
     age: '',
-<<<<<<< HEAD
     imgList: [],
   },
 
   //获取名片详情
-=======
-  },
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   reqchkflag(flagnum) {
     let accessToken = wx.getStorageSync('accessToken') || [];
     wx.request({
@@ -49,11 +45,8 @@ Page({
       }
     })
   },
-<<<<<<< HEAD
 
   //名片开关
-=======
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   checkflag(e) {
     let flag = e.detail.value;
     if (flag) {
@@ -70,16 +63,12 @@ Page({
       this.reqchkflag(0);
     }
   },
-<<<<<<< HEAD
 
   //更多信息
-=======
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   dishow() {
     this.setData({
       showflag: true
     })
-<<<<<<< HEAD
     pageScrollTosel('.showcard', 1000)
   },
 
@@ -142,10 +131,6 @@ Page({
   },
 
   //判断
-=======
-    pageScrollTosel('.showcard',1000)
-  },
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   formSubmit(e) {
     let accessToken = wx.getStorageSync('accessToken') || [];
     let realName = e.detail.value.realName;
@@ -161,10 +146,7 @@ Page({
     let experience = e.detail.value.experience;
     let label = e.detail.value.label;
     let description = e.detail.value.description;
-<<<<<<< HEAD
     let avatar = this.data.imgbase;
-=======
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
     if (realName == "" || sex == "" || dreamPosition == "" || mobile == "" || email == "" || age == "") {
       showToast('请输入完整信息！', 'none', 3000)
     } else {
@@ -173,10 +155,7 @@ Page({
         url: url + '/technology/updateMyBusinessCard',
         method: 'post',
         data: {
-<<<<<<< HEAD
           avatar: avatar,
-=======
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           realName: realName,
           sex: sex,
           dreamPosition: dreamPosition,
@@ -199,15 +178,10 @@ Page({
           console.log(res.data.data)
           if (res.data.success) {
             showToast(res.data.data, 'success', 3000);
-<<<<<<< HEAD
             //showLoading();
             setTimeout(() => {
               navigateTo('/pages/technology/card/card');
             }, 3500)
-=======
-            showLoading();
-            navigateTo('/pages/technology/card/card');
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           } else {
             showToast(res.data.msg, 'none', 3000)
             // setTimeout(() => {
@@ -220,7 +194,6 @@ Page({
       })
     }
   },
-<<<<<<< HEAD
 
 
 
@@ -237,19 +210,6 @@ Page({
         url: url + '/technology/getMyBusinessCard',
         data: {
           accessToken: token,
-=======
-  onLoad: function(options) {
-    showLoading();
-  },
-
-  onReady: function() {
-    setTimeout(()=>{
-      let accessToken = wx.getStorageSync('accessToken') || [];
-      wx.request({
-        url: url + '/technology/getMyBusinessCard',
-        data: {
-          accessToken: accessToken,
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
         },
         header: {
           'content-type': 'application/json'
@@ -268,11 +228,8 @@ Page({
           let experience = res.data.data.experience;
           let label = res.data.data.label;
           let description = res.data.data.description;
-<<<<<<< HEAD
           let avatar = res.data.data.avatar;
           let img = 'imgList[0]';
-=======
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           if (res.data.success) {
             if (res.data.data.sex == "男") {
               this.setData({
@@ -296,38 +253,24 @@ Page({
               experience: experience,
               label: label,
               description: description,
-<<<<<<< HEAD
               [img]: avatar
-=======
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
             })
           } else {
             showToast(res.data.msg, 'none', 3000)
           }
         }
       })
-<<<<<<< HEAD
 
       wx.request({
         url: url + '/technology/checkMyBusinessCard',
         data: {
           accessToken: token,
-=======
-      wx.request({
-        url: url + '/technology/checkMyBusinessCard',
-        data: {
-          accessToken: accessToken,
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
         },
         header: {
           'content-type': 'application/json'
         },
         success: res => {
-<<<<<<< HEAD
           //console.log(res)
-=======
-          console.log(res)
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           if (res.data.success) {
             if (res.data.data) {
               this.setData({
@@ -345,17 +288,12 @@ Page({
           }
         }
       })
-<<<<<<< HEAD
 
 
     }, 3000)
 
     
 
-=======
-    },3000)
-    
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   },
 
 
@@ -374,11 +312,7 @@ Page({
 
 
   onPullDownRefresh: function() {
-<<<<<<< HEAD
     this.onReady()
-=======
-
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   },
 
 

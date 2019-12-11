@@ -7,10 +7,7 @@ import {
   pageScrollTosel,
   switchTab,
   navigateTo,
-<<<<<<< HEAD
   urlTobase64,
-=======
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 } from '../../../utils/WeChatfction';
 const app = getApp();
 Page({
@@ -24,19 +21,14 @@ Page({
     email: '',
     age: '',
     check: true,
-<<<<<<< HEAD
     imgList: [],
   },
 
   //更多信息
-=======
-  },
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   dishow() {
     this.setData({
       showflag: true
     })
-<<<<<<< HEAD
     pageScrollTosel('.showcard', 1000)
   },
 
@@ -101,10 +93,6 @@ Page({
   },
 
   //判断
-=======
-    pageScrollTosel('.showcard',1000)
-  },
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   formSubmit(e) {
     let accessToken = wx.getStorageSync('accessToken') || [];
     let realName = e.detail.value.realName;
@@ -112,11 +100,7 @@ Page({
     let dreamPosition = e.detail.value.dreamPosition;
     let mobile = e.detail.value.mobile;
     let email = e.detail.value.email;
-<<<<<<< HEAD
     let age = parseInt( e.detail.value.age);
-=======
-    let age = e.detail.value.age;
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
     let profession = e.detail.value.profession;
     let education = e.detail.value.education;
     let graduationTime = e.detail.value.graduationTime;
@@ -124,7 +108,6 @@ Page({
     let experience = e.detail.value.experience;
     let label = e.detail.value.label;
     let description = e.detail.value.description;
-<<<<<<< HEAD
     let avatar = this.data.imgbase;
     //console.log(avatar, realName, age, sex, dreamPosition, mobile, email, profession, education, graduationTime, school, experience, label, description);
     console.log( realName, age, sex, dreamPosition, mobile, email);
@@ -132,20 +115,11 @@ Page({
     if (realName == "" || sex == "" || dreamPosition == "" || mobile == "" || email == "" || age == "" || avatar == undefined) {
       showToast('请输入完整信息！', 'none', 3000)
     } else {
-=======
-    if (realName == "" || sex == "" || dreamPosition == "" || mobile == "" || email == "" || age == "") {
-      showToast('请输入完整信息！', 'none', 3000)
-    } else {
-      console.log(realName, age, sex, dreamPosition, mobile, email, profession, education, graduationTime, school, experience, label, description);
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
       wx.request({
         url: url + '/technology/add',
         method: 'post',
         data: {
-<<<<<<< HEAD
           avatar:avatar,
-=======
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           realName: realName,
           sex: sex,
           dreamPosition: dreamPosition,
@@ -166,7 +140,6 @@ Page({
         },
         success: res => {
           console.log(res)
-<<<<<<< HEAD
           showToast(res.data.success, 'none', 1000)
           if (res.data.success) {
             showToast(res.data.data, 'success', 3000)
@@ -175,21 +148,12 @@ Page({
             },3500)          
           } else {
             showToast(res.data.msg, 'none', 3000);
-=======
-          if (res.data.success) {
-            showToast(res.data.data, 'success', 3000)
-            navigateTo('/pages/technology/card/card')
-          } else {
-            showToast(res.data.msg, 'none', 3000);
-            switchTab('/pages/user/user/user');
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           }
         }
       })
     }
   },
 
-<<<<<<< HEAD
   //重置
   formReset(e) {
     console.log('form发生了reset事件')
@@ -236,20 +200,6 @@ Page({
     //     [img]: avatarUrl
     //   })
     // }, 3500)
-=======
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   },
 
   /**

@@ -5,7 +5,6 @@ const {
 import {
   showToast,
   navigateTo,
-<<<<<<< HEAD
   showLoading,
 } from '../../../utils/WeChatfction';
 Page({
@@ -17,17 +16,6 @@ Page({
       id: 1,
       img: '../../../images/icon/notice.png',
       con: '投递邀请通知',
-=======
-  setBarTitle,
-  setBarColor,
-} from '../../../utils/WeChatfction';
-Page({
-  data: {
-    newslist: [{
-      id: 1,
-      img: '../../../images/icon/notice.png',
-      con: '评价消息通知',
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
       tit: '暂无消息',
       notice: '2018年世界杯,将于6月14日至7月15日举行;2018年世界杯,将于6月14日至7月15日举行;',
       icon: 'infofill',
@@ -37,11 +25,7 @@ Page({
     }, {
       id: 2,
       img: '../../../images/icon/see.png',
-<<<<<<< HEAD
       con: '面试邀请通知',
-=======
-      con: '今日暂无查看',
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
       tit: '暂无劳务查看',
       notice: '2018年世界杯,将于6月14日至7月15日举行;2018年世界杯,将于6月14日至7月15日举行;',
       icon: '',
@@ -50,33 +34,15 @@ Page({
     }, {
       id: 3,
       img: '../../../images/icon/subscribe.png',
-<<<<<<< HEAD
       con: '评论消息通知',
-=======
-      con: '订阅消息',
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
       tit: '暂无订阅消息',
       notice: '2018年世界杯,将于6月14日至7月15日举行;2018年世界杯,将于6月14日至7月15日举行;',
       icon: 'infofill',
       timer: '',
       badge: 8,
-<<<<<<< HEAD
     },]
   },
   
-=======
-    }, {
-      id: 4,
-      img: '../../../images/YuCai.jpg',
-      con: '御材劳务官方助手',
-      tit: '暂无消息',
-      notice: '2018年世界杯,将于6月14日至7月15日举行;2018年世界杯,将于6月14日至7月15日举行;',
-      icon: '',
-      timer: '22:20',
-      badge: 9,
-    }]
-  },
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   // ListTouch触摸开始
   ListTouchStart(e) {
     this.setData({
@@ -107,7 +73,6 @@ Page({
     })
   },
 
-<<<<<<< HEAD
   
   
   // 点击消息框,查看按钮,实现跳转
@@ -148,20 +113,11 @@ Page({
     console.log(e.currentTarget.dataset.target);
     let badge = `newslist[${id}].badge` ;
     let notice = `newslist[${id}].notice`;
-=======
-  cussjump(){
-    navigateTo('/pages/tidings/discuss/discuss')
-  },
-  emptytap(){
-    let badge = 'newslist[0].badge';
-    let notice = 'newslist[0].notice';
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
     this.setData({
       [notice]: '',
       [badge]: 0
     })
   },
-<<<<<<< HEAD
 
 
 
@@ -196,36 +152,6 @@ Page({
 
   onLoad: function(options) {
     this.request();
-=======
-  onLoad: function(options) {
-    let accessToken = wx.getStorageSync('accessToken') || [];
-    wx.request({
-      url: url + '/invitation/myAcceptEvaluation',
-      data: {
-        accessToken: accessToken,
-      },
-      success: res => {
-        //console.log(res)
-        if (res.data.success) {
-          //console.log(res.data.data)
-          let data = res.data.data;
-          let badge = 'newslist[0].badge';
-          let notice = 'newslist[0].notice';
-          let timer = 'newslist[0].timer';
-          this.setData({
-            [badge]: data.length,
-            [notice]: data[0].evaluationName + ' : ' + data[0].message,
-            [timer]: data[0].createTime
-          })
-        } else {
-          showToast(res.data.msg, 'none', 3000)
-        }
-      }
-    })
-
-    setBarColor('#ffffff', '#0081ff', 1500, 'ease');
-    setBarTitle('消息');
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   },
 
   /**

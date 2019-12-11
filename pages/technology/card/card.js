@@ -1,10 +1,7 @@
 // pages/technology/mycard/card.js
 //获取应用实例
 const app = getApp()
-<<<<<<< HEAD
 var ctx = ""
-=======
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 const {
   url
 } = require('../../../utils/url.js');
@@ -17,7 +14,6 @@ import {
   setBarColor,
   setBarTitle,
 } from '../../../utils/WeChatfction';
-<<<<<<< HEAD
 
 Page({
   data: {
@@ -27,21 +23,11 @@ Page({
   },
 
   //跳转修改
-=======
-Page({
-  /* 页面的初始数据*/
-  data: {
-    InputBottom: 0,
-    demandflag: true,
-  },
-
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   techjump(e) {
     showLoading();
     navigateTo('/pages/technology/changecard/changecard');
   },
 
-<<<<<<< HEAD
   //关闭模拟框
   hideModal(e) {
     this.setData({
@@ -233,22 +219,6 @@ Page({
   onReady: function () {
     let accessToken = wx.getStorageSync('accessToken') || [];
     setTimeout(() => {
-=======
-  /* 生命周期函数--监听页面加载*/
-  onLoad: function(options) {
-    setBarColor('#ffffff', '#0081ff', 1500, 'ease');
-    setBarTitle('个人主页');
-  },
-
-  onReady: function() {
-    let accessToken = wx.getStorageSync('accessToken') || [];
-    setTimeout(() => {
-      this.setData({
-        demandflag: false,
-      })
-    }, 3000)
-    setTimeout(() => {
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
       wx.request({
         url: url + '/technology/getMyBusinessCard',
         data: {
@@ -258,14 +228,9 @@ Page({
           'content-type': 'application/json'
         },
         success: res => {
-<<<<<<< HEAD
           //console.log(res.data.data)
           if (res.data.success) {
             let avatar = res.data.data.avatar;
-=======
-          console.log(res.data.data)
-          if (res.data.success) {
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
             let realName = res.data.data.realName;
             let dreamPosition = res.data.data.dreamPosition;
             let email = res.data.data.email;
@@ -279,10 +244,7 @@ Page({
             let label = res.data.data.label;
             let description = res.data.data.description;
             this.setData({
-<<<<<<< HEAD
               avatar: avatar,
-=======
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
               realName: realName,
               dreamPosition: dreamPosition,
               email: email,
@@ -295,18 +257,13 @@ Page({
               experience: experience,
               label: label,
               description: description,
-<<<<<<< HEAD
               demandflag: false,
             });
-=======
-            })
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
           } else {
             showToast(res.data.msg, 'none', 3000)
           }
         }
       })
-<<<<<<< HEAD
     }, 3000)
 
 
@@ -326,46 +283,19 @@ Page({
 
   onPullDownRefresh: function () {
     this.onReady()
-=======
-    }, 3100)
-  },
-
-  onShow: function() {
-
-  },
-
-  onHide: function() {
-
-  },
-
-  onUnload: function() {
-
-  },
-
-  onPullDownRefresh: function() {
-
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-<<<<<<< HEAD
   onReachBottom: function () {
-=======
-  onReachBottom: function() {
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 
   },
 
   /**
    * 用户点击右上角分享
    */
-<<<<<<< HEAD
   onShareAppMessage: function () {
-=======
-  onShareAppMessage: function() {
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 
   },
 })

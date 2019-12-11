@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <view class="cu-custom" style="height:10vh">
   <view class="cu-bar fixed {{bgImage!=''?'none-bg text-white bg-img':''}} indigo" style="height:10vh;padding-top:{{StatusBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}} ;color:white" >
     <view class="action margin-top" bindtap="BackPage" wx:if="{{isBack}}" style="">
@@ -10,19 +9,6 @@
       <text class="cuIcon-homefill" bindtap="toHome"></text>
     </view>
     <view class="content " style="top:{{StatusBar}}px;">
-=======
-<view class="cu-custom" style="height:{{CustomBar}}px">
-  <view class="cu-bar fixed {{bgImage!=''?'none-bg text-white bg-img':''}} {{bgColor}}" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
-    <view class="action" bindtap="BackPage" wx:if="{{isBack}}">
-      <text class="cuIcon-back"></text>
-      <slot name="backText"></slot>
-    </view>
-    <view class="action border-custom"  wx:if="{{isCustom}}" style="width:{{Custom.width}}px;height:{{Custom.height}}px;margin-left:calc(750rpx - {{Custom.right}}px)">
-      <text class="cuIcon-back" bindtap="BackPage"></text>
-      <text class="cuIcon-homefill" bindtap="toHome"></text>
-    </view>
-    <view class="content" style="top:{{StatusBar}}px">
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
       <slot name="content"></slot>
     </view>
     <slot name="right"></slot>

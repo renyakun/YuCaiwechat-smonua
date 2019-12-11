@@ -113,7 +113,6 @@
 }
 
 .bgwhite {
-<<<<<<< HEAD
   background: #fff;
 }
 
@@ -159,7 +158,4 @@
 
 .bgshadow {
   box-shadow: 6rpx 6rpx 8rpx #888;
-=======
-  background: #ffffff;
->>>>>>> 167149cb57bd56aa97be79041d3f31f617cbe609
 }
