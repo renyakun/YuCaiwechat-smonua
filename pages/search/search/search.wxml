@@ -8,6 +8,7 @@
     <view class="search-form round">
       <text class="cuIcon-search"></text>
       <input type="text" placeholder="输入搜索的关键词" confirm-type="search" value="{{searchval}}" bindinput="searchput">{{searchval}}</input>
+      <text class="cuIcon-roundclosefill"></text>
     </view>
     <view class="action">
       <button class="cu-btn bg-gradual-blue shadow-blur round" bindtap="searchbtn" data-target="{{searchval}}" style="width:10vh;height:4vh">搜索</button>

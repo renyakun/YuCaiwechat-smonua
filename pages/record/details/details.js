@@ -93,11 +93,9 @@ Page({
       success: res => {
         if (res.data.success) {
           showToast(res.data.data, 'success', 3000);
-          setTimeout(() => {
             wx.navigateTo({
               url: '/pages/record/evaluate/evaluate?&demandId=' + demandId + '&userId=' + userId + '&realName=' + realName,
             });
-          }, 3500)
         } else {
           showToast(res.data.msg, 'none', 1000);
         }

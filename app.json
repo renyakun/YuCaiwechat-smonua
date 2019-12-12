@@ -16,7 +16,8 @@
     "pages/record/commentInfo/commentInfo",
     "pages/logs/logs",
     "pages/star/star",
-    "pages/demand/morejobs/morejobs"
+    "pages/demand/morejobs/morejobs",
+    "pages/search/result/result"
   ],
   "permission": {
     "scope.userLocation": {

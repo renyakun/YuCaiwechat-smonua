@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "i-card": "../../../colorui/dist/card/index"
+    "i-card": "../../../colorui/dist/card/index",
+    "i-rate": "../../../colorui/dist/rate/index"
   }
 }

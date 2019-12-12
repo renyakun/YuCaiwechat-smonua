@@ -342,12 +342,7 @@ Page({
   },
 
   onReady: function() {
-    // setTimeout(() => {
-    //   this.setData({
-    //     demandflag: false,
-    //     tiptxt: '我也是有底线的',
-    //   })
-    // }, 8000)
+   
   },
 
   onShow: function() {

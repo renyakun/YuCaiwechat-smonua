@@ -72,8 +72,7 @@
               </view>
               <view>
                 <view>
-                  <text class="cuIcon-time sl text-black"></text>
-                  最近活跃时间:
+                  <text class="cuIcon-time sl text-black"></text> 最近活跃时间:
                   <text class="text-black ">{{publisherInfo.activeTime}}</text>
                 </view>
               </view>
@@ -112,6 +111,23 @@
           <view class="">
             <text class="cuIcon-location sl text-black"></text>
             <text class="text-black">{{demanditem.city}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 备注区域 -->
+    <view class="cu-card article no-card margin-bottom bgwhite">
+      <view class="cu-bar bg-white">
+        <view class="action">
+          <text class="cuIcon-titles text-blue" style="color:#0081ff"></text>
+          <text class="text-xl text-bold">备注</text>
+        </view>
+      </view>
+      <view class="cu-item">
+        <view class="content padding-top padding-bottom">
+          <view class="">
+            <text class="cuIcon-message sl text-black"></text>
+            <text class="text-black">联系我时说是在御材平台上看到的</text>
           </view>
         </view>
       </view>

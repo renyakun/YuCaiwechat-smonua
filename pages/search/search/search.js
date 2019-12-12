@@ -34,12 +34,14 @@ Page({
     })
   },
   searchbtn(e) {
+    // 获取搜索框内容 btnitem
     const btnitem = e.currentTarget.dataset.target;
     if (btnitem != '') {
       this.search(btnitem);
-      // wx.navigateTo({
-      //   url: '/pages/seek/Item/Item?item=' + btnitem,
-      // })
+      // 跳转搜索结果页
+      wx.navigateTo({
+        url: '/pages/search/result/result?search=' + btnitem,
+      })
       console.log(btnitem)
       showToast(btnitem, "none", 3000)
     } else {

@@ -110,6 +110,13 @@
 					"pathName": "pages/demand/morejobs/morejobs",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "搜索结果页",
+					"pathName": "pages/search/result/result",
+					"query": "",
+					"scene": null
 				}
 			]
 		}
