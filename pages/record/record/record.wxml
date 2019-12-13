@@ -34,8 +34,7 @@
                   <view class="flex flex-wrap margin-top-sm">
                     <view class="padding-left text-cut" style="width:90%">
                       <text class="text-bold">
-                        <text class="cuIcon-locationfill text-blue text-df margin-right-xs"></text>
-                        工作地点：
+                        <text class="cuIcon-locationfill text-blue text-df margin-right-xs">工作地点：</text>
                       </text>
                       {{item.city}}
                     </view>
@@ -60,8 +59,8 @@
                   <view class="flex flex-wrap margin-top-sm">
                     <view class="padding-left text-cut" style="width:90%">
                       <text class="text-bold">
-                        <text class="cuIcon-locationfill text-blue text-df margin-right-xs"></text>
-                        面试地点：
+                        <text class="cuIcon-locationfill text-blue text-df margin-right-xs">面试地点：</text>
+                        
                       </text>
                       {{item.address}}
                     </view>
@@ -69,8 +68,7 @@
                   <view class="flex flex-wrap margin-top-sm">
                     <view class="padding-left">
                       <text class="text-bold">
-                        <text class="cuIcon-timefill text-blue text-df margin-right-xs"></text>
-                        面试时间：
+                        <text class="cuIcon-timefill text-blue text-df margin-right-xs">面试时间：</text>
                       </text>
                       {{item.invitationTime}}
                     </view>

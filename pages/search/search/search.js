@@ -16,6 +16,12 @@ Page({
     searchList: ['设计', 'weappdev', '小程序', 'wxParse', 'wxSearch', 'wxNotification'],
     seahistoryList: ['小程序', 'weappdev', 'wxParse', 'wxSearch', 'wxNotification', '1', '2', '3', '4', '5', '6'],
   },
+  // 清空搜索框内容
+  clearInput(){
+    this.setData({
+      searchval: "",
+    })
+  },
 
   search(item) {
     let seahistoryLists = this.data.seahistoryList;
