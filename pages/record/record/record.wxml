@@ -3,10 +3,12 @@
   <view slot="backText">返回</view>
   <view slot="content" class="margin-top-xs">投递记录</view>
 </cu-custom>
+
 <scroll-view scroll-y class="scrollPage" scrollTop="{{scrollTop}}">
+
   <view class="cu-bar search  fixed bgwhite shadow-blur" style="height:9vh;top:10vh;">
-    <scroll-view scroll-x class="nav" scroll-with-animation scroll-left="{{scrollLeft}}">
-      <view class="cu-item {{item.id==TabCur?'text-black cur':''}}" style="color:black" bindtap="tabSelect" data-id="{{item.id}}" wx:for="{{tablist}}" wx:key="id">
+    <scroll-view scroll-x class="nav text-center" scroll-with-animation scroll-left="{{scrollLeft}}">
+      <view class="cu-item {{item.id==TabCur?'text-black cur':''}}" style="color:black" bindtap="tabSelect" data-id="{{item.id}}" wx:for="{{recordlist}}" wx:key="id">
         <text class="text-center">{{item.flag}}</text>
       </view>
     </scroll-view>
@@ -17,37 +19,44 @@
   </view>
   <!-- 顶部tab栏 -->
   <block wx:else>
-    <view style="margin-top:9.5vh" class=" margin-left-xs margin-right-xs round">
-      <block wx:if="{{TabCur==item.id}}" wx:for="{{tablist}}" wx:key="id" class="">
-        <scroll-view scroll-y class="bgwhite shadow scrollPage" style=" ">
+    <view style="margin-top:9.5vh" class="margin-left-xs margin-right-xs round">
+
+      <block wx:if="{{TabCur==item.id}}" wx:for="{{recordlist}}" wx:key="id" class="">
+
+        <scroll-view scroll-y class="bgwhite shadow scrollPage padding-bottom " style=" ">
           <!-- 全部 -->
           <block wx:if="{{item.id== 1}}">
+
             <view class="margin-top " wx:if="{{wholeflag}}">
-              <view class="cu-bar cu-card no-card bg-blue radius shadow margin-top-xs margin-left-xs margin-right-xs flex justify-center" wx:for="{{wholelist}}" wx:key="id" data-id="{{item.id}}">
+              <view class="cu-bar cu-card no-card bg-blue radius shadow margin-top-sm margin-left-xs margin-right-xs flex justify-center" wx:for="{{wholelist}}" wx:key="id" data-id="{{item.id}}" data-target="{{item.demandHistroy.demandId}}" bindtap="Seedels">
                 <view class="bg-white radius padding-top padding-bottom" style="width:99.5%;">
                   <view class="flex flex-wrap align-end">
-                    <view class="padding-left text-bold text-blue">{{item.jobName}}</view>
+                    <view class="padding-left text-bold text-blue">{{item.demandHistroy.jobName}}</view>
                   </view>
                   <view class="flex flex-wrap margin-top-sm">
-                    <view class="padding-left">{{item.jobType}} | {{item.ageRequire}} ...</view>
+                    <view class="padding-left">{{item.demandHistroy.jobType}} | {{item.demandHistroy.ageRequire}} | {{item.demandHistroy.releaseType}}认证</view>
                   </view>
                   <view class="flex flex-wrap margin-top-sm">
                     <view class="padding-left text-cut" style="width:90%">
                       <text class="text-bold">
                         <text class="cuIcon-locationfill text-blue text-df margin-right-xs">工作地点：</text>
                       </text>
-                      {{item.city}}
+                      {{item.demandHistroy.city}}
                     </view>
                   </view>
                 </view>
               </view>
             </view>
+
             <view class="padding-top-xl bgwhite flex justify-center" wx:else style="width:100%">
               <image src="/images/nodata.jpg" mode="aspectFit"></image>
             </view>
+
           </block>
+
           <!-- 待面试 -->
           <block wx:elif="{{item.id== 2}}">
+
             <view class="margin-top " wx:if="{{interflag}}">
               <view class="cu-bar cu-card no-card bgblue radius shadow margin-top-xs margin-left-xs margin-right-xs flex justify-center" wx:for="{{interdemand}}" wx:key="id" data-item="{{item}}" bindtap="detaitem">
                 <view class="bg-white radius padding-top padding-bottom" style="width:99.5%;">
@@ -60,7 +69,7 @@
                     <view class="padding-left text-cut" style="width:90%">
                       <text class="text-bold">
                         <text class="cuIcon-locationfill text-blue text-df margin-right-xs">面试地点：</text>
-                        
+
                       </text>
                       {{item.address}}
                     </view>
@@ -76,50 +85,96 @@
                 </view>
               </view>
             </view>
+
             <view class="padding-top-xl bgwhite flex justify-center" wx:else style="width:100%">
               <image src="/images/nodata.jpg" mode="aspectFit"></image>
             </view>
+
           </block>
-          <!-- 以评价区域 -->
-          <block wx:else>
-            <view class="margin-top " wx:if="{{loadflag}}">
-                <view class="cu-list menu-avatar comment solids-bottom" wx:for="{{evaldemand}}" wx:key="id">
-                  <view class="cu-item">
-                    <view class="cu-avatar round" style="background-image:url({{item.avatar}});top:30rpx"></view>
-                    <view class="content">
-                      <view class="text-blue" style="font-weight:700">{{item.evaluationName}}</view>
-                      <view class="text-black" style="font-weight:700">岗位:{{item.jobName}}</view>
-                      <view class="text-black">打分: <i-rate star-num="{{item.star}}"></i-rate></view>
-                      <view class="text-black text-content text-df">{{item.message}}</view>
-                      <!-- if have show -->
-                      <view class="bg-grey padding-sm radius margin-top-sm  text-sm" wx:if="{{item.replyMessage}}">
-                        <view class="flex">
-                          <view>{{item.acceptName}}：</view>
-                          <view class="flex-sub">{{item.replyMessage}}</view>
-                        </view>
+
+          <!-- 已评价 -->
+          <block wx:elif="{{item.id== 3}}">
+
+            <view class="margin-top " wx:if="{{evalflag}}">
+              <view class="cu-list menu-avatar comment solids-bottom" wx:for="{{evaldemand}}" wx:key="id">
+                <view class="cu-item">
+                  <view class="cu-avatar round" style="background-image:url({{item.avatar}});top:30rpx"></view>
+                  <view class="content">
+                    <view class="text-blue" style="font-weight:700">{{item.evaluationName}}</view>
+                    <view class="text-black" style="font-weight:700">岗位:{{item.jobName}}</view>
+                    <view class="flex justify-start align-start">
+                      <view class="margin-top-xs">评分:</view>
+                      <view>
+                        <i-rate disabled="{{true}}" value="{{item.star}}" size="19">
+                        </i-rate>
                       </view>
-                      <view class="bg-grey padding-sm radius margin-top-sm  text-sm" wx:else>
+                    </view>
+                    <view class="text-black text-content text-df">{{item.message}}</view>
+                    <!-- if have show -->
+                    <view class="bg-grey padding-sm radius margin-top-sm  text-sm" wx:if="{{item.replyMessage}}">
+                      <view class="flex">
+                        <view>{{item.acceptName}}：</view>
+                        <view class="flex-sub">{{item.replyMessage}}</view>
+                      </view>
+                    </view>
+                    <!-- <view class="bg-grey padding-sm radius margin-top-sm  text-sm" wx:else>
                         <view class="flex">
                           <view>暂时没有回复</view>
                         </view>
-                      </view>
-                      <view class="margin-top-sm flex justify-between">
-                        <view class="text-gray text-df">{{item.createTime}}</view>
-                        <view>
+                      </view> -->
+                    <view class="margin-top-sm flex justify-between">
+                      <view class="text-gray text-df">{{item.createTime}}</view>
+                      <!-- <view>
                           <text class="cuIcon-appreciatefill text-red"></text>
                           <text class="cuIcon-messagefill text-gray margin-left-sm"></text>
-                        </view>
-                      </view>
+                        </view> -->
                     </view>
                   </view>
                 </view>
+              </view>
             </view>
+
             <view class="padding-top-xl bgwhite flex justify-center" wx:else style="width:100%">
               <image src="/images/nodata.jpg" mode="aspectFit"></image>
             </view>
+
           </block>
+
+          <!-- 不合适 -->
+          <block wx:else>
+
+            <view class="margin-top " wx:if="{{inproflag}}">
+              <view class="cu-bar cu-card no-card bg-blue radius shadow margin-top-sm margin-left-xs margin-right-xs flex justify-center" wx:for="{{inprolist}}" wx:key="id" data-id="{{item.id}}">
+                <view class="bg-white radius padding-top padding-bottom" style="width:99.5%;">
+                  <view class="flex flex-wrap align-end">
+                    <view class="padding-left text-bold text-blue">{{item.demandHistroy.jobName}}</view>
+                  </view>
+                  <view class="flex flex-wrap margin-top-sm">
+                    <view class="padding-left">{{item.demandHistroy.jobType}} | {{item.demandHistroy.ageRequire}} | {{item.demandHistroy.releaseType}}认证</view>
+                  </view>
+                  <view class="flex flex-wrap margin-top-sm">
+                    <view class="padding-left text-cut" style="width:90%">
+                      <text class="text-bold">
+                        <text class="cuIcon-locationfill text-blue text-df margin-right-xs">工作地点：</text>
+                      </text>
+                      {{item.demandHistroy.city}}
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+
+            <view class="padding-top-xl bgwhite flex justify-center" wx:else style="width:100%">
+              <image src="/images/nodata.jpg" mode="aspectFit"></image>
+            </view>
+
+          </block>
+
         </scroll-view>
+
       </block>
+
     </view>
+
   </block>
 </scroll-view>

@@ -6,6 +6,7 @@
 .scrollPage {
   min-height: 100vh;
   background: #e7e2e2;
+  
 }
 
 .nav-list {
@@ -111,6 +112,7 @@
 
 .indigo {
   background: linear-gradient(45deg, #0081ff, #1cbbb4);
+  
 }
 
 .bgwhite {

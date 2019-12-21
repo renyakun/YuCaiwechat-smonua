@@ -18,7 +18,7 @@ Component({
 
   ready: function () {
     let num = parseInt(this.properties.starNum);
-    console.log(num);
+    //console.log(num);
     this.setStar(num); 
    },
 

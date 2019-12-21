@@ -1,11 +1,6 @@
 // pages/demand/morejobs.js
-
-//index.js
-
-
 import {
   showToast,
-  pagesurl,
   fiflet,
   navigateTo,
   showLoading,
@@ -16,91 +11,136 @@ const {
 } = require('../../../utils/url.js');
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     demandflag: true,
-    userId:'',
+    userId: '',
     loadflag: true, //没有数据图片显示标志 true不显示
+    details:[]
   },
+
+  companyjump(e) {
+    let userId = e.currentTarget.dataset.target;
+    navigateTo('/pages/demand/company/company?userId=' + userId)
+  },
+
+  tapind() {
+    showToast('即将上线，敬请期待!', 'none', 3000)
+  },
+
+  chatjump(){
+    showToast('即将上线，敬请期待!', 'none', 3000)
+  },
+
+  sharejump() {
+    showToast('即将上线，敬请期待!', 'none', 3000)
+  },
+
   // 获取更多职位信息
-  getMoreJobs(userId) {
-    console.log(userId);
-    let accessToken = wx.getStorageSync('accessToken') || [];
-    //let userId = this.data.userId;
+  getMoreJobs(userId, token) {
     wx.request({
       url: url + '/demand/getSendDemandslist',
       data: {
-        accessToken: accessToken,
+        accessToken: token,
         userId: userId
       },
       header: {
         'content-type': 'application/json'
       },
       success: res => {
-        console.log(res)
+        console.log('更多职位信息:',res.data.data)
         if (res.data.success) {
-          showToast(res.data.data, 'success', 3000)
-          setTimeout(() => {
+          if (res.data.data.length != 0) {
             this.setData({
               demandflag: false,
-              jobLists: res.data.data
+              jobLists: res.data.data,
+              loadflag: true,
             })
-          }, 500)
+          }
         } else {
           showToast(res.data.msg, 'none', 3000)
-          setTimeout(() => {
-            this.setData({
-              demandflag: false,
-              loadflag: false
-            })
-          }, 500)
+          this.setData({
+            demandflag: true,
+            loadflag: false
+          })
         }
       },
     })
   },
+
+  //获取公司主页
+  homepage(userId, token) {
+    wx.request({
+      url: url + '/company/getCompanyHomepage',
+      data: {
+        accessToken: token,
+        userId: userId
+      },
+      success: res => {
+        console.log('公司主页:',res.data.data)
+        let details = res.data.data;
+        if (res.data.success) {
+          if (details.length != 0) {
+            this.setData({
+              details: details,
+              src: '../../../images/icon/company.png'
+            })
+          }
+        } else {
+          showToast(res.data.msg, 'none', 3000);
+        }
+      }
+    })
+  },
+
+  //获取岗位发布者详情
+  release(demandId, token) {
+    wx.request({
+      url: url + '/demand/getReleaseMessage',
+      data: {
+        accessToken: token,
+        demandId: demandId
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: res => {
+        let release = res.data.data;
+        console.log('发布者详情:',release);
+        if (res.data.success) {
+          this.setData({
+            release: release,
+          })
+        } else {
+          showToast(res.data.msg, 'none', 1000)
+        }
+      },
+    })
+  },
+
   // 招聘详情
   Seedels(e) {
     let demandId = e.currentTarget.dataset.target.demandId;
-    let jobName = e.currentTarget.dataset.target.jobName;
-    //console.log(demandId);
-    showLoading();
-    // setTimeout(() => {
-    //   wx.navigateTo({
-    //     url: '/pages/demand/trans/trans?demandId=' + demandId + '&jobName=' + jobName,
-    //   });
-    // }, 3100)
-    wx.navigateTo({
-      url: '/pages/demand/trans/trans?demandId=' + demandId + '&jobName=' + jobName,
-    });
+    navigateTo('/pages/demand/trans/trans?demandId=' + demandId );
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function(options) {
-    console.log(options)
-    let userId = options.userId;
+    let token = wx.getStorageSync('accessToken') || '';
     this.setData({
-      userId: options.userId
+      demandflag: true,
+      userId: options.userId,
+      demandId: options.demandId
     });
-    setTimeout(() => {
-      this.getMoreJobs(userId);
-    },500)
-
+    this.getMoreJobs(options.userId, token);
+    this.homepage(options.userId, token);
+    this.release(options.demandId, token);
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
   onReady: function() {
 
+
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
+
   onShow: function() {
 
   },
@@ -127,8 +167,15 @@ Page({
       demandflag: true,
       demand: [],
     })
-    let userId = this.data.userId
-    this.getMoreJobs(userId)
+    let token = wx.getStorageSync('accessToken') || [];
+    let userId = this.data.userId;
+    let demandId = this.data.demandId;
+    setTimeout(() => {
+      this.getMoreJobs(userId, token);
+      this.homepage(userId, token);
+      this.release(demandId, token);
+    }, 500)
+
   },
 
   /**

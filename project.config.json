@@ -57,65 +57,58 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "消息页面调试",
+					"name": "消息",
 					"pathName": "pages/tidings/tidings/tidings",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": 1,
-					"name": "邀请投递消息页",
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/user/user/user",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "需求",
+					"pathName": "pages/demand/trans/trans",
+					"query": "demandId=40&jobName=收银员3k5月休三天",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "邀请投递",
 					"pathName": "pages/tidings/messageInfo/messageInfo",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": 2,
-					"name": "投递记录页",
+					"id": -1,
+					"name": "投递记录",
 					"pathName": "pages/record/record/record",
 					"query": "",
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "具体面试评论",
-					"pathName": "pages/record/commentInfo/commentInfo",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/technology/add/add",
-					"pathName": "pages/technology/add/add",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "职位详情页面调试",
-					"pathName": "pages/demand/trans/trans",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/star/star",
-					"pathName": "pages/star/star",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "热招职位调试页面",
+					"id": 6,
+					"name": "热招职位",
 					"pathName": "pages/demand/morejobs/morejobs",
-					"query": "",
+					"query": "userId=18&demandId=40",
 					"scene": null
 				},
 				{
-					"id": 8,
-					"name": "搜索结果页",
-					"pathName": "pages/search/result/result",
-					"query": "",
+					"id": -1,
+					"name": "公司详情",
+					"pathName": "pages/demand/company/company",
+					"query": "userId=18",
 					"scene": null
 				}
 			]

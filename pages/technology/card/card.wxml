@@ -1,6 +1,7 @@
 <!--pages/technology/mycard/card.wxml-->
-  <canvas canvas-id="myCanvas" style='width:{{canvasWidth}}px; height:{{canvasHeight}}px;position:fixed;top: -10000px;'></canvas>
-<cu-custom  isBack="{{true}}">
+<canvas canvas-id="myCanvas" style='width:{{canvasWidth}}px; height:{{canvasHeight}}px;position:fixed;top: -10000px;'></canvas>
+
+<cu-custom isCustom="{{true}}" isBack="{{false}}">
   <view slot="backText">返回</view>
   <view slot="content" class="margin-top-xs">个人主页</view>
 </cu-custom>
@@ -100,11 +101,15 @@
 
   </scroll-view>
 
-  <view class="cu-bar foot tabbar cur shop padding-top-xs margin-bottom-xs bgwhite" style="bottom:{{InputBottom}}px">
+  <!-- <view class="cu-bar foot tabbar cur shop padding-top-xs margin-bottom-xs bgwhite" style="bottom:{{InputBottom}}px">
     <button class="cu-btn line-black text-black shadow-blur" style="width:20vh" bindtap="techjump">编辑名片</button>
     <button class="cu-btn bgblue shadow margin-left" style="width:20vh;color:white;background: #0081ff;" data-modal="showModal" bindtap="tapjump">生成海报分享</button>
+  </view> -->
+
+  <view class="cu-bar foot tabbar cur shop bgwhite " style="bottom:{{InputBottom}}px;color:white">
+    <view class="round indigo shadow-blur flex justify-center align-center margin-right" style="width:10vh;height:4.5vh;color:white;font-size:2vh" bindtap="chatjump">编辑名片</view>
+    <view class="round indigo shadow-blur flex justify-center align-center margin-right" style="width:10vh;height:4.5vh;color:white;font-size:2vh" bindtap="chatjump">生成海报分享</view>
   </view>
-  <!--  style="height:10vh" bg-blue-->
 
   <view class="cu-modal  {{modalName=='showModal'?'show':''}}">
     <view class="cu-dialog ">

@@ -45,6 +45,11 @@ Component({
         delta: 1
       });
     },
+    BackPage1() {
+      wx.navigateBack({
+        delta: 1
+      });
+    },
     toHome(){
       wx.reLaunch({
         url: '/pages/index/index',

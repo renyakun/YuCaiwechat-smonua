@@ -2,13 +2,16 @@
 const {
   url
 } = require('../../../utils/url.js');
+
 import {
   showToast,
   navigateTo,
   showLoading,
   pageScrollTo
 } from '../../../utils/WeChatfction';
+
 const app = getApp();
+
 Page({
   data: {
     CustomBar: app.globalData.CustomBar,
@@ -16,41 +19,27 @@ Page({
     TabCur: 1,
     scrollLeft: 0,
     scrollTop: 0,
-    tablist: [{
-      id: 1,
-      flag: '全部',
-    }, {
-      id: 2,
-      flag: '待面试',
-    }, {
-      id: 3,
-      flag: '已评价',
-    }],
-    fixedflag: false,
+    recordlist: app.globalData.recordlist,
     wholeflag: true,
-    evalflag: true,
     interflag: true,
   },
 
   //tab跳转
   tabSelect(e) {
     pageScrollTo(0, 500);
-      this.setData({
-        TabCur: e.currentTarget.dataset.id,
-        scrollLeft: (e.currentTarget.dataset.id - 1) * 60,
-      })
+    this.setData({
+      TabCur: e.currentTarget.dataset.id,
+      scrollLeft: (e.currentTarget.dataset.id - 1) * 60,
+    })
   },
 
   //需求详情跳转
   Seedels(e) {
     let demandId = e.currentTarget.dataset.target;
     //console.log(demandId);
-    showLoading();
-    setTimeout(() => {
       wx.navigateTo({
         url: '/pages/demand/trans/trans?demandId=' + demandId,
       });
-    }, 3100)
   },
 
   //评价跳转
@@ -60,12 +49,9 @@ Page({
     let demandId = demanditem.demandHistroy.demandId;
     let userId = demanditem.demandHistroy.userId;
     let realName = demanditem.demandHistroy.realName;
-    showLoading();
-    setTimeout(() => {
       wx.navigateTo({
         url: '/pages/record/evaluate/evaluate?demandId=' + demandId + '&userId=' + userId + '&realName=' + realName,
       });
-    }, 1000)
     console.log(demandId, userId, realName)
   },
 
@@ -80,17 +66,14 @@ Page({
     let timer = demanditem.invitationTime;
     let id = demanditem.id;
     console.log(demanditem)
-    showLoading();
-    setTimeout(() => {
       wx.navigateTo({
         url: '/pages/record/details/details?address=' + address + '&timer=' + timer + '&id=' + id + '&jobName=' + jobName + '&demandId=' + demandId + '&userId=' + userId + '&realName=' + realName,
       });
-    }, 1000)
   },
 
   onLoad: function(options) {
     // 如果url中有id参数,跳转到对应的tab页
-    if (options.id){
+    if (options.id) {
       let id = parseInt(options.id);
       this.setData({
         TabCur: id,
@@ -107,7 +90,7 @@ Page({
         accessToken: token
       },
       success: res => {
-        console.log(res.data.data)
+        console.log('全部列表:',res.data.data)
         let demand = res.data.data;
         if (res.data.success) {
           if (demand.length != 0) {
@@ -135,7 +118,7 @@ Page({
         accessToken: token
       },
       success: res => {
-        console.log(res.data.data)
+        console.log('待面试:',res.data.data)
         let demand = res.data.data;
         if (res.data.success) {
           if (demand.length != 0) {
@@ -158,44 +141,57 @@ Page({
 
   //获取已评价列表
   evaluate(token) {
-    // this.setData({
-    //   loadflag: false,
-    //   evaldemand:[]
-    // })
-    // 请求后台数据
     wx.request({
       url: url + '/invitation/alreadyEvaluation',
       data: {
         accessToken: token
       },
       success: res => {
-        console.log(res.data.data)
         let demand = res.data.data;
+        console.log('已评价:', demand)
         if (res.data.success) {
           if (demand.length != 0) {
             this.setData({
               evaldemand: [...demand],
-              loadflag: true,
+              evalflag: true,
             })
           } else {
             this.setData({
-              loadflag: false,
+              evalflag: false,
             })
           }
         } else {
-          showToast(res.data.msg, 'none', 3000)
+          showToast(res.data.msg, 'none', 1000)
         }
       }
     })
   },
 
-  // commentInfo 评论详情页
-  commentInfo(){
-    wx.navigateTo({
-      url: '../commentInfo/commentInfo',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
+  //获取不合适列表
+  inprolist(token) {
+    wx.request({
+      url: url + '/technology/inappropriate',
+      data: {
+        accessToken: token
+      },
+      success: res => {
+        console.log('不合适:',res.data.data)
+        let demand = res.data.data;
+        if (res.data.success) {
+          if (demand.length != 0) {
+            this.setData({
+              inprolist: [...demand],
+              inproflag: true,
+            })
+          } else {
+            this.setData({
+              inproflag: false,
+            })
+          }
+        } else {
+          showToast(res.data.msg, 'none', 1000)
+        }
+      }
     })
   },
 
@@ -205,11 +201,12 @@ Page({
       this.setData({
         demandflag: false,
       })
-    }, 3000)
+    }, 1000)
     let token = wx.getStorageSync('accessToken') || [];
     this.interdemand(token)
     this.evaluate(token)
     this.wholelist(token)
+    this.inprolist(token)
   },
 
   onShow: function() {

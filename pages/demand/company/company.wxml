@@ -1,0 +1,76 @@
+<!--pages/demand/company/company.wxml-->
+<cu-custom isCustom="{{true}}" isBack="{{false}}">
+  <view slot="backText">返回</view>
+  <view slot="content" class="margin-top-xs">公司详情</view>
+</cu-custom>
+
+<scroll-view scroll-y class="scrollPage bgwhite" style=" " scrollTop="{{scrollTop}}">
+
+  <!-- 加载动画 -->
+  <view class="bgwhite" style="" wx:if="{{demandflag}}" style="height:100vh;width:100%">
+    <image src="/images/rhomb-white.gif" mode="aspectFit" class="gif-white response"></image>
+  </view>
+
+  <block wx:else>
+
+    <view class="bgwhite padding-bottom-xl">
+      <view class="flex justify-between align-center padding" style="height:13vh;z-index:9;" data-target="{{userId}}" bindtap="companyjump">
+        <view class="flex justify-between align-center">
+          <image style="width:6vh; height:6vh;" mode="{{aspectFit}}" src="{{src}}"></image>
+          <text class="margin-left-xs text-xl ">{{details.companyNick}}</text>
+        </view>
+      </view>
+
+      <swiper class="screen-swiper square-dot " style="display: {{swiperList.length!=0?'':'none'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+        <swiper-item wx:for="{{swiperList}}" wx:key="url">
+          <image src="{{item}}" mode="aspectFit" class="gif-black response"></image>
+        </swiper-item>
+      </swiper>
+
+      <view class="padding-bottom-xl">
+
+        <view>
+          <i-divider content="{{tiptxt}}" color="#000" size="20" weight="bolder"></i-divider>
+        </view>
+
+        <view>
+          <view class="indigo padding-top-sm padding-bottom-sm padding-left" style="color:white">
+            <text class="text-df">公司简介</text>
+          </view>
+          <view class="margin-sm" style="text-align:justify">
+            {{details.introduction}}
+          </view>
+
+        </view>
+
+        <view>
+          <view class="indigo padding-top-sm padding-bottom-sm padding-left" style="color:white">
+            <text class="text-df">公司文化</text>
+          </view>
+          <view class="margin-sm" style="text-align:justify">
+            {{details.culture}}
+          </view>
+
+        </view>
+
+        <view>
+          <view class="indigo padding-top-sm padding-bottom-sm padding-left" style="color:white">
+            <text class="text-df">公司地址</text>
+          </view>
+          <view class="margin-sm" style="text-align:justify">
+            {{details.address}}
+          </view>
+
+        </view>
+
+      </view>
+
+      <!-- <view class="flex justify-center align-center" style="margin-top:10vh" bindtap="scale">
+        <text class="cuIcon-fold" style="font-size:3vh"></text>
+      </view> -->
+
+    </view>
+
+  </block>
+
+</scroll-view>

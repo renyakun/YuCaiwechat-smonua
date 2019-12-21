@@ -1,17 +1,18 @@
 // pages/user/user.js
 //获取应用实例
-const app = getApp()
+const app = getApp();
+
 const {
   url
 } = require('../../../utils/url.js');
+
 import {
   showToast,
-  pagesurl,
   showModal,
   navigateTo,
-  showLoading,
-  pageScrollTo
+  showLoading
 } from '../../../utils/WeChatfction';
+
 Page({
   data: {
     StatusBar: app.globalData.StatusBar,
@@ -20,49 +21,7 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     scrollTop: 0,
-    navList: [{
-        id: 1,
-        icon: 'cartfill',
-        name: "已推送",
-        num: 25,
-      },
-      {
-        id: 2,
-        icon: 'upstagefill',
-        name: "店铺关注",
-        num: 75,
-      },
-      {
-        id: 3,
-        icon: 'clothesfill',
-        name: "足迹",
-        num: 12,
-      },
-    ],
-    ctionList: [
-      {
-        id:1,
-        icon: 'service',
-        color: '#e54d42',
-        badge: 0,
-        name: 'cstomer',
-        title: '官方客服'
-      }, {
-        id: 2,
-        icon: 'edit',
-        color: '#fbbd08',
-        badge: 1,
-        title: '建议留言',
-        name: 'message'
-      }, {
-        id: 3,
-        title: '关于我们',
-        name: 'about',
-        color: '#1cbbb4',
-        badge: 0,
-        icon: 'friendfill'
-      },
-    ],
+    ctionList: app.globalData.ctionList,
     techtit: '我的名片',
   },
 
@@ -70,16 +29,7 @@ Page({
   userjump(e) {
     let name = e.currentTarget.dataset.target.name;
     let title = e.currentTarget.dataset.target.title;
-    if (name == "tidings") {
-      navigateTo('/pages/tidings/tidings/tidings')
-    } else if (name == "about") {
-      navigateTo('/pages/classify/about/about')
-    } else {
-      showToast('即将上线，敬请期待!', 'none', 3000)
-    }
-    // else if(name == "record") {
-    //   navigateTo('/pages/record/record/record')
-    // }
+    showToast('即将上线，敬请期待!', 'none', 3000)
   },
 
   cordjump() {
@@ -100,24 +50,56 @@ Page({
 
   //需求方跳转
   paegswitch() {
-    wx.navigateToMiniProgram({
-      appId: 'wxb4a016efe2b335d6',
-      path: 'pages/user/user/user',
-      envVersion: 'trial',
-      success(res) {
-        // 打开成功
-        console.log(res, '打开成功')
+    showToast('即将上线，敬请期待!', 'none', 3000)
+    // wx.navigateToMiniProgram({
+    //   appId: 'wxb4a016efe2b335d6',
+    //   path: 'pages/user/user/user',
+    //   envVersion: 'trial',
+    //   success(res) {
+    //     // 打开成功
+    //     console.log(res, '打开成功')
+    //   },
+    //   fail(res) {
+    //     console.log(res, '打开失败')
+    //   }
+    // })
+  },
+
+  request() {
+    //获取名片状态值
+    let token = wx.getStorageSync('accessToken') || [];
+    wx.request({
+      url: url + '/technology/getMyBusinessCard',
+      data: {
+        accessToken: token,
       },
-      fail(res) {
-        console.log(res, '打开失败')
+      success: res => {
+        if (res.data.success) {
+          setTimeout(() => {
+            wx.hideLoading();
+          }, 500)
+          this.setData({
+            techtit: '个人主页'
+          })
+        } else {
+          setTimeout(() => {
+            wx.hideLoading();
+          }, 500)
+          this.setData({
+            techtit: '我的名片'
+          })
+        }
       }
     })
   },
 
-  onLoad: function (options) {
-    // wx.showLoading({
-    //   title: '加载中',
-    // });
+  onLoad: function(options) {
+
+    wx.showLoading({
+      title: '加载中',
+    });
+
+    this.request()
 
     //获取微信信息
     if (app.globalData.userInfo) {
@@ -147,40 +129,9 @@ Page({
       })
     }
 
-    //获取名片状态值
-    let token = wx.getStorageSync('accessToken') || [];
-    wx.request({
-      url: url + '/technology/getMyBusinessCard',
-      data: {
-        accessToken: token,
-      },
-      success: res => {
-        if (res.data.success) {
-          setTimeout(()=>{
-            wx.hideLoading();
-          },1000)
-          this.setData({
-            techtit: '个人主页'
-          })
-        } else {
-          setTimeout(() => {
-            wx.hideLoading();
-          }, 1000)
-          this.setData({
-            techtit: '我的名片'
-          })
-        }
-      }
-    })
-
-    //console.log(options);
-
-  
   },
 
-  onReady: function() {
-
-  },
+  onReady: function() { },
 
   getUserInfo: function(e) {
     console.log(e)
@@ -191,7 +142,7 @@ Page({
     })
   },
 
-  onShow: function () {
+  onShow: function() {
     this.onLoad()
   },
 

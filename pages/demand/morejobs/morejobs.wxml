@@ -1,54 +1,119 @@
 <!--pages/demand/morejobs.wxml-->
-<cu-custom isBack="{{true}}">
+<cu-custom isCustom="{{true}}" isBack="{{false}}">
   <view slot="backText">返回</view>
-  <view slot="content" class="margin-top-xs">热招职位</view>
+  <view slot="content" class="margin-top-xs">名片详情</view>
 </cu-custom>
 
-<!-- 加载动画 -->
-<view class="bg-white" style="" wx:if="{{demandflag}}" style="height:100vh;width:100%">
-    <image src="/images/rhomb-white.gif" mode="aspectFit" class="gif-white response"></image>
-</view>
-    <!-- wx:for="{{citylist}}" wx:for-item="cityitem" wx:key  wx:for="{{item.label}}"  wx:key-->
-    <block wx:else>
-      <view class="cu-card article no-card  margin-top-sm   margin-left-sm margin-right-sm padding-top-xs padding-bottom-xs radius  bgwhite bgshadow" wx:for="{{jobLists}}" wx:key="id" bindtap="Seedels" data-target="{{item}}">
-        <view class="cu-item">
-          <view class="title">
-            <view class="text-cut">{{item.jobName}}</view>
-          </view>
-          <view class="content">
-            <view class="bg-white" style="width:55%">
-              <view class="margin-top-xs">{{item.jobType}} | {{item.ageRequire}}岁</view>
-              <view class="margin-top-sm text-cut" style="width:20vh">
-                <text class="">{{item.city}}</text>
-              </view>
-              <view class="cu-tag bggreen round margin-top-lg" style="color:white">{{item.releaseType}}认证</view>
+<scroll-view scroll-y class="scrollPage" style=" " scrollTop="{{scrollTop}}">
+
+  <!-- 加载动画 -->
+  <view class="bgwhite" style="" wx:if="{{demandflag}}" style="height:100vh;width:100%">
+    <image src="../../../images/rhomb-white.gif" mode="aspectFit" class="gif-white response"></image>
+  </view>
+
+  <block wx:else>
+
+    <view class="bgwhite" style="height:30vh;"></view>
+
+    <!-- 岗位发布者详情区域 -->
+    <view class="cu-bar indigo radius margin-left margin-right shadow-blur" style="margin-top:-26.5vh;z-index:99">
+      <view class="padding" catchtap="toMoreJobs">
+        <view slot="content" class="flex align-center justify-between">
+          <view class="flex">
+            <view class="flex align-center ">
+              <!-- 头像 -->
+              <view class="cu-avatar xl round margin-left bg-blue" style="background-image:url({{release.avatar}});"></view>
             </view>
-            <view class=" margin-left bg-white" style="width:45%">
-              <view class="margin-top-xs flex justify-end">￥{{item.salary}}元/月</view>
-              <view class="flex justify-end margin-top-sm">{{item.createTime}}</view>
-              <view class="flex justify-end align-end margin-top-xl">
-                <text bindtap="Seedels" data-target="{{item}}">查看详情</text>
-                <text class="cuIcon-right"></text>
+            <!-- 右侧内容区域 flex-direction-->
+            <view class="flex  flex-direction justify-center  margin-left">
+              <view style="color:white;">
+                <text class="text-bold text-xl">{{release.userName}}</text>
+                <view class="flex align-center">
+                  <icon wx:if="{{release.userCertificationStatus}}" class="iconfont icon-yirenzheng1" style="color:white;font-size:4vh"></icon>
+                  <text style="display:{{release.userCertificationStatus?'':'none'}}">实名认证</text>
+                  <icon wx:if="{{release.companyCertificationStatus}}" class="iconfont icon-qiyerenzheng2-copy-copy " style="color:white;font-size:5vh"></icon>
+                  <text style="display:{{release.companyCertificationStatus?'':'none'}}">企业认证</text>
+                </view>
               </view>
+              <view class="">
+                <view style="color:white;">
+                  <text class="cuIcon-time sl"></text> 最近活跃时间:
+                  <text>{{release.activeTime}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+
+    <view class="bgwhite margin-left-xs margin-right-xs margin-top-xl flex justify-between align-center" style="height:13vh;z-index:99;border:0.2vh solid #0081ff;display:{{details.length!=0?'':'none'}}" data-target="{{userId}}" bindtap="companyjump">
+      <view class="margin-left-xs flex justify-between align-center">
+        <image style="width:6vh; height:6vh;" mode="aspectFit" src="{{src}}"></image>
+        <text class="margin-left-xs text-xl ">{{details.companyNick}}</text>
+      </view>
+      <text class="margin-right cuIcon-right MoreJobs"></text>
+    </view>
+
+    <view class="bgwhite margin-top padding-bottom" style="">
+
+      <view class="cu-bar" style="border-bottom:0.2vh solid #0081ff">
+        <view class="action">
+          <text class="cuIcon-titles text-blue" style="color:#0081ff"></text>
+          <text class="text-xl text-bold">Ta的招聘信息</text>
+        </view>
+      </view>
+
+      <view class="margin-top margin-bottom-xl">
+
+        <view class="cu-card article no-card margin-top-xs margin-left-xs margin-right-xs  padding-bottom-xs radius  bgwhite " wx:for="{{jobLists}}" wx:key="id" bindtap="Seedels" data-target="{{item}}" style="border-bottom:0.2vh solid #0081ff;box-shadow: 3rpx 3rpx 8rpx #0081ff">
+          <view class="cu-item">
+            <view class="title">
+              <view class="text-cut">{{item.jobName}}</view>
+            </view>
+            <view class="content">
+              <view class="bg-white" style="width:55%">
+                <view class="margin-top-xs">{{item.jobType}} | {{item.ageRequire}}岁</view>
+                <view class="margin-top-sm text-cut" style="width:20vh">
+                  <text class="">{{item.city}}</text>
+                </view>
+              </view>
+              <view class=" margin-left bg-white" style="width:45%">
+                <view class="margin-top-xs flex justify-end">￥{{item.salary}}元/月</view>
+                <view class="flex justify-end margin-top-sm">{{item.createTime}}</view>
+              </view>
+
             </view>
 
           </view>
 
-          <!-- <view class="flex justify-center align-end margin-top-xs">
-            <text>查看全部服务和案例</text>
-            <text class="cuIcon-right"></text>
-          </view> -->
         </view>
 
       </view>
 
-      <view class="margin-top-xl" wx:if="{{loadflag}}">
-        <i-load-more tip="{{tiptxt}}" loading="{{ false }}" />
-      </view> 
+    </view>
 
-      <view class="padding-top-xl bgwhite flex justify-center"  wx:else style="height:100vh;width:100%">
-        <image src="/images/nodata.jpg" mode="aspectFit"></image>
-      </view>
+    <view class="margin-top-xl" wx:if="{{loadflag}}">
+      <i-load-more tip="{{tiptxt}}" loading="{{ false }}" />
+    </view>
 
-    </block>
+    <view class="padding-top-xl bgwhite flex justify-center" wx:else style="height:100vh;width:100%">
+      <image src="../../../images/nodata.jpg" mode="aspectFit"></image>
+    </view>
 
+  </block>
+
+
+  <view class="cu-bar foot tabbar cur shop bgwhite " style="bottom:{{InputBottom}}px;color:white">
+    <button class="action bgwhite" bindtap="tapind" style="width:10vh;">
+      <view class="cuIcon-home " style="color:#0081ff"></view>回首页
+    </button>
+    <button class="action bgwhite" style="width:10vh;margin-right:20vh" bindtap="sharejump">
+      <view class="cuIcon-forward text-blue" style="color:#0081ff">
+      </view> 分享
+    </button>
+    <view class="round indigo shadow-blur flex justify-center align-center margin-right" style="width:10vh;height:4.5vh;color:white;font-size:2vh" bindtap="chatjump">微聊</view>
+  </view>
+
+</scroll-view>

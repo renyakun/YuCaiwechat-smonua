@@ -1,17 +1,22 @@
 <!--index.wxml-->
-<cu-custom  isBack="{{false}}">
+<cu-custom isBack="{{false}}">
   <view slot="content" class="margin-top-xs">首页</view>
 </cu-custom>
+
 <scroll-view scroll-y class="scrollPage" scrollTop="{{scrollTop}}">
 
-  <view class="cu-bar search  {{fixedflag?'fixed':''}} indigo shadow-blur" style="top:10vh;">
-    <navigator url="/pages/search/search/search" class="search-form round">
+  <view class="cu-bar search bgwhite fixed" style="top:{{SeaBar}};">
+    <view class="search-form round " style="background:rgba(0,0,0,.1);">
       <text class="cuIcon-search"></text>
-      <input type="text" placeholder="输入搜索的关键词" confirm-type="search"></input>
-    </navigator>
+      <input type="text" placeholder="输入搜索的关键词" confirm-type="search" value="{{searchval}}" bindinput="searchput">{{searchval}}</input>
+      <text class="cuIcon-roundclose" bindtap="clearInput"></text>
+    </view>
+    <view class="action">
+      <text class="round indigo margin-left-xs flex justify-center align-center shadow-blur" bindtap="searchbtn" data-target="{{searchval}}" style="width:10vh;height:4.5vh;color:white;font-size:2vh">搜索</text>
+    </view>
   </view>
 
-  <view class="margin margin-left-sm margin-right-sm radius bgshadow bg-black bgwhite" style="margin-top:10vh;">
+  <view class="margin margin-left-sm margin-right-sm radius bgshadow" style="margin-top:10vh;">
     <view class="cu-list grid col-4 {{gridBorder?'':'no-border'}}">
       <view class="cu-item" wx:for="{{iconList}}" wx:key="name" wx:if="{{index<7}}" bindtap="sendjump" data-target="{{item}}">
         <view class="cuIcon-{{item.icon}}" style="color:{{item.color}}">
@@ -24,41 +29,41 @@
     </view>
   </view>
 
-  <view class="cu-bar indigo solid-bottom {{fixedflag?'':'fixed'}}  shadow-blur" style="top:{{CustomBar}}px;">
+  <view class="cu-bar  {{colflag?'indigo':'bgwhite'}} solid-bottom {{fixedflag?'':'fixed'}} shadow-blur" style="top:{{CityBar}};">
     <view class='action'>
       <scroll-view scroll-x class=" nav text-center">
-        <view class="cu-item {{item.id==TabCur?'text-white cur':''}}" style="color:white" wx:for="{{navlist}}" wx:key="id" bindtap="tabSelect" data-id="{{item.id}}">
+        <view class="cu-item {{item.id==TabCur?'text-white cur':''}}" style="color:{{colflag?'white':'black'}}" wx:for="{{navlist}}" wx:key="id" bindtap="tabSelect" data-id="{{item.id}}">
           {{item.nav}}
         </view>
       </scroll-view>
     </view>
-    <view class='action' style="color:white" bindtap="showRegion">
+    <view class='action' style="color:{{colflag?'white':'black'}}" bindtap="showRegion">
       <text>{{munitem}}</text>
       <text class="cuIcon-{{regionicon}}"></text>
     </view>
   </view>
 
-  <block wx:if="{{Modalflag}}" class="">
+  <block wx:if="{{Modalflag}}">
 
-    <view class="bg-white" style="" wx:if="{{demandflag}}" style="height:800rpx;width:100%">
-      <image src="/images/rhomb-white.gif" mode="aspectFit" class="gif-white response"></image>
+    <view class="bgwhite margin-top" style="" wx:if="{{demandflag}}" style="height:800rpx;width:100%;">
+      <image src="/images/rhomb-white.gif" mode="aspectFit" class="gif-white response margin-left"></image>
     </view>
-    <!-- wx:for="{{citylist}}" wx:for-item="cityitem" wx:key  wx:for="{{item.label}}"  wx:key-->
+
     <block wx:else>
-      <view class="cu-card article no-card  margin-top-sm   margin-left-sm margin-right-sm padding-top-xs padding-bottom-xs radius  bgwhite bgshadow" wx:for="{{demand}}" wx:key="demandId" bindtap="Seedels" data-target="{{item}}">
+      <view class="cu-card article no-card  margin-top margin-left-sm margin-right-sm margin-bottom  padding-top-xs padding-bottom-xs radius  bgwhite bgshadow" wx:for="{{demand}}" wx:key="demandId" bindtap="Seedels" data-target="{{item}}">
         <view class="cu-item">
           <view class="title">
             <view class="text-cut">{{item.jobName}}</view>
           </view>
           <view class="content">
-            <view class="bg-white" style="width:55%">
+            <view class="bgwhite" style="width:55%">
               <view class="margin-top-xs">{{item.jobType}} | {{item.ageRequire}}岁</view>
               <view class="margin-top-sm text-cut" style="width:20vh">
                 <text class="">{{item.city}}</text>
               </view>
-              <view class="cu-tag bggreen round margin-top-lg" style="color:white">{{item.releaseType}}认证</view>
+              <view class="cu-tag bggreen round margin-top-lg" style="color:white;">{{item.releaseType}}认证</view>
             </view>
-            <view class=" margin-left bg-white" style="width:45%">
+            <view class=" margin-left bgwhite" style="width:45%">
               <view class="margin-top-xs flex justify-end">￥{{item.salary}}元/月</view>
               <view class="flex justify-end margin-top-sm">{{item.createTime}}</view>
               <view class="flex justify-end align-end margin-top-xl">
@@ -69,19 +74,15 @@
 
           </view>
 
-          <!-- <view class="flex justify-center align-end margin-top-xs">
-            <text>查看全部服务和案例</text>
-            <text class="cuIcon-right"></text>
-          </view> -->
         </view>
 
       </view>
 
-      <view class="margin-top-xl" wx:if="{{loadflag}}">
+      <view class="margin-top-xl" wx:if="{{loadflag}}" style="display:{{loadplay?'':'none'}}">
         <i-load-more tip="{{tiptxt}}" loading="{{ false }}" />
-      </view> 
+      </view>
 
-      <view class="padding-top-xl bgwhite flex justify-center"  wx:else style="width:100%">
+      <view class="padding-top-xl bgwhite flex justify-center" wx:else style="width:100%">
         <image src="/images/nodata.jpg" mode="aspectFit"></image>
       </view>
 
@@ -99,7 +100,7 @@
               <view wx:for="{{provinces}}" wx:key="id" style="line-height: 8vh;" data-target="{{item}}" bindtap="proChange">{{item}}</view>
             </picker-view-column>
             <picker-view-column style="display:{{provinceflag? 'block':'none'}}">
-              <view wx:for="{{municipal}}" wx:key="0" style="line-height: 8vh;" bindtap="munChange" data-target="{{item}}">{{item}}</view>
+              <view wx:for="{{municipal}}" wx:key="item" style="line-height: 8vh;" bindtap="munChange" data-target="{{item}}">{{item}}</view>
             </picker-view-column>
           </picker-view>
         </view>

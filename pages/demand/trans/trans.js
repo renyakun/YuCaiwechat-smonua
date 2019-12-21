@@ -23,45 +23,8 @@ Page({
     TabCur: 1,
     InputBottom: 0,
     scrollTop: 0,
-    navlist: [{
-      id: 1,
-      nav: '图片'
-    }, {
-      id: 2,
-      nav: '详情'
-    }, {
-      id: 3,
-      nav: '评论'
-    }],
-    swiperList: [{
-      id: 0,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
-    }, {
-      id: 1,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
-    }, {
-      id: 2,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
-    }, {
-      id: 3,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
-    }, {
-      id: 4,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
-    }, {
-      id: 5,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg'
-    }, {
-      id: 6,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
-    }],
+    tranlist: app.globalData.tranlist,
+    swiperList: ['https://image.weilanwl.com/gif/loading-1.gif',]
   },
 
   //tab跳转
@@ -81,10 +44,7 @@ Page({
       } else {
         pageScrollTosel('.cardcuss', 500)
       }
-
     }
-
-
   },
 
   //回到首页
@@ -100,13 +60,13 @@ Page({
 
   //推送名片
   tappush() {
-    let accessToken = wx.getStorageSync('accessToken') || [];
+    let token = wx.getStorageSync('accessToken') || [];
     let demandId = this.data.demandId;
     console.log(demandId)
     wx.request({
       url: url + '/technology/sendMyBusinessCard',
       data: {
-        accessToken: accessToken,
+        accessToken: token,
         demandId: demandId
       },
       header: {
@@ -139,7 +99,7 @@ Page({
 
   //页面滚动执行方式
   onPageScroll(e) {
-    console.log(e.scrollTop);
+    //console.log(e.scrollTop);
     let demlen = this.data.demlen;
     if (e.scrollTop == 0) {
       this.setData({
@@ -162,25 +122,22 @@ Page({
     this.onShareAppMessage()
   },
 
-  //获取需求详情
-  request(options) {
-    let accessToken = wx.getStorageSync('accessToken') || [];
+  request(demandId) {
+    let token = wx.getStorageSync('accessToken') || '';
+
+    //获取需求详情
     wx.request({
       url: url + '/demand/getDemandById',
       data: {
-        accessToken: accessToken,
-        demandId: options.demandId
+        accessToken: token,
+        demandId: demandId
       },
       header: {
         'content-type': 'application/json'
       },
       success: res => {
         let demanditem = res.data.data;
-        let pubDate = res.data.data.createTime;
-        // formatTime
-        console.log(pubDate);
-        
-        console.log(demanditem)
+        console.log('需求详情:',demanditem)
         if (res.data.success) {
           if (demanditem.label != '') {
             let label = demanditem.label.split(",")
@@ -195,14 +152,15 @@ Page({
       },
     })
 
+    //获取评论详情
     wx.request({
       url: url + '/invitation/getEvaluations',
       data: {
-        demandId: options.demandId,
-        accessToken: accessToken,
+        demandId: demandId,
+        accessToken: token,
       },
       success: res => {
-        console.log(res.data.data)
+        console.log('评论详情:',res.data.data)
         if (res.data.success) {
           let data = res.data.data;
           let demlen = res.data.data.length;
@@ -215,60 +173,107 @@ Page({
         }
       }
     })
-  },
 
-  // 获取岗位发布者详情
-  getPublisher(options){
-    let accessToken = wx.getStorageSync('accessToken') || [];
+    //获取岗位发布者详情
     wx.request({
       url: url + '/demand/getReleaseMessage',
       data: {
-        accessToken: accessToken,
-        demandId: options.demandId
+        accessToken: token,
+        demandId: demandId
       },
       header: {
         'content-type': 'application/json'
-      },  
+      },
       success: res => {
         let publisherInfo = res.data.data;
-        console.log(publisherInfo);
+        console.log('发布者详情:',publisherInfo);
         if (res.data.success) {
-            this.setData({
-              publisherInfo: publisherInfo,
-              userId: res.data.data.userId
-            })
+          this.setData({
+            publisherInfo: publisherInfo,
+            userId: res.data.data.userId
+          })
         } else {
           showToast(res.data.msg, 'none', 1000)
         }
       },
     })
+
+    //获取公司主页图片
+    setTimeout(() => {
+      let userId = this.data.userId;
+      wx.request({
+        url: url + '/company/getCompanyHomepage',
+        data: {
+          accessToken: token,
+          userId: userId
+        },
+        success: res => {
+          console.log('图片:',res.data.data)
+          let details = res.data.data;
+          if (res.data.success) {
+            if (details.length != 0) {
+              let oneImage = "swiperList[0]";
+              let twoImage = "swiperList[1]";
+              let threeImage = "swiperList[2]";
+              let fourImage = "swiperList[3]";
+              let fiveImage = "swiperList[4]";
+              if (details.oneImage != '') {
+                this.setData({
+                  [oneImage]: details.oneImage,
+                })
+              }
+              if (details.twoImage != '') {
+                this.setData({
+                  [twoImage]: details.twoImage,
+                })
+              }
+              if (details.threeImage != '') {
+                this.setData({
+                  [threeImage]: details.threeImage,
+                })
+              }
+              if (details.fourImage != '') {
+                this.setData({
+                  [fourImage]: details.fourImage,
+                })
+              }
+              if (details.fiveImage != '') {
+                this.setData({
+                  [fiveImage]: details.fiveImage,
+                })
+              }
+            } 
+          } 
+        }
+      })
+    }, 1000)
+
+
   },
-// 查看更多的招聘职位,页面跳转
-  toMoreJobs(){
+
+  // 查看更多的招聘职位,页面跳转
+  toMoreJobs() {
     console.log('查看热招职位跳转');
     let userId = this.data.userId;
-    setTimeout(function(){
-      wx.navigateTo({
-        url: '/pages/demand/morejobs/morejobs?userId=' + userId,
-        success: function (res) { },
-        fail: function (res) { },
-        complete: function (res) { },
-      })  
-    },500)   
+    let demandId = this.data.demandId;
+    setTimeout(function() {
+      navigateTo('/pages/demand/morejobs/morejobs?userId=' + userId + '&demandId=' + demandId)
+    }, 500)
   },
 
   onLoad: function(options) {
+    let demandId = options.demandId;
     this.setData({
-      demandId: options.demandId,
+      demandId: demandId,
       jobName: options.jobName
     })
-    this.request(options);
-    this.getPublisher(options);
+    this.request(demandId);
   },
 
   onReady: function() {
-    let windowHeight = wx.getSystemInfoSync().windowHeight;
-    console.log(windowHeight);
+    //let windowHeight = wx.getSystemInfoSync().windowHeight;
+    //console.log(windowHeight);
+
   },
 
   onShow: function() {

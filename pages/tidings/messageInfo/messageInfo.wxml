@@ -1,46 +1,62 @@
 <!--pages/messageInfo/messageInfo.wxml-->
-
-<cu-custom  isBack="{{true}}">
+<cu-custom isCustom="{{true}}" isBack="{{false}}">
   <view slot="backText">返回</view>
   <view slot="content" class="margin-top-xs">邀请投递消息</view>
 </cu-custom>
 
+<scroll-view scroll-y class="scrollPage">
 
-<scroll-view class="messageList">
-
-  <view class="cu-list menu-avatar">
-    <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" wx:for="{{messageList}}" wx:key="id" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}" data-target="{{item}}" bindtap="Seedels">
-      <view class="cu-avatar round lg" style="margin-left:-9.5vh;background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big2100{{index+1}}.jpg);"></view>
-      <view class="content flex flex-direction justify-around">
-        <view class="text-grey text-lg text-bold text-black">{{item.jobName}} </view>
-        <view class="text-gray text-sm">
-          <text class="cuIcon-moneybag text-red"></text> 薪资:{{item.salary}} | 年龄:{{item.ageRequire}}
-        </view> 
-
-        <view class=" flex-wrap ">
-            <view class="text-cut" style="width:100%">
-            <text class="text-bold"><text class="cuIcon-locationfill text-blue text-df margin-right-xs"></text>工作地点：</text>{{item.city}}
-            </view>
-        </view>
-      </view>
-      
-      <view class="action">
-        <view class="text-grey text-xs">{{item.createTime}}</view>
-        <!-- <view class="cu-tag round bg-grey sm">5</view> -->
-      </view>
-      <!-- 左滑弹出框 -->
-      <view class="move bg-white ">
-        <view class="padding-xs">
-          <view class="cu-tag indigo round shadow shadow-lg" style="color:white" catchtap="tapPush" data-target="{{item}}">投递</view>
-        </view>
-        <view class="padding-xs">
-          <view class="cu-tag bggrey round" style="color:white" catchtap="Seedels" data-target="{{item}}">详情</view>
-        </view>
-        <view class="padding-xs">
-          <view class="cu-tag bggrey round" style="color:white" catchtap="Delete" data-target="{{item}}">删除</view>
-        </view>
-
-      </view>
-    </view>
+  <view class="bgwhite" style="" wx:if="{{demandflag}}">
+    <image src="/images/rhomb-white.gif" mode="aspectFit" class="gif-white response" style="height:100vh"></image>
   </view>
+  <!-- height:25vh;-->
+  <block wx:else>
+    <view class="cu-list menu-avatar" wx:if="{{loadflag}}">
+    
+      <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}} margin-top-sm margin-left-xs margin-right-xs  padding-top-xl padding-bottom-xl  bgwhite" style="height:13vh;border-left:0.3vh solid #0081ff;border-top-left-radius: 0.5vh;border-bottom-left-radius: 0.5vh;" wx:for="{{messageList}}" wx:key="demandId" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+
+        <view class="content" style="margin-left:-8vh;width:35vh;" data-target="{{item}}" bindtap="Seedels">
+          <view class="text-bold text-df" style="color:#000">
+            <text class="text-cut" style="width:90%">{{item.jobName}}</text>
+          </view>
+          <view class="text-gray text-sm">
+            <text class="cuIcon-moneybag text-red"></text> 薪资:{{item.salary}} | 年龄:{{item.ageRequire}}
+          </view>
+          <view class=" flex-wrap ">
+            <view class="text-cut" style="width:100%">
+              <text class="text-bold"><text class="cuIcon-locationfill text-blue text-df margin-right-xs"></text>工作地点：</text>{{item.city}}
+            </view>
+          </view>
+
+
+        </view>
+
+        <view class="action" style="color:#000">
+          <view class="text-grey text-xs">{{item.createTime}}</view>
+        </view>
+
+        <view class="move bgwhite">
+
+          <view class="padding-xs">
+            <view class="cu-tag indigo round shadow shadow-lg padding-right-xs padding-left-xs" style="color:white" data-target="{{item}}" catchtap="tapPush">投递名片</view>
+          </view>
+          <view class="padding-xs">
+            <view class="cu-tag indigo round shadow shadow-lg padding-right-xs padding-left-xs" style="color:white" data-target="{{item}}" data-demandid="{{item.demandId}}" catchtap="Seedels">查看详情</view>
+          </view>
+          <view class="padding-xs">
+            <view class="cu-tag bggrey round" style="color:white;width:8vh" data-target="{{item}}" catchtap="Delete">删除</view>
+          </view>
+
+        </view>
+
+      </view>
+
+    </view>
+
+    <view class="padding-top-xl bgwhite flex justify-center" wx:else style="width:100%">
+      <image src="/images/nodata.jpg" mode="aspectFit"></image>
+    </view>
+
+  </block>
+
 </scroll-view>

@@ -1,5 +1,0 @@
-{
-  "usingComponents": {
-    "i-switch": "../../../colorui/dist/switch/index"
-  }
-}

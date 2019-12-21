@@ -81,29 +81,161 @@ App({
     })
 
     //获取地理位置
-    wx.getSetting({
-      success(res) {
-        if (!res.authSetting['scope.userLocation']) {
-          wx.authorize({
-            scope: 'scope.userLocation',
-            success() {
-              wx.chooseLocation({
-                success(res) {
-                  console.log(res.address)
-                  console.log(this.globalData)
-                  this.globalData.address = res.address;
-                }
-              })
-            }
-          })
-        }
-      }
-    })
+    // wx.getSetting({
+    //   success(res) {
+    //     if (!res.authSetting['scope.userLocation']) {
+    //       wx.authorize({
+    //         scope: 'scope.userLocation',
+    //         success() {
+    //           wx.chooseLocation({
+    //             success(res) {
+    //               console.log(res.address)
+    //               console.log(this.globalData)
+    //               this.globalData.address = res.address;
+    //             }
+    //           })
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
 
 
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    iconList: [{
+        icon: 'newsfill',
+        color: '#fbbd08',
+        badge: 1,
+        name: 'case',
+        title: '成功案例'
+      }, {
+        icon: 'order',
+        color: '#8dc63f',
+        badge: 150,
+        title: '最新订单',
+        name: 'order',
+      }, {
+        icon: 'news',
+        color: '#1cbbb4',
+        badge: 1,
+        name: 'news',
+        title: '新闻资讯'
+      }, {
+        icon: 'sort',
+        color: '#e54d42',
+        badge: 1,
+        name: 'hot',
+        title: '热门榜单'
+      },
+      {
+        title: '劳务政策',
+        name: 'policy',
+        color: '#a5673f',
+        badge: 0,
+        icon: 'file'
+      },
+      {
+        title: '平台培训',
+        name: 'train',
+        color: '#39b54a',
+        badge: 0,
+        icon: 'group'
+      },
+      {
+        title: '全部',
+        name: 'whole',
+        color: '#0081ff',
+        badge: 0,
+        icon: 'cascades'
+      }
+    ],
+    navlist: [{
+      id: 1,
+      nav: '最新'
+    }, {
+      id: 2,
+      nav: '推荐'
+    }],
+    tranlist: [{
+      id: 1,
+      nav: '图片'
+    }, {
+      id: 2,
+      nav: '详情'
+    }, {
+      id: 3,
+      nav: '评论'
+    }],
+    swiperList: [{
+      id: 0,
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg',
+    }, {
+      id: 1,
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
+    }, {
+      id: 2,
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg',
+    }, {
+      id: 3,
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg',
+    }, {
+      id: 4,
+      type: 'image',
+      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg',
+    }],
+    ctionList: [{
+      id: 1,
+      icon: 'service',
+      color: '#e54d42',
+      badge: 0,
+      name: 'cstomer',
+      title: '官方客服'
+    }, {
+      id: 2,
+      icon: 'edit',
+      color: '#fbbd08',
+      badge: 1,
+      title: '建议留言',
+      name: 'message'
+    }, {
+      id: 3,
+      title: '关于我们',
+      name: 'about',
+      color: '#1cbbb4',
+      badge: 0,
+      icon: 'friendfill'
+    }],
+    newslist: [{
+      id: 1,
+      name: '投递邀请通知',
+      icon: 'message',
+    }, {
+      id: 2,
+      name: '面试邀请通知',
+      icon: 'message',
+    }, {
+      id: 3,
+      name: '评论消息通知',
+      icon: 'message',
+    }],
+    recordlist: [{
+      id: 1,
+      flag: '全部',
+    }, {
+      id: 2,
+      flag: '待面试',
+    }, {
+      id: 3,
+      flag: '已评价',
+    }, {
+      id: 4,
+      flag: '不合适',
+    }],
   }
 })
-

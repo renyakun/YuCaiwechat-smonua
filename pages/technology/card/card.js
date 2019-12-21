@@ -260,11 +260,11 @@ Page({
               demandflag: false,
             });
           } else {
-            showToast(res.data.msg, 'none', 3000)
+            showToast(res.data.msg, 'none', 1000)
           }
         }
       })
-    }, 3000)
+    }, 500)
 
 
   },

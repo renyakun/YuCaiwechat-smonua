@@ -8,7 +8,7 @@
       <view class="cu-item arrow">
         <view class="content">
           <text class="cuIcon-message text-black" ></text>
-          <text class="text-black">{{item.con}}</text>
+          <text class="text-black">{{item.name}}</text>
         </view>
       </view>
     </view>

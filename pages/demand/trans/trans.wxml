@@ -1,20 +1,22 @@
 <!-- pages/demand/trans/trans.wxml -->
 <cu-custom isBack="{{true}}">
   <view slot="backText">返回</view>
-  <view slot="content" class="margin-top-xs">{{jobName}}</view>
+  <view slot="content" class="margin-top-xs">需求详情</view>
 </cu-custom>
+
 <scroll-view scroll-y class="scrollPage" style="padding-bottom:100rpx" scrollTop="{{scrollTop}}">
+
   <scroll-view scroll-x class="bgwhite nav text-center fixed  shadow-blur" style="top:10vh; padding-bottom:0.3vh">
-    <view class="cu-item {{item.id==TabCur?'text-black cur':''}}" style="color:black" wx:for="{{navlist}}" wx:key="id" bindtap="tabSelect" data-id="{{item.id}}">
+    <view class="cu-item {{item.id==TabCur?'text-black cur':''}}" style="color:black" wx:for="{{tranlist}}" wx:key="id" bindtap="tabSelect" data-id="{{item.id}}">
       {{item.nav}}
     </view>
   </scroll-view>
+
   <view>
     <!-- 轮播图区域 -->
     <swiper class="screen-swiper square-dot " style="margin-top:9vh" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
-      <swiper-item wx:for="{{swiperList}}" wx:key="id">
-        <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
-        <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+      <swiper-item wx:for="{{swiperList}}" wx:key="url">
+        <image src="{{item}}" mode="aspectFit" class="gif-black response"></image>
       </swiper-item>
     </swiper>
     <!-- 年龄 和薪资区域 -->
@@ -31,7 +33,7 @@
           </view> -->
             <view class=" flex flex-wrap " style="width:100%">
               <view class="padding-xs" wx:for="{{label}}" wx:key="id">
-                <view class="cu-tag bgblue round" style="color:white">{{item}}</view>
+                <view class="cu-tag round bgwhite" style="border:#0081ff solid 0.2vh;">{{item}}</view>
               </view>
             </view>
           </view>
@@ -62,11 +64,11 @@
                 </view> -->
             </view>
             <!-- 右侧内容区域 -->
-            <view class="flex flex-direction margin-left-xs">
+            <view class="flex flex-direction justify-center margin-left-xs">
               <view>
                 <view class="flex align-center">
-                  <icon wx:if="{{publisherInfo.userCertificationStatus}}" class="iconfont icon-yirenzheng1 " style="color:green;"></icon>
-                  <icon wx:if="{{publisherInfo.companyCertificationStatus}}" class="iconfont icon-qiyerenzheng2-copy-copy " style="color:#DD9222;"></icon>
+                  <icon wx:if="{{publisherInfo.userCertificationStatus}}" class="iconfont icon-yirenzheng1 " style="color:green;font-size:4vh"></icon>
+                  <icon wx:if="{{publisherInfo.companyCertificationStatus}}" class="iconfont icon-qiyerenzheng2-copy-copy " style="color:#DD9222;font-size:5vh"></icon>
                   <text class="text-black text-bold text-xl">{{publisherInfo.userName}}</text>
                 </view>
               </view>
@@ -158,13 +160,13 @@
                     <view class="flex-sub">{{item.replyMessage}}</view>
                   </view>
                 </view>
-                <view class="margin-top-sm flex justify-between">
+                <!-- <view class="margin-top-sm flex justify-between">
                   <view class="text-black text-df"></view>
                   <view>
                     <text class="cuIcon-appreciatefill text-black">点赞</text>
                     <text class="cuIcon-messagefill text-black margin-left-xl">回复</text>
                   </view>
-                </view>
+                </view> -->
               </view>
             </view>
           </view>
@@ -172,13 +174,15 @@
       </view>
     </view>
   </view>
+
 </scroll-view>
+
 <view class="cu-bar foot tabbar cur shop bgwhite" style="bottom:{{InputBottom}}px">
   <button class="action margin-left bgwhite" bindtap="tapind" style="width:12vh">
-    <view class="cuIcon-home "></view>
+    <view class="cuIcon-home " style="color:#0081ff"></view>
     回首页
   </button>
-  <button class="action margin-left bgwhite" style="width:10vh" bindtap="tapshare">
+  <button class="action bgwhite" style="width:10vh" bindtap="tapshare">
     <view class="cuIcon-forward " style="color:#0081ff"></view>
     分享
   </button>
@@ -186,11 +190,12 @@
     <view class="cuIcon-service text-red">
     </view> 客服
   </button> -->
-  <button class="action margin-left bgwhite" bindtap="taptel" data-target="{{demanditem.mobile}}" style="width:10vh">
+  <button class="action bgwhite" bindtap="taptel" data-target="{{demanditem.mobile}}" style="width:10vh">
     <view class="cuIcon-phone" style="color:#0081ff"></view>
     电话
   </button>
-  <button class="cu-btn round shadow-blur" style="width:16vh;background: #0081ff;color:white" bindtap="tappush">
+  <!-- <button class="cu-btn round shadow-blur" style="width:16vh;background: #0081ff;color:white" bindtap="tappush">
     推送名片
-  </button>
+  </button> -->
+  <view class="round indigo shadow-blur flex justify-center align-center margin-right" style="width:12vh;height:4.5vh;color:white;font-size:2vh" bindtap="tappush">推送名片</view>
 </view>

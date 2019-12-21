@@ -5,19 +5,16 @@
     "pages/tidings/tidings/tidings",
     "pages/tidings/messageInfo/messageInfo",
     "pages/demand/trans/trans",
+    "pages/demand/morejobs/morejobs",
+    "pages/demand/company/company",
     "pages/classify/about/about",
     "pages/technology/add/add",
     "pages/technology/card/card",
     "pages/technology/changecard/changecard",
-    "pages/search/search/search",
     "pages/record/record/record",
     "pages/record/evaluate/evaluate",
     "pages/record/details/details",
-    "pages/record/commentInfo/commentInfo",
-    "pages/logs/logs",
-    "pages/star/star",
-    "pages/demand/morejobs/morejobs",
-    "pages/search/result/result"
+    "pages/logs/logs"
   ],
   "permission": {
     "scope.userLocation": {

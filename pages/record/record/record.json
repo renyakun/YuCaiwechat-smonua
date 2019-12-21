@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "i-rate": "../../../my-component/star"
+    "i-rate": "../../../colorui/dist/rate/index"
   }
 }

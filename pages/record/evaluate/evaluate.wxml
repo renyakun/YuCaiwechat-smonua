@@ -1,8 +1,9 @@
 <!--pages/invitation/evaluate/evaluate.wxml-->
-<cu-custom  isBack="{{true}}">
+<cu-custom isCustom="{{true}}" isBack="{{false}}">
   <view slot="backText">返回</view>
   <view slot="content" class="margin-top-xs">评价</view>
 </cu-custom>
+
 <view class="" style=" ">
 
   <form bindsubmit='formSubmit'>
