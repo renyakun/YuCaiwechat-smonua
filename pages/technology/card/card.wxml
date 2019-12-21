@@ -106,9 +106,9 @@
     <button class="cu-btn bgblue shadow margin-left" style="width:20vh;color:white;background: #0081ff;" data-modal="showModal" bindtap="tapjump">生成海报分享</button>
   </view> -->
 
-  <view class="cu-bar foot tabbar cur shop bgwhite " style="bottom:{{InputBottom}}px;color:white">
-    <view class="round indigo shadow-blur flex justify-center align-center margin-right" style="width:10vh;height:4.5vh;color:white;font-size:2vh" bindtap="chatjump">编辑名片</view>
-    <view class="round indigo shadow-blur flex justify-center align-center margin-right" style="width:10vh;height:4.5vh;color:white;font-size:2vh" bindtap="chatjump">生成海报分享</view>
+  <view class="cu-bar foot tabbar cur shop bgwhite flex justify-between" style="bottom:{{InputBottom}}px;color:white">
+    <view class="round indigo shadow-blur flex justify-center align-center margin-left" style="width:10vh;height:4.5vh;color:white;font-size:2vh" bindtap="chatjump">编辑名片</view>
+    <view class="round indigo shadow-blur flex justify-center align-center margin-right" style="width:15vh;height:4.5vh;color:white;font-size:2vh" bindtap="chatjump">生成海报分享</view>
   </view>
 
   <view class="cu-modal  {{modalName=='showModal'?'show':''}}">

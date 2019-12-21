@@ -50,6 +50,7 @@ Page({
 
   //需求方跳转
   paegswitch() {
+    pageScrollTo(0, 500)
     showToast('即将上线，敬请期待!', 'none', 3000)
     // wx.navigateToMiniProgram({
     //   appId: 'wxb4a016efe2b335d6',

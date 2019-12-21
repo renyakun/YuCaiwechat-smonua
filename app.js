@@ -32,8 +32,8 @@ App({
         if (res.code) {
           //console.log('获取用户登录凭证：' + res.code);
           //发起网络请求
-          let appid = 'wx884ebfcbccc0468b';
-          let secret = '735d41a909eac350efaaba5be156e30b';
+          let appid = 'wxbe95cfd0acd54a9d';
+          let secret = '3539452931531b21c7f8bbba88d4e7cd';
           wx.request({
             url: url + '/user/wx/login',
             method: 'POST',
