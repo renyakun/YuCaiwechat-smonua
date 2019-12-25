@@ -5,11 +5,11 @@ const {
 import {
   showToast,
   navigateTo,
-  showLoading,
   pageScrollTosel,
 } from '../../../utils/WeChatfction';
 Page({
   data: {
+    InputBottom: 0,
     chkflag: true,
     check: true,
     flagtxt: '已开启',
@@ -38,9 +38,9 @@ Page({
       success: res => {
         //console.log(res)
         if (res.data.success) {
-          showToast(res.data.data, 'success', 3000)
+          showToast(res.data.data, 'success', 1000)
         } else {
-          showToast(res.data.msg, 'none', 3000)
+          showToast(res.data.msg, 'none', 1000)
         }
       }
     })
@@ -85,6 +85,7 @@ Page({
       }
     })
   },
+  
   //获取图片
   ChooseImage() {
     wx.chooseImage({
@@ -106,12 +107,14 @@ Page({
       }
     });
   },
+
   ViewImage(e) {
     wx.previewImage({
       urls: this.data.imgList,
       current: e.currentTarget.dataset.url
     });
   },
+
   //删除图片
   DelImg(e) {
     wx.showModal({
@@ -148,9 +151,9 @@ Page({
     let description = e.detail.value.description;
     let avatar = this.data.imgbase;
     if (realName == "" || sex == "" || dreamPosition == "" || mobile == "" || email == "" || age == "") {
-      showToast('请输入完整信息！', 'none', 3000)
+      showToast('请输入完整信息！', 'none', 1000)
     } else {
-      //console.log(realName, age, sex, dreamPosition, mobile, email, profession, education, graduationTime, school, experience, label, description);
+      console.log(realName, age, sex, dreamPosition, mobile, email, profession, education, graduationTime, school, experience, label, description);
       wx.request({
         url: url + '/technology/updateMyBusinessCard',
         method: 'post',
@@ -177,35 +180,28 @@ Page({
         success: res => {
           console.log(res.data.data)
           if (res.data.success) {
-            showToast(res.data.data, 'success', 3000);
-            //showLoading();
+            showToast(res.data.data, 'success', 800);
             setTimeout(() => {
               navigateTo('/pages/technology/card/card');
-            }, 3500)
+            }, 1000)
           } else {
-            showToast(res.data.msg, 'none', 3000)
-            // setTimeout(() => {
-            //   wx.switchTab({
-            //     url: '/pages/user/user/user',
-            //   })
-            // }, 3000)
+            showToast(res.data.msg, 'none', 1000)
           }
         }
       })
     }
   },
 
-
-
   onLoad: function(options) {
 
   },
 
   onReady: function() {
-    showLoading();
+    wx.showLoading({
+      title: '加载中',
+    })
     setTimeout(() => {
       let token = wx.getStorageSync('accessToken') || [];
-
       wx.request({
         url: url + '/technology/getMyBusinessCard',
         data: {
@@ -231,6 +227,7 @@ Page({
           let avatar = res.data.data.avatar;
           let img = 'imgList[0]';
           if (res.data.success) {
+            wx.hideLoading();
             if (res.data.data.sex == "男") {
               this.setData({
                 check: true,
@@ -256,11 +253,10 @@ Page({
               [img]: avatar
             })
           } else {
-            showToast(res.data.msg, 'none', 3000)
+            showToast(res.data.msg, 'none', 1000)
           }
         }
       })
-
       wx.request({
         url: url + '/technology/checkMyBusinessCard',
         data: {
@@ -272,6 +268,7 @@ Page({
         success: res => {
           //console.log(res)
           if (res.data.success) {
+            wx.hideLoading();
             if (res.data.data) {
               this.setData({
                 chkflag: res.data.data,
@@ -284,13 +281,11 @@ Page({
               })
             }
           } else {
-            showToast(res.data.msg, 'none', 3000)
+            showToast(res.data.msg, 'none',1000)
           }
         }
       })
-
-
-    }, 3000)
+    }, 1000)
 
     
 

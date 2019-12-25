@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -12,6 +12,8 @@
 		"coverView": true,
 		"nodeModules": true,
 		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -80,7 +82,7 @@
 					"id": 3,
 					"name": "需求",
 					"pathName": "pages/demand/trans/trans",
-					"query": "demandId=40&jobName=收银员3k5月休三天",
+					"query": "demandId=47",
 					"scene": null
 				},
 				{
@@ -109,6 +111,20 @@
 					"name": "公司详情",
 					"pathName": "pages/demand/company/company",
 					"query": "userId=18",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "个人主页",
+					"pathName": "pages/technology/card/card",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "修改名片",
+					"pathName": "pages/technology/changecard/changecard",
+					"query": "",
 					"scene": null
 				}
 			]

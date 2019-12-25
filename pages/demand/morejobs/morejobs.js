@@ -24,15 +24,15 @@ Page({
   },
 
   tapind() {
-    showToast('即将上线，敬请期待!', 'none', 3000)
+    showToast('即将上线，敬请期待!', 'none', 1000)
   },
 
   chatjump(){
-    showToast('即将上线，敬请期待!', 'none', 3000)
+    showToast('即将上线，敬请期待!', 'none', 1000)
   },
 
   sharejump() {
-    showToast('即将上线，敬请期待!', 'none', 3000)
+    showToast('即将上线，敬请期待!', 'none', 1000)
   },
 
   // 获取更多职位信息
@@ -57,7 +57,7 @@ Page({
             })
           }
         } else {
-          showToast(res.data.msg, 'none', 3000)
+          showToast(res.data.msg, 'none', 1000)
           this.setData({
             demandflag: true,
             loadflag: false
@@ -82,11 +82,9 @@ Page({
           if (details.length != 0) {
             this.setData({
               details: details,
-              src: '../../../images/icon/company.png'
+              src: '../../../images/company.png'
             })
           }
-        } else {
-          showToast(res.data.msg, 'none', 3000);
         }
       }
     })

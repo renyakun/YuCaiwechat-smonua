@@ -163,13 +163,13 @@ Page({
           this.setData({
             messageList: messdata,
             demandflag: false,
-            loadflag: false,
+            loadflag: true, 
           })
           console.log(messdata)
         } else {
           this.setData({
-            demandflag: false,
-            loadflag: true
+            demandflag: true,
+            loadflag: false,
           })
           showToast(res.data.msg, 'none', 1000)
         }

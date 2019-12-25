@@ -75,20 +75,20 @@ Page({
       success: res => {
         console.log(res)
         if (res.data.success) {
-          showToast(res.data.data, 'success', 3000)
+          showToast(res.data.data, 'success', 800)
           setTimeout(() => {
-            switchTab('/pages/index/index')
-          }, 3000)
+            navigateTo('/pages/record/record/record')
+          }, 1000)
         } else {
-          showToast(res.data.msg, 'none', 3000)
+          showToast(res.data.msg, 'none', 800)
           if (res.data.msg == '您还未制作个人名片,立即制作专属名片，让更多人与您合作吧') {
             setTimeout(() => {
               navigateTo('/pages/technology/add/add')
-            }, 3000)
+            }, 1000)
           } else if (res.data.msg == '您已经推送过了，【需求方】有意向会尽早联系您') {
             setTimeout(() => {
-              switchTab('/pages/index/index')
-            }, 3000)
+              navigateTo('/pages/record/record/record')
+            }, 1000)
           }
 
         }
@@ -217,27 +217,27 @@ Page({
               let threeImage = "swiperList[2]";
               let fourImage = "swiperList[3]";
               let fiveImage = "swiperList[4]";
-              if (details.oneImage != '') {
+              if (details.oneImage != null) {
                 this.setData({
                   [oneImage]: details.oneImage,
                 })
               }
-              if (details.twoImage != '') {
+              if (details.twoImage != null) {
                 this.setData({
                   [twoImage]: details.twoImage,
                 })
               }
-              if (details.threeImage != '') {
+              if (details.threeImage != null) {
                 this.setData({
                   [threeImage]: details.threeImage,
                 })
               }
-              if (details.fourImage != '') {
+              if (details.fourImage != null) {
                 this.setData({
                   [fourImage]: details.fourImage,
                 })
               }
-              if (details.fiveImage != '') {
+              if (details.fiveImage != null) {
                 this.setData({
                   [fiveImage]: details.fiveImage,
                 })

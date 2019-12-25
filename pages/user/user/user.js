@@ -10,7 +10,8 @@ import {
   showToast,
   showModal,
   navigateTo,
-  showLoading
+  showLoading,
+  pageScrollTo
 } from '../../../utils/WeChatfction';
 
 Page({
@@ -23,13 +24,14 @@ Page({
     scrollTop: 0,
     ctionList: app.globalData.ctionList,
     techtit: '我的名片',
+    userflag:true
   },
 
   //功能跳转
   userjump(e) {
     let name = e.currentTarget.dataset.target.name;
     let title = e.currentTarget.dataset.target.title;
-    showToast('即将上线，敬请期待!', 'none', 3000)
+    showToast('即将上线，敬请期待!', 'none', 1000)
   },
 
   cordjump() {
@@ -50,21 +52,58 @@ Page({
 
   //需求方跳转
   paegswitch() {
-    pageScrollTo(0, 500)
-    showToast('即将上线，敬请期待!', 'none', 3000)
-    // wx.navigateToMiniProgram({
-    //   appId: 'wxb4a016efe2b335d6',
-    //   path: 'pages/user/user/user',
-    //   envVersion: 'trial',
-    //   success(res) {
-    //     // 打开成功
-    //     console.log(res, '打开成功')
-    //   },
-    //   fail(res) {
-    //     console.log(res, '打开失败')
-    //   }
-    // })
+    pageScrollTo(0, 500);
+    //showToast('即将上线，敬请期待!', 'none', 1000)
+    wx.navigateToMiniProgram({
+      appId: 'wxef80070bd7008e35',
+      path: 'pages/user/user/user',
+      envVersion: 'trial',
+      success(res) {
+        // 打开成功
+        console.log(res, '打开成功')
+      },
+      fail(res) {
+        console.log(res, '打开失败')
+      }
+    })
   },
+
+  //获取名片详情
+  cardemail(token){
+    wx.request({
+      url: url + '/technology/getMyBusinessCard',
+      data: {
+        accessToken: token,
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: res => {
+        console.log(res.data.data)
+        if (res.data.success) {
+          let avatar = res.data.data.avatar;
+          let realName = res.data.data.realName;
+          let dreamPosition = res.data.data.dreamPosition;
+          let email = res.data.data.email;
+          let sex = res.data.data.sex;
+          let age = res.data.data.age;
+          let label = res.data.data.label;
+          this.setData({
+            avatar: avatar,
+            realName: realName,
+            dreamPosition: dreamPosition,
+            email: email,
+            sex: sex,
+            age: age,
+            label: label,
+          });
+        } else {
+          showToast(res.data.msg, 'none', 1000)
+        }
+      }
+    })
+  },
+
 
   request() {
     //获取名片状态值
@@ -76,30 +115,26 @@ Page({
       },
       success: res => {
         if (res.data.success) {
-          setTimeout(() => {
-            wx.hideLoading();
-          }, 500)
           this.setData({
-            techtit: '个人主页'
+            techtit: '个人主页',
+            userflag: false
           })
+          this.cardemail(token)
         } else {
-          setTimeout(() => {
-            wx.hideLoading();
-          }, 500)
           this.setData({
-            techtit: '我的名片'
+            techtit: '我的名片',
+            userflag: true
           })
         }
       }
     })
   },
 
+
+
+
   onLoad: function(options) {
-
-    wx.showLoading({
-      title: '加载中',
-    });
-
+    pageScrollTo(0, 100);
     this.request()
 
     //获取微信信息
@@ -132,7 +167,8 @@ Page({
 
   },
 
-  onReady: function() { },
+  onReady: function() { 
+  },
 
   getUserInfo: function(e) {
     console.log(e)

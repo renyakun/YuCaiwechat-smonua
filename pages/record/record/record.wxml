@@ -15,7 +15,7 @@
   </view>
   <!-- 加载动画 -->
   <view class="bg-white" style="" wx:if="{{demandflag}}" style="height:100vh">
-    <image src="/images/rhomb-white.gif" mode="aspectFit" class="gif-white response"></image>
+    <image src="http://www.yucai-sz.com:8079/imgs/front/images/rhomb-white.gif" mode="aspectFit" class="gif-white response"></image>
   </view>
   <!-- 顶部tab栏 -->
   <block wx:else>
@@ -49,7 +49,7 @@
             </view>
 
             <view class="padding-top-xl bgwhite flex justify-center" wx:else style="width:100%">
-              <image src="/images/nodata.jpg" mode="aspectFit"></image>
+              <image src="http://www.yucai-sz.com:8079/imgs/front/images/nodata.jpg" mode="aspectFit"></image>
             </view>
 
           </block>
@@ -87,7 +87,7 @@
             </view>
 
             <view class="padding-top-xl bgwhite flex justify-center" wx:else style="width:100%">
-              <image src="/images/nodata.jpg" mode="aspectFit"></image>
+              <image src="http://www.yucai-sz.com:8079/imgs/front/images/nodata.jpg" mode="aspectFit"></image>
             </view>
 
           </block>
@@ -135,7 +135,7 @@
             </view>
 
             <view class="padding-top-xl bgwhite flex justify-center" wx:else style="width:100%">
-              <image src="/images/nodata.jpg" mode="aspectFit"></image>
+              <image src="http://www.yucai-sz.com:8079/imgs/front/images/nodata.jpg" mode="aspectFit"></image>
             </view>
 
           </block>
@@ -165,7 +165,7 @@
             </view>
 
             <view class="padding-top-xl bgwhite flex justify-center" wx:else style="width:100%">
-              <image src="/images/nodata.jpg" mode="aspectFit"></image>
+              <image src="http://www.yucai-sz.com:8079/imgs/front/images/nodata.jpg" mode="aspectFit"></image>
             </view>
 
           </block>

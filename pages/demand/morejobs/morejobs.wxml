@@ -8,7 +8,7 @@
 
   <!-- 加载动画 -->
   <view class="bgwhite" style="" wx:if="{{demandflag}}" style="height:100vh;width:100%">
-    <image src="../../../images/rhomb-white.gif" mode="aspectFit" class="gif-white response"></image>
+    <image src="http://www.yucai-sz.com:8079/imgs/front/images/rhomb-white.gif" mode="aspectFit" class="gif-white response"></image>
   </view>
 
   <block wx:else>
@@ -99,7 +99,7 @@
     </view>
 
     <view class="padding-top-xl bgwhite flex justify-center" wx:else style="height:100vh;width:100%">
-      <image src="../../../images/nodata.jpg" mode="aspectFit"></image>
+      <image src="http://47.107.82.7:8079/imgs/front/images/nodata.jpg" mode="aspectFit"></image>
     </view>
 
   </block>
@@ -113,7 +113,7 @@
       <view class="cuIcon-forward text-blue" style="color:#0081ff">
       </view> 分享
     </button>
-    <view class="round indigo shadow-blur flex justify-center align-center margin-right" style="width:10vh;height:4.5vh;color:white;font-size:2vh" bindtap="chatjump">微聊</view>
+    <view class="radius indigo shadow-blur flex justify-center align-center margin-right" style="width:15vh;height:5vh;color:white;font-size:2vh" bindtap="chatjump">微聊</view>
   </view>
 
 </scroll-view>

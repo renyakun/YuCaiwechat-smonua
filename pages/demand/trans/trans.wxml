@@ -26,21 +26,18 @@
           <view class="">{{demanditem.jobName}}</view>
         </view>
         <view class="content">
-          <view class="" style="width:55%">
-            <view class="margin-top-xs">{{demanditem.jobType}} | {{demanditem.ageRequire}}岁</view>
-            <!-- <view class="margin-top-sm text-cut" style="width:20vh">
-            <text class="cuIcon-location">{{demanditem.city}}</text>
-          </view> -->
-            <view class=" flex flex-wrap " style="width:100%">
+          <view class="" style="width:100%">
+            <view class="margin-top-xs">{{demanditem.jobType}} | {{demanditem.ageRequire}}岁
+              <text class="margin-left-xl">￥{{demanditem.salary}}元/月</text>
+            </view>
+
+            <view class=" flex flex-wrap margin-top-sm" style="width:100%">
               <view class="padding-xs" wx:for="{{label}}" wx:key="id">
                 <view class="cu-tag round bgwhite" style="border:#0081ff solid 0.2vh;">{{item}}</view>
               </view>
             </view>
           </view>
-          <view class=" margin-left bg-white" style="width:45%">
-            <view class="margin-top-xs flex justify-end">￥{{demanditem.salary}}元/月</view>
-            <!-- <view class="margin-top flex justify-end">{{demanditem.deadline}}更新</view> -->
-          </view>
+
         </view>
       </view>
     </view>
@@ -58,10 +55,6 @@
             <view class="flex align-center ">
               <!-- 头像 -->
               <view class="cu-avatar xl round margin-left bg-blue" style="background-image:url({{publisherInfo.avatar}});"></view>
-              <!-- <view class="flex-sub margin-left">
-                  <view>{{demanditem.realName}}</view>
-                  <text class="text-black text-bold">{{formatTime(demanditem.createTime)}}</text>
-                </view> -->
             </view>
             <!-- 右侧内容区域 -->
             <view class="flex flex-direction justify-center margin-left-xs">
@@ -178,7 +171,7 @@
 </scroll-view>
 
 <view class="cu-bar foot tabbar cur shop bgwhite" style="bottom:{{InputBottom}}px">
-  <button class="action margin-left bgwhite" bindtap="tapind" style="width:12vh">
+  <button class="action margin-left bgwhite" bindtap="tapind" style="width:10vh">
     <view class="cuIcon-home " style="color:#0081ff"></view>
     回首页
   </button>
@@ -186,16 +179,9 @@
     <view class="cuIcon-forward " style="color:#0081ff"></view>
     分享
   </button>
-  <!-- <button class="action margin-left" open-type="contact" style="width:10vh">
-    <view class="cuIcon-service text-red">
-    </view> 客服
-  </button> -->
   <button class="action bgwhite" bindtap="taptel" data-target="{{demanditem.mobile}}" style="width:10vh">
     <view class="cuIcon-phone" style="color:#0081ff"></view>
     电话
   </button>
-  <!-- <button class="cu-btn round shadow-blur" style="width:16vh;background: #0081ff;color:white" bindtap="tappush">
-    推送名片
-  </button> -->
-  <view class="round indigo shadow-blur flex justify-center align-center margin-right" style="width:12vh;height:4.5vh;color:white;font-size:2vh" bindtap="tappush">推送名片</view>
+  <view class="radius indigo shadow-blur flex justify-center align-center margin-right" style="width:15vh;height:5vh;color:white;font-size:2vh" bindtap="tappush">推送名片</view>
 </view>

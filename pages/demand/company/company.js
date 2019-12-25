@@ -50,27 +50,27 @@ Page({
             let threeImage = "swiperList[2]";
             let fourImage = "swiperList[3]";
             let fiveImage = "swiperList[4]";
-            if (details.oneImage != '') {
+            if (details.oneImage != null) {
               this.setData({
                 [oneImage]: details.oneImage,
               })
             }
-            if (details.twoImage != '') {
+            if (details.twoImage != null) {
               this.setData({
                 [twoImage]: details.twoImage,
               })
             }
-            if (details.threeImage != '') {
+            if (details.threeImage != null) {
               this.setData({
                 [threeImage]: details.threeImage,
               })
             }
-            if (details.fourImage != '') {
+            if (details.fourImage != null) {
               this.setData({
                 [fourImage]: details.fourImage,
               })
             }
-            if (details.fiveImage != '') {
+            if (details.fiveImage != null) {
               this.setData({
                 [fiveImage]: details.fiveImage,
               })

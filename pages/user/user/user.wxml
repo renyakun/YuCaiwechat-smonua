@@ -6,7 +6,7 @@
 
   <view class=" padding-top-xl padding-bottom-sm  indigo" style="position:relative">
 
-    <view class="flex justify-center margin-bottom-sm">
+    <view class="flex justify-center margin-bottom-sm" wx:if="{{userflag}}">
       <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn round bg-green shadow'> 获取头像昵称 </button>
       <block wx:else>
         <view class='text-center'>
@@ -16,7 +16,22 @@
       </block>
     </view>
 
-    <view class="shadow-blur bgwhite round  justify-start align-center padding-left" style="width:25vh;height:6vh;line-height:6vh;position: absolute;top:10vh;right:-8vh;" bindtap="techjump" data-target="{{techtit}}">
+    <view class="cu-bar indigo margin-left margin-right" wx:else bindtap="techjump" data-target="{{techtit}}">
+      <view class="flex  margin-bottom-sm">
+        <view class='justify-start'>
+          <view class="margin-top ">
+            <image src='{{avatar}}' mode='aspectFit' class="cu-avatar round solids xl"></image>
+          </view>
+          <view class="padding-left-xl padding-top-sm" style="color:white;">{{realName}}</view>
+          <view class="padding-left padding-top-sm" style="color:white;">{{sex}} | {{age}} | {{email}}</view>
+          <view class="padding-left padding-top-sm" style="color:white;">期望职位：{{dreamPosition}}</view>
+          <view class="padding-left padding-top-sm" style="color:white;display: {{label!=''?'':'none'}}">个人标签：{{label}}</view>
+        </view>
+
+      </view>
+    </view>
+
+    <view class="shadow-blur bgwhite round  justify-start align-center padding-left" style="width:18vh;height:6vh;line-height:6vh;position: absolute;top:10vh;right:-3vh;" bindtap="techjump" data-target="{{techtit}}">
       <text class="">{{techtit}}</text>
       <text class="cuIcon-right"></text>
     </view>

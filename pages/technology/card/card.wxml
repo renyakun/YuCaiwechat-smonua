@@ -7,13 +7,13 @@
 </cu-custom>
 
 <view class="bg-white" wx:if="{{demandflag}}" style="height:100vh">
-  <image src="/images/rhomb-white.gif" mode="aspectFit" class="gif-white response"></image>
+  <image src="http://www.yucai-sz.com:8079/imgs/front/images/rhomb-white.gif" mode="aspectFit" class="gif-white response"></image>
 </view>
 
 <block wx:else>
-  <scroll-view scroll-y class="scrollPage" style="position:relative;padding-bottom:100rpx;margin-bottom:100rpx">
+  <scroll-view scroll-y class="scrollPage" style="position:relative;margin-bottom:8vh">
 
-    <view class=" padding-top-xl padding-bottom-xl bgwhite" style="height:30vh;"></view>
+    <view class=" bgwhite" style="height:30vh;"></view>
 
     <view class="cu-bar indigo radius margin-left margin-right shadow-blur" style="margin-top:-25vh;z-index:99">
       <view class="flex  margin-bottom-sm">
@@ -30,10 +30,10 @@
       </view>
     </view>
 
-    <view class="radius padding-top-xl padding-bottom-xl bgcyan" style="min-height:75vh;margin-top:-10vh;">
+    <view class="radius padding-top-xl bgcyan" style="min-height:75vh;margin-top:-10vh;">
 
       <view class="" style="margin-top:8vh;">
-        <view class="bg-white cu-card no-card shadow radius margin-left-xs margin-right-xs" style="display: {{profession==''&&education==''&&graduationTime==''&&school==''?'none':''}}">
+        <view class="bgwhite cu-card no-card shadow radius margin-left-xs margin-right-xs" style="display: {{profession==''&&education==''&&graduationTime==''&&school==''?'none':''}}">
           <view class="cu-bar justify-start">
             <view class="action border-title">
               <text class="text-xl text-bold text-blue">院校信息</text>
@@ -70,7 +70,7 @@
 
         </view>
 
-        <view class="bg-white cu-card no-card shadow radius margin-left-xs margin-right-xs margin-top-sm " style="display: {{experience!=''?'':'none'}}">
+        <view class="bgwhite cu-card no-card shadow radius margin-left-xs margin-right-xs margin-top-sm " style="display: {{experience!=''?'':'none'}}">
           <view class="cu-bar justify-start">
             <view class="action border-title">
               <text class="text-xl text-bold text-blue">工作经历</text>
@@ -83,7 +83,7 @@
           </view>
         </view>
 
-        <view class="bg-white cu-card no-card shadow radius margin-left-xs margin-right-xs margin-top-sm " style="display: {{description!=''?'':'none'}}">
+        <view class="bgwhite cu-card no-card shadow radius margin-left-xs margin-right-xs margin-top-sm " style="display: {{description!=''?'':'none'}}">
           <view class="cu-bar justify-start">
             <view class="action border-title">
               <text class="text-xl text-bold text-blue">自我描述</text>
@@ -97,47 +97,14 @@
         </view>
 
       </view>
+
     </view>
 
   </scroll-view>
 
-  <!-- <view class="cu-bar foot tabbar cur shop padding-top-xs margin-bottom-xs bgwhite" style="bottom:{{InputBottom}}px">
-    <button class="cu-btn line-black text-black shadow-blur" style="width:20vh" bindtap="techjump">编辑名片</button>
-    <button class="cu-btn bgblue shadow margin-left" style="width:20vh;color:white;background: #0081ff;" data-modal="showModal" bindtap="tapjump">生成海报分享</button>
-  </view> -->
-
-  <view class="cu-bar foot tabbar cur shop bgwhite flex justify-between" style="bottom:{{InputBottom}}px;color:white">
-    <view class="round indigo shadow-blur flex justify-center align-center margin-left" style="width:10vh;height:4.5vh;color:white;font-size:2vh" bindtap="chatjump">编辑名片</view>
-    <view class="round indigo shadow-blur flex justify-center align-center margin-right" style="width:15vh;height:4.5vh;color:white;font-size:2vh" bindtap="chatjump">生成海报分享</view>
-  </view>
-
-  <view class="cu-modal  {{modalName=='showModal'?'show':''}}">
-    <view class="cu-dialog ">
-      <view class="cu-bar bg-blue flex ">
-        <view class="action margin-top margin-bottom-sm">
-          <view class="cu-avatar round lg solids" style="background-image:url(https://i.loli.net/2017/08/21/599a521472424.jpg);"></view>
-          <view class="padding-left">{{realName}}</view>
-        </view>
-        <view class="action" bindtap="hideModal">
-          <text class="cuIcon-close text-red"></text>
-        </view>
-      </view>
-
-      <view class="cu-bar ">
-        <view class="action">
-          <view class="flex flex-wrap bg-white">
-            <view class="padding-left">{{sex}} | {{age}} | {{email}}</view>
-            <view class="padding-left">期望职位：{{dreamPosition}}</view>
-          </view>
-        </view>
-      </view>
-
-      <view class="cu-bar bg-blue justify-around">
-        <view class="action">
-          <button class="cu-btn bg-green" bindtap="interjump" style="width:16vh;" data-userid="{{userId}}" data-demandid="{{demandId}}">确认邀请</button>
-        </view>
-      </view>
-    </view>
+  <view class="cu-bar foot tabbar cur shop bgwhite flex justify-around" style="bottom:{{InputBottom}}px;color:white">
+    <view class="radius indigo shadow-blur flex justify-center align-center margin-left" style="width:15vh;height:6vh;color:white;font-size:2vh" bindtap="techjump">编辑名片</view>
+    <view class="radius indigo shadow-blur flex justify-center align-center margin-right" style="width:15vh;height:6vh;color:white;font-size:2vh" bindtap="tapjump">生成海报分享</view>
   </view>
 
 </block>

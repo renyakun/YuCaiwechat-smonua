@@ -37,7 +37,7 @@ Page({
       txtput: len,
     })
     if (len > 499) {
-      showToast('输入值字数最大为500！', 'none', 3000)
+      showToast('输入值字数最大为500！', 'none', 1000)
     }
   },
 
@@ -63,12 +63,12 @@ Page({
         },
         success: res => {
           if (res.data.success) {
-            showToast(res.data.data, 'success', 1000);
+            showToast(res.data.data, 'success', 800);
             setTimeout(()=>{
               switchTab('/pages/user/user/user');
-            },3000)
+            },1000)
           } else {
-            showToast(res.data.msg, 'none', 1000);
+            showToast(res.data.msg, 'none', 800);
           }
         }
       })
@@ -92,7 +92,7 @@ Page({
       },
       success: res => {
         if (res.data.success) {
-          showToast(res.data.data, 'success', 3000);
+          showToast(res.data.data, 'success', 1000);
             wx.navigateTo({
               url: '/pages/record/evaluate/evaluate?&demandId=' + demandId + '&userId=' + userId + '&realName=' + realName,
             });

@@ -110,7 +110,7 @@ Page({
       })
       this.TabCur(page, searchval, TabCurs);
     } else {
-      showToast("搜索内容不能为空", "none", 3000)
+      showToast("搜索内容不能为空", "none", 1000)
     }
   },
 
@@ -124,10 +124,13 @@ Page({
   //最新、推荐跳转
   tabSelect(e) {
     let TabCurs = e.currentTarget.dataset.id;
+    let Modalflag = this.data.Modalflag;
     let page = 1;
     let search = "";
     pageScrollTo(0, 1000);
     this.setData({
+      Modalflag: true,
+      regionicon: 'triangleupfill',
       demandflag: true,
       TabCur: TabCurs,
       loadplay: false,
@@ -262,7 +265,7 @@ Page({
                 tiptxt: '我也是有底线的',
                 loadflag: true
               })
-            }, 800)
+            }, 500)
           } else {
             console.log(demand.length)
             setTimeout(() => {
@@ -271,7 +274,7 @@ Page({
                 demand: demand,
                 loadflag: false
               })
-            }, 800)
+            }, 500)
           }
         } else {
           showToast(res.data.msg, 'none', 1000)
@@ -304,7 +307,7 @@ Page({
         if (res.data.data.length != 0) {
           if (res.data.success) {
             if (demands.length != 0) {
-              showToast('加载数据中...', 'none', 1000);
+              showToast('加载数据中...', 'none', 800);
               demand.push(...demands)
               setTimeout(() => {
                 this.setData({
@@ -314,7 +317,7 @@ Page({
                   loadflag: true,
                   loadplay: false,
                 })
-              }, 1500)
+              }, 1000)
             }
           } else {
             showToast(res.data.msg, 'none', 1000)
@@ -324,7 +327,7 @@ Page({
             tiptxt: '我也是有底线的',
             loadplay: true,
           })
-          showToast('我也是有底线的', 'none', 2000)
+          showToast('我也是有底线的', 'none', 1000)
         }
       },
     })

@@ -9,10 +9,6 @@ import {
   showToast,
   switchTab,
   navigateTo,
-  showLoading,
-  pageScrollTosel,
-  setBarColor,
-  setBarTitle,
 } from '../../../utils/WeChatfction';
 
 Page({
@@ -24,7 +20,6 @@ Page({
 
   //跳转修改
   techjump(e) {
-    showLoading();
     navigateTo('/pages/technology/changecard/changecard');
   },
 
@@ -94,7 +89,7 @@ Page({
       console.log(err)
     })
     // 绘制画布
-    
+
   },
 
 
@@ -207,22 +202,13 @@ Page({
   },
 
 
-  /* 生命周期函数--监听页面加载*/
-  onLoad: function (options) {
-    setBarColor('#ffffff', '#0081ff', 1500, 'ease');
-    setBarTitle('个人主页');
 
-    this.getDevInfo();
-
-  },
-
-  onReady: function () {
-    let accessToken = wx.getStorageSync('accessToken') || [];
+  request(token){
     setTimeout(() => {
       wx.request({
         url: url + '/technology/getMyBusinessCard',
         data: {
-          accessToken: accessToken,
+          accessToken: token,
         },
         header: {
           'content-type': 'application/json'
@@ -265,15 +251,17 @@ Page({
         }
       })
     }, 500)
-
-
   },
 
-  onShow: function () {
 
+  /* 生命周期函数--监听页面加载*/
+  onLoad: function (options) {
+    this.getDevInfo();
   },
 
-  onHide: function () {
+  onReady: function () {
+    let token = wx.getStorageSync('accessToken') || [];
+    this.request(token)
 
   },
 
@@ -285,17 +273,4 @@ Page({
     this.onReady()
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
 })

@@ -46,7 +46,7 @@
   <block wx:if="{{Modalflag}}">
 
     <view class="bgwhite margin-top" style="" wx:if="{{demandflag}}" style="height:800rpx;width:100%;">
-      <image src="/images/rhomb-white.gif" mode="aspectFit" class="gif-white response margin-left"></image>
+      <image src="http://www.yucai-sz.com:8079/imgs/front/images/rhomb-white.gif" mode="aspectFit" class="gif-white response margin-left"></image>
     </view>
 
     <block wx:else>
@@ -83,7 +83,7 @@
       </view>
 
       <view class="padding-top-xl bgwhite flex justify-center" wx:else style="width:100%">
-        <image src="/images/nodata.jpg" mode="aspectFit"></image>
+        <image src="http://www.yucai-sz.com:8079/imgs/front/images/nodata.jpg" mode="aspectFit"></image>
       </view>
 
     </block>
@@ -93,10 +93,10 @@
   <block wx:if="{{!Modalflag}}" class="">
 
     <view class="" style="">
-      <view class=" bgwhite" style="width:100vh;height:100vh;">
+      <view class=" bgwhite" style="height:100vh;">
         <view class="bg-gray margin-left" style="z-index:999;">
           <picker-view mode="region" indicator-style="height: 8vh;" style=" height: 40vh;" value="{{value}}" bindchange="bindChange">
-            <picker-view-column style="width:30vh;">
+            <picker-view-column style="">
               <view wx:for="{{provinces}}" wx:key="id" style="line-height: 8vh;" data-target="{{item}}" bindtap="proChange">{{item}}</view>
             </picker-view-column>
             <picker-view-column style="display:{{provinceflag? 'block':'none'}}">

@@ -113,7 +113,7 @@ Page({
     console.log( realName, age, sex, dreamPosition, mobile, email);
     console.log(typeof(age))
     if (realName == "" || sex == "" || dreamPosition == "" || mobile == "" || email == "" || age == "" || avatar == undefined) {
-      showToast('请输入完整信息！', 'none', 3000)
+      showToast('请输入完整信息！', 'none', 1000)
     } else {
       wx.request({
         url: url + '/technology/add',
@@ -142,12 +142,12 @@ Page({
           console.log(res)
           showToast(res.data.success, 'none', 1000)
           if (res.data.success) {
-            showToast(res.data.data, 'success', 3000)
+            showToast(res.data.data, 'success', 800)
             setTimeout(()=>{
               navigateTo('/pages/technology/card/card?falg=falg')
-            },3500)          
+            },1000)          
           } else {
-            showToast(res.data.msg, 'none', 3000);
+            showToast(res.data.msg, 'none', 1000);
           }
         }
       })
