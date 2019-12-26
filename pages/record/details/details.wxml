@@ -56,7 +56,7 @@
   </view>
 
 
-  <form bindsubmit='formSubmit'>
+  <!-- <form bindsubmit='formSubmit'>
 
     <view style="opacity:0" animation="{{animationData}}">
       <view class="cu-bar bg-white">
@@ -79,7 +79,7 @@
       </view>
 
     </view>
-  </form>
+  </form> -->
 
 </scroll-view>
 
@@ -88,6 +88,37 @@
   <button class="action" bindtap="tapind" style="width:10vh;">
     <view class="cuIcon-home" style="color:#0081ff"></view>回首页
   </button>
-  <view class="radius indigo shadow-blur flex justify-center align-center " style="width:15vh;height:5vh;color:white;font-size:2vh" bindtap="tapcale">取消面试</view>
-  <view class="radius indigo shadow-blur flex justify-center align-center margin-right-xl" style="width:15vh;height:5vh;color:white;font-size:2vh" bindtap="tapeval">立即评价</view>
+  <view class="radius indigo shadow-blur flex justify-center align-center margin-right-xl" style="width:15vh;height:5vh;color:white;font-size:2vh" data-modal="showModal" bindtap="tapjump">取消面试</view>
+  <!-- <view class="radius indigo shadow-blur flex justify-center align-center margin-right-xl" style="width:15vh;height:5vh;color:white;font-size:2vh" bindtap="tapeval">立即评价</view>  bindtap="tapcale"  -->
+</view>
+
+<view class="cu-modal {{modalName=='showModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bgwhite justify-end">
+      <view class="content">填写取消原因</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+
+    <form bindsubmit='formSubmit'>
+      <view class=" ">
+        <view class="cu-form-group bggray cu-card no-card" style="background:rgba(0,0,0,.1);">
+          <view class="title">取消原因</view>
+          <view class="flex align-end margin-bottom-xs " style="width:76%;">
+            <textarea  auto-height name="reason" value=" " maxlength="500" style="color:#8799a3;text-align:justify;word-spacing:20rpx;line-height:2vh" bindinput="textareaBInput"></textarea>
+            <view class="" style="position: absolute;right:25rpx">
+              <text>{{txtput}}</text>/500</view>
+          </view>
+        </view>
+
+      </view>
+
+      <view class="cu-bar bgwhite justify-around">
+        <view class="action">
+          <button class="cu-btn indigo" style="width:16vh;color:white" formType="submit">确认取消</button>
+        </view>
+      </view>
+    </form>
+  </view>
 </view>

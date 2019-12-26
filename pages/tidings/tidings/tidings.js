@@ -20,25 +20,21 @@ Page({
     console.log(id);
     switch (id) {
       case 1:
-        //消息详情页
-        wx.navigateTo({
-          url: '/pages/tidings/messageInfo/messageInfo?id=1',
-        });
+        //投递邀请
+        navigateTo('/pages/tidings/messageInfo/messageInfo?id=1')
         return;
       case 2: //面试邀请(待面试)
-        wx.navigateTo({
-          url: '/pages/record/record/record?id=2',
-        });
+        navigateTo('/pages/record/record/record?id=2')
         return;
       case 3: //评论消息
-        wx.navigateTo({
-          url: '/pages/record/record/record?id=3',
-        });
+        navigateTo('/pages/record/record/record?id=3')
+        return;
+      case 4: //录取消息
+        navigateTo('/pages/tidings/admission/admission')
+        //showToast('即将上线，敬请期待!', 'none', 1000)
         return;
       default:
-        wx.navigateTo({
-          url: '/pages/tidings/messageInfo/messageInfo?id=1',
-        });
+        navigateTo('/pages/tidings/messageInfo/messageInfo?id=1')
     }
   },
 

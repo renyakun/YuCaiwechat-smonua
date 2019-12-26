@@ -1,0 +1,5 @@
+<!--pages/tidings/admission/admission.wxml-->
+<cu-custom isCustom="{{true}}" isBack="{{false}}">
+  <view slot="backText">返回</view>
+  <view slot="content" class="margin-top-xs">录取消息</view>
+</cu-custom>

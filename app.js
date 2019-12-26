@@ -223,7 +223,11 @@ App({
       id: 3,
       name: '评论消息通知',
       icon: 'message',
-    }],
+      },{
+        id: 4,
+        name: '录取消息通知',
+        icon: 'message',
+      }],
     recordlist: [{
       id: 1,
       flag: '全部',

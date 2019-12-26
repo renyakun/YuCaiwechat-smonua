@@ -16,6 +16,22 @@ Page({
     txtput: 0
   },
 
+  //关闭模拟框
+  hideModal() {
+    this.setData({
+      modalName: null
+    })
+  },
+
+  //打开模态框
+  tapjump(e) {
+    console.log(e.currentTarget.dataset.modal)
+    let modalName = e.currentTarget.dataset.modal
+    this.setData({
+      modalName: modalName,
+    })
+  },
+
   tapcale() {
     var animation = wx.createAnimation({
       duration: 3000,
