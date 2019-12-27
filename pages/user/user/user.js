@@ -27,6 +27,10 @@ Page({
     userflag:true
   },
 
+  abc(){
+    navigateTo('/pages/tempf/tempf?id=1');
+  },
+
   //功能跳转
   userjump(e) {
     let name = e.currentTarget.dataset.target.name;

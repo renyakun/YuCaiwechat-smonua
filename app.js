@@ -32,15 +32,12 @@ App({
         if (res.code) {
           //console.log('获取用户登录凭证：' + res.code);
           //发起网络请求
-          let appid = 'wxbe95cfd0acd54a9d';
-          let secret = '3539452931531b21c7f8bbba88d4e7cd';
           wx.request({
             url: url + '/user/wx/login',
             method: 'POST',
             data: {
               code: res.code,
-              appid: appid,
-              secret: secret
+              flag: 1
             },
             header: {
               'content-type': 'application/json'
@@ -223,11 +220,11 @@ App({
       id: 3,
       name: '评论消息通知',
       icon: 'message',
-      },{
-        id: 4,
-        name: '录取消息通知',
-        icon: 'message',
-      }],
+    }, {
+      id: 4,
+      name: '录取消息通知',
+      icon: 'message',
+    }],
     recordlist: [{
       id: 1,
       flag: '全部',

@@ -1,0 +1,9 @@
+<!--pages/tempf/tempf.wxml-->
+<cu-custom isCustom="{{true}}" isBack="{{false}}">
+  <view slot="backText">返回</view>
+  <view slot="content" class="margin-top-xs">测试</view>
+</cu-custom>
+
+<button bindtap="tapind" >点击事件</button>
+
+<image style="width: 200px; height: 200px; background-color: #eeeeee;" mode="{{aspectFill}}" src="{{imgavatar}}"></image>

@@ -43,51 +43,62 @@ Page({
     })
   },
 
-  getBase64Data: function () {
-    let str = this.data.avatar.toString();
-    let str1 = str.substring(22);
-    return str1;
+
+  //图片路径转base64
+  getFileSystemManager(url) {
+    wx.getFileSystemManager().readFile({
+      filePath: url, //选择图片返回的相对路径
+      encoding: 'base64', //编码格式
+      success: res => { //成功的回调
+        let base64 = 'data:image/png;base64,' + res.data;
+        console.log(base64);
+          this.setData({
+            imgavatar: base64
+          })
+      }
+    })
   },
 
   //生成海报
   tapjump(e) {
-    // let modalName = e.currentTarget.dataset.modal;
     showToast('正在生成...', 'loading', 2000);
-    // setTimeout(() => {
-    //   this.setData({
-    //     modalName: modalName,
-    //   })
-    // }, 3000)
     let that = this;
-
+    let avatar = this.data.avatar;
+    console.log(avatar);
+    //this.getFileSystemManager(avatar);
     console.log(this.data.age);
+    setTimeout(()=>{
+      console.log(this.data.imgavatar);
+    },1000)
     // 获取到当前用户信息
-    let userInfo = this.data;
-    let promise = new Promise((resolve, reject) => {
-      const filePath = `${wx.env.USER_DATA_PATH}/temp_image.jpeg`;
-      const buffer = wx.base64ToArrayBuffer(this.getBase64Data());
-      wx.getFileSystemManager().writeFile({
-        filePath,
-        data: buffer,
-        encoding: 'binary',
-        success() {
-          resolve(filePath);
-        },
-        fail() {
-          reject(new Error('ERROR_BASE64SRC_WRITE'));
-        },
-      });
-    });
-    promise.then(res => {
-      console.log(res);
-      let data = { user: userInfo, avarUrl: res }
-      this.canvansWrite(data);
-      setTimeout(function () {
-        that.previewImg();
-      }, 3500)
-    }, err => {
-      console.log(err)
-    })
+    // let userInfo = this.data;
+    // let promise = new Promise((resolve, reject) => {
+    //   wx.downloadFile({
+    //     url: avatar, //仅为示例，并非真实的资源
+    //     success: function (res) {
+    //       // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+    //       if (res.statusCode === 200) {
+    //         wx.playVoice({
+    //           filePath: res.tempFilePath
+    //         })
+    //         let filePath = res.tempFilePath;
+    //         console.log("ok")
+    //         resolve(filePath);
+    //       }
+    //     }
+    //   })
+
+    // });
+    // promise.then(res => {
+    //   console.log(res);
+    //   let data = { user: userInfo, avarUrl: res }
+    //   this.canvansWrite(data);
+    //   setTimeout(function () {
+    //     that.previewImg();
+    //   }, 3500)
+    // }, err => {
+    //   console.log(err)
+    // })
     // 绘制画布
 
   },
@@ -181,7 +192,7 @@ Page({
             console.log(res);
           }
         }, that);
-      }, 3000);
+      }, 6000);
     });
     //9.将canvas生成好的图片下载到临时文件夹
 
@@ -202,7 +213,6 @@ Page({
   },
 
 
-
   request(token){
     setTimeout(() => {
       wx.request({
@@ -214,7 +224,7 @@ Page({
           'content-type': 'application/json'
         },
         success: res => {
-          //console.log(res.data.data)
+          console.log(res.data.data)
           if (res.data.success) {
             let avatar = res.data.data.avatar;
             let realName = res.data.data.realName;
@@ -256,13 +266,53 @@ Page({
 
   /* 生命周期函数--监听页面加载*/
   onLoad: function (options) {
-    this.getDevInfo();
+    console.log(options);
+    const scene = decodeURIComponent(options.scene);
+    console.log(scene)
+    wx.request({
+      url: 'https://api.weixin.qq.com/cgi-bin/token',
+      data: {
+        grant_type: 'client_credential',
+        appid: 'wxbe95cfd0acd54a9d',
+        secret: '3539452931531b21c7f8bbba88d4e7cd'
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: res => {
+        console.log(res.data);
+        console.log(res.data.access_token);
+        let token = res.data.access_token;
+        setTimeout(() => {
+          wx.request({
+            url: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=token',
+            //url: 'https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode',
+            method: 'post',
+            data: {
+              //access_token: res.data.access_token,
+              scene: scene,
+              page:'pages/technology/card/card',
+              //path:'pages/technology/card/card',
+              //width:500
+            },
+            contentType: "application/json",
+            responseType: 'arraybuffer',
+            header: {
+              "Content-Type": "application/json;charset=utf-8"
+            },
+            success: res => {
+              console.log(res)
+            }
+          })
+        }, 500)
+      }
+    })
   },
 
   onReady: function () {
     let token = wx.getStorageSync('accessToken') || [];
     this.request(token)
-
+    this.getDevInfo();
   },
 
   onUnload: function () {

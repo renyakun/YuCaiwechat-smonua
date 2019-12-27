@@ -48,7 +48,7 @@
 
     </view>
 
-    <view class="bgwhite margin-left-xs margin-right-xs margin-top-xl flex justify-between align-center" style="height:13vh;z-index:99;border:0.2vh solid #0081ff;display:{{details.length!=0?'':'none'}}" data-target="{{userId}}" bindtap="companyjump">
+    <view class="bgwhite margin-left-xs margin-right-xs margin-top-xl flex justify-between align-center" style="height:13vh;z-index:99;border:0.2vh solid #0081ff;display:{{detailsflag?'':'none'}}" data-target="{{userId}}" bindtap="companyjump">
       <view class="margin-left-xs flex justify-between align-center">
         <image style="width:6vh; height:6vh;" mode="aspectFit" src="{{src}}"></image>
         <text class="margin-left-xs text-xl ">{{details.companyNick}}</text>

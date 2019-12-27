@@ -5,6 +5,7 @@ import {
   navigateTo,
   showLoading,
   pageScrollTo,
+  switchTab,
 } from '../../../utils/WeChatfction';
 const {
   url
@@ -15,7 +16,7 @@ Page({
     demandflag: true,
     userId: '',
     loadflag: true, //没有数据图片显示标志 true不显示
-    details:[]
+    details: {},
   },
 
   companyjump(e) {
@@ -23,11 +24,12 @@ Page({
     navigateTo('/pages/demand/company/company?userId=' + userId)
   },
 
+  //回到首页
   tapind() {
-    showToast('即将上线，敬请期待!', 'none', 1000)
+    switchTab('/pages/index/index');
   },
 
-  chatjump(){
+  chatjump() {
     showToast('即将上线，敬请期待!', 'none', 1000)
   },
 
@@ -47,7 +49,7 @@ Page({
         'content-type': 'application/json'
       },
       success: res => {
-        console.log('更多职位信息:',res.data.data)
+        console.log('更多职位信息:', res.data.data)
         if (res.data.success) {
           if (res.data.data.length != 0) {
             this.setData({
@@ -76,15 +78,14 @@ Page({
         userId: userId
       },
       success: res => {
-        console.log('公司主页:',res.data.data)
+        console.log('公司主页:', res.data.data)
         let details = res.data.data;
         if (res.data.success) {
-          if (details.length != 0) {
-            this.setData({
-              details: details,
-              src: '../../../images/company.png'
-            })
-          }
+          this.setData({
+            details: details,
+            src: '../../../images/company.png',
+            detailsflag: res.data.success
+          })
         }
       }
     })
@@ -103,7 +104,7 @@ Page({
       },
       success: res => {
         let release = res.data.data;
-        console.log('发布者详情:',release);
+        console.log('发布者详情:', release);
         if (res.data.success) {
           this.setData({
             release: release,
@@ -118,7 +119,7 @@ Page({
   // 招聘详情
   Seedels(e) {
     let demandId = e.currentTarget.dataset.target.demandId;
-    navigateTo('/pages/demand/trans/trans?demandId=' + demandId );
+    navigateTo('/pages/demand/trans/trans?demandId=' + demandId);
   },
 
   onLoad: function(options) {

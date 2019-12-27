@@ -37,9 +37,9 @@ Page({
   Seedels(e) {
     let demandId = e.currentTarget.dataset.target;
     //console.log(demandId);
-      wx.navigateTo({
-        url: '/pages/demand/trans/trans?demandId=' + demandId,
-      });
+    wx.navigateTo({
+      url: '/pages/demand/trans/trans?demandId=' + demandId,
+    });
   },
 
   //评价跳转
@@ -49,9 +49,9 @@ Page({
     let demandId = demanditem.demandHistroy.demandId;
     let userId = demanditem.demandHistroy.userId;
     let realName = demanditem.demandHistroy.realName;
-      wx.navigateTo({
-        url: '/pages/record/evaluate/evaluate?demandId=' + demandId + '&userId=' + userId + '&realName=' + realName,
-      });
+    wx.navigateTo({
+      url: '/pages/record/evaluate/evaluate?demandId=' + demandId + '&userId=' + userId + '&realName=' + realName,
+    });
     console.log(demandId, userId, realName)
   },
 
@@ -66,20 +66,9 @@ Page({
     let timer = demanditem.invitationTime;
     let id = demanditem.id;
     console.log(demanditem)
-      wx.navigateTo({
-        url: '/pages/record/details/details?address=' + address + '&timer=' + timer + '&id=' + id + '&jobName=' + jobName + '&demandId=' + demandId + '&userId=' + userId + '&realName=' + realName,
-      });
-  },
-
-  onLoad: function(options) {
-    // 如果url中有id参数,跳转到对应的tab页
-    if (options.id) {
-      let id = parseInt(options.id);
-      this.setData({
-        TabCur: id,
-        scrollLeft: (id - 1) * 60,
-      })
-    }
+    wx.navigateTo({
+      url: '/pages/record/details/details?address=' + address + '&timer=' + timer + '&id=' + id + '&jobName=' + jobName + '&demandId=' + demandId + '&userId=' + userId + '&realName=' + realName,
+    });
   },
 
   //获取全部列表
@@ -90,7 +79,7 @@ Page({
         accessToken: token
       },
       success: res => {
-        console.log('全部列表:',res.data.data)
+        console.log('全部列表:', res.data.data)
         let demand = res.data.data;
         if (res.data.success) {
           if (demand.length != 0) {
@@ -118,7 +107,7 @@ Page({
         accessToken: token
       },
       success: res => {
-        console.log('待面试:',res.data.data)
+        console.log('待面试:', res.data.data)
         let demand = res.data.data;
         if (res.data.success) {
           if (demand.length != 0) {
@@ -175,17 +164,19 @@ Page({
         accessToken: token
       },
       success: res => {
-        console.log('不合适:',res.data.data)
+        console.log('不合适:', res.data.data)
         let demand = res.data.data;
         if (res.data.success) {
           if (demand.length != 0) {
             this.setData({
               inprolist: [...demand],
               inproflag: true,
+              demandflag: false,
             })
           } else {
             this.setData({
               inproflag: false,
+              demandflag: false,
             })
           }
         } else {
@@ -195,18 +186,69 @@ Page({
     })
   },
 
+  //获取投递记录列表
+  demand1(token, website, list, len, dataflag, demandflag, txt) {
+    console.log(token, demandId, website, list, len, dataflag, demandflag, txt)
+    wx.request({
+      url: url + website,
+      data: {
+        accessToken: token
+      },
+      success: res => {
+        console.log(txt, res.data.data, res.data.data.length,)
+        if (res.data.success) {
+          if (res.data.data.length != 0) {
+            this.setData({
+              [list]: res.data.data,
+              [dataflag]: true,
+              [demandflag]: false,
+              [len]: res.data.data.length
+            })
+          } else {
+            this.setData({
+              [demandflag]: false,
+              [dataflag]: false,
+              [len]: 0
+            })
+          }
+        } else {
+          showToast(res.data.msg, 'none', 1000)
+        }
+      }
+    })
+  },
 
-  onReady: function() {
+  onLoad: function(options) {
+    // 如果url中有id参数,跳转到对应的tab页
+    if (options.id) {
+      let id = parseInt(options.id);
+      this.setData({
+        TabCur: id,
+        scrollLeft: (id - 1) * 60,
+      })
+    }
+
     setTimeout(() => {
       this.setData({
         demandflag: false,
       })
     }, 1000)
+    this.request()
+
+  },
+
+
+  request() {
     let token = wx.getStorageSync('accessToken') || [];
     this.interdemand(token)
     this.evaluate(token)
     this.wholelist(token)
     this.inprolist(token)
+  },
+
+
+  onReady: function() {
+
   },
 
   onShow: function() {

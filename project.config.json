@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -82,7 +82,7 @@
 					"id": 3,
 					"name": "需求",
 					"pathName": "pages/demand/trans/trans",
-					"query": "demandId=47",
+					"query": "demandId=57",
 					"scene": null
 				},
 				{
@@ -124,6 +124,20 @@
 					"id": -1,
 					"name": "修改名片",
 					"pathName": "pages/technology/changecard/changecard",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "录取消息",
+					"pathName": "pages/tidings/admission/admission",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "测试",
+					"pathName": "pages/tempf/tempf",
 					"query": "",
 					"scene": null
 				}

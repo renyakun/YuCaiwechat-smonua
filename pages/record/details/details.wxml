@@ -106,9 +106,9 @@
         <view class="cu-form-group bggray cu-card no-card" style="background:rgba(0,0,0,.1);">
           <view class="title">取消原因</view>
           <view class="flex align-end margin-bottom-xs " style="width:76%;">
-            <textarea  auto-height name="reason" value=" " maxlength="500" style="color:#8799a3;text-align:justify;word-spacing:20rpx;line-height:2vh" bindinput="textareaBInput"></textarea>
-            <view class="" style="position: absolute;right:25rpx">
-              <text>{{txtput}}</text>/500</view>
+            <textarea  auto-height name="reason" value=" " maxlength="500" style="color:#8799a3;text-align:justify;word-spacing:20rpx;line-height:2vh" ></textarea>
+            <!-- <view class="" style="position: absolute;right:25rpx" >
+              <text>{{txtput}}</text>/500</view>  bindinput="textareaBInput"-->
           </view>
         </view>
 

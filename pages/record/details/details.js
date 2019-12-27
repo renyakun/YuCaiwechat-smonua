@@ -44,6 +44,11 @@ Page({
     })
   },
 
+  //回到首页
+  tapind() {
+    switchTab('/pages/index/index');
+  },
+
   //字数管理
   textareaBInput(e) {
     console.log(e.detail.value);
