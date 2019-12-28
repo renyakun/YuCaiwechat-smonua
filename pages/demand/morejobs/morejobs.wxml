@@ -65,7 +65,7 @@
         </view>
       </view>
 
-      <view class="margin-top margin-bottom-xl">
+      <view class="margin-top " style="margin-bottom:10vh"  wx:if="{{jobflag}}">
 
         <view class="cu-card article no-card margin-top-xs margin-left-xs margin-right-xs  padding-bottom-xs radius  bgwhite " wx:for="{{jobLists}}" wx:key="id" bindtap="Seedels" data-target="{{item}}" style="border-bottom:0.2vh solid #0081ff;box-shadow: 3rpx 3rpx 8rpx #0081ff">
           <view class="cu-item">
@@ -109,7 +109,7 @@
     <button class="action bgwhite" bindtap="tapind" style="width:10vh;">
       <view class="cuIcon-home " style="color:#0081ff"></view>回首页
     </button>
-    <button class="action bgwhite" style="width:10vh;margin-right:20vh" bindtap="sharejump">
+    <button class="action bgwhite" style="width:10vh;margin-right:20vh" bindtap="handleOpen1">
       <view class="cuIcon-forward text-blue" style="color:#0081ff">
       </view> 分享
     </button>
@@ -117,3 +117,5 @@
   </view>
 
 </scroll-view>
+
+<i-action-sheet visible="{{ visible1 }}" actions="{{ actions1 }}" show-cancel bind:cancel="handleCancel1" bind:click="handleClickItem1" />

@@ -86,7 +86,7 @@ Page({
           if (res.data.success) {
             showToast(res.data.data, 'success', 800);
             setTimeout(()=>{
-              switchTab('/pages/user/user/user');
+              navigateTo('/pages/record/record/record?id=2');
             },1000)
           } else {
             showToast(res.data.msg, 'none', 800);

@@ -17,6 +17,9 @@ Page({
     loadflag: true,
     messageList: [], //当前消息详情信息
     pushBackInfo: [], //投递成功返回的数据
+    page: 2,
+    loadflag: true,
+    loadplay: false,
   },
 
   // 跳转到详情页
@@ -103,17 +106,18 @@ Page({
           }, 1000)
         } else {
           showToast(res.data.msg, 'none', 1000)
-          // if (res.data.msg == '您已经推送过了，【需求方】有意向会尽早联系您') {
-          //   setTimeout(() => {
-          //     switchTab('/pages/index/index')
-          //   }, 1000)
-          // }
-
         }
 
       },
     })
 
+  },
+
+
+  listouch(e) {
+    this.ListTouchStart(e);
+    this.ListTouchMove(e);
+    this.ListTouchEnd(e);
   },
 
   // ListTouch触摸开始
@@ -146,56 +150,97 @@ Page({
     })
   },
 
-  // 请求邀请消息数据
-  request() {
-    let token = wx.getStorageSync('accessToken') || [];
+  //获取已录取列表
+  demand(token, website, list, txt, page) {
+    console.log(token, website, list, txt, page)
     wx.request({
-      url: url + '/technology/myAcceptDemands',
+      url: url + website,
       data: {
         accessToken: token,
+        page: page,
       },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: (res) => {
-        let messdata = res.data.data;
-        if (res.data.success) {
-          this.setData({
-            messageList: messdata,
-            demandflag: false,
-            loadflag: true, 
-          })
-          console.log(messdata)
+      success: res => {
+        if (page <= 1) {
+          let demand = res.data.data;
+          console.log(txt, demand, demand.length, 'page:', page);
+          if (res.data.success) {
+            if (demand.length != 0) {
+              this.setData({
+                [list]: demand,
+                dataflag: true,
+                demandflag: false,
+              })
+            } else {
+              this.setData({
+                demandflag: false,
+                dataflag: false,
+              })
+            }
+          } else {
+            showToast(res.data.msg, 'none', 1000)
+          }
         } else {
-          this.setData({
-            demandflag: true,
-            loadflag: false,
-          })
-          showToast(res.data.msg, 'none', 1000)
+          let demands = res.data.data;
+          console.log(txt, demands, demands.length, 'page:', page);
+          let demand = this.data.messageList;
+          console.log('加载数据', txt, demand)
+          if (demands.length != 0) {
+            if (res.data.success) {
+              if (demands.length != 0) {
+                showToast('加载数据中...', 'none', 500);
+                demand.push(...demands)
+                this.setData({
+                  [list]: demand,
+                  dataflag: true,
+                  demandflag: false,
+                  loadplay: false,
+                })
+              } else {
+                this.setData({
+                  demandflag: false,
+                  dataflag: false,
+                })
+              }
+            } else {
+              showToast(res.data.msg, 'none', 1000)
+            }
+          } else {
+            this.setData({
+              tiptxt: '我也是有底线的',
+              loadplay: true,
+            })
+          }
+
+
         }
+
       }
     })
   },
 
-  onLoad: function(options) {
-    console.log(options);
-
+  // 请求邀请消息数据
+  request(page) {
+    let token = wx.getStorageSync('accessToken') || [];
+    let messageList = 'messageList';
+    let messagetxt = '请求邀请messageList:';
+    let messagewebsite = '/technology/myAcceptDemands';
+    setTimeout(() => {
+      this.demand(token, messagewebsite, messageList, messagetxt, page)
+    }, 500)
   },
 
+  onLoad: function(options) { },
+
   onReady: function() {
-    this.request();
+    let page = this.data.page - 1;
+    this.request(page);
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.setData({
-      demandflag: true,
-    })
-    setTimeout(() => {
-      this.onReady()
-    }, 500)
+    
   },
 
   /**
@@ -217,19 +262,20 @@ Page({
    */
   onPullDownRefresh: function() {
     this.setData({
+      page: 2,
+      messageList: [],
       demandflag: true,
     })
-    setTimeout(() => {
-      this.onReady()
-    }, 500)
-
+    this.onReady()
+    wx.stopPullDownRefresh();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    let page = this.data.page++;
+    this.request(page)
   },
 
   /**

@@ -22,6 +22,7 @@ Page({
     recordlist: app.globalData.recordlist,
     wholeflag: true,
     interflag: true,
+    page: 2,
   },
 
   //tab跳转
@@ -71,91 +72,6 @@ Page({
     });
   },
 
-  //获取全部列表
-  wholelist(token) {
-    wx.request({
-      url: url + '/technology/mySendBusinessCard',
-      data: {
-        accessToken: token
-      },
-      success: res => {
-        console.log('全部列表:', res.data.data)
-        let demand = res.data.data;
-        if (res.data.success) {
-          if (demand.length != 0) {
-            this.setData({
-              wholelist: demand,
-              wholeflag: true,
-            })
-          } else {
-            this.setData({
-              wholeflag: false,
-            })
-          }
-        } else {
-          showToast(res.data.msg, 'none', 1000)
-        }
-      }
-    })
-  },
-
-  //获取待面试列表
-  interdemand(token) {
-    wx.request({
-      url: url + '/invitation/myAcceptInvitation',
-      data: {
-        accessToken: token
-      },
-      success: res => {
-        console.log('待面试:', res.data.data)
-        let demand = res.data.data;
-        if (res.data.success) {
-          if (demand.length != 0) {
-            this.setData({
-              interdemand: demand,
-              interflag: true,
-            })
-          } else {
-            this.setData({
-              interflag: false,
-            })
-          }
-
-        } else {
-          showToast(res.data.msg, 'none', 1000)
-        }
-      }
-    })
-  },
-
-  //获取已评价列表
-  evaluate(token) {
-    wx.request({
-      url: url + '/invitation/alreadyEvaluation',
-      data: {
-        accessToken: token
-      },
-      success: res => {
-        let demand = res.data.data;
-        console.log('已评价:', demand)
-        if (res.data.success) {
-          if (demand.length != 0) {
-            this.setData({
-              evaldemand: [...demand],
-              evalflag: true,
-            })
-          } else {
-            this.setData({
-              evalflag: false,
-            })
-          }
-        } else {
-          showToast(res.data.msg, 'none', 1000)
-        }
-      }
-    })
-  },
-
   //获取不合适列表
   inprolist(token) {
     wx.request({
@@ -187,39 +103,119 @@ Page({
   },
 
   //获取投递记录列表
-  demand1(token, website, list, len, dataflag, demandflag, txt) {
-    console.log(token, demandId, website, list, len, dataflag, demandflag, txt)
+  demand(token, website, list, dataflag, txt, page) {
+    console.log(token, website, list, dataflag, txt, page)
     wx.request({
       url: url + website,
       data: {
-        accessToken: token
+        accessToken: token,
+        page: page,
       },
       success: res => {
-        console.log(txt, res.data.data, res.data.data.length,)
-        if (res.data.success) {
-          if (res.data.data.length != 0) {
-            this.setData({
-              [list]: res.data.data,
-              [dataflag]: true,
-              [demandflag]: false,
-              [len]: res.data.data.length
-            })
+        if (page <= 1) {
+          let demand = res.data.data;
+          console.log(txt, demand, demand.length, 'page:', page);
+          if (res.data.success) {
+            if (demand.length != 0) {
+              this.setData({
+                [list]: demand,
+                [dataflag]: true,
+                demandflag: false,
+              })
+            } else {
+              this.setData({
+                demandflag: false,
+                [dataflag]: false,
+              })
+            }
           } else {
-            this.setData({
-              [demandflag]: false,
-              [dataflag]: false,
-              [len]: 0
-            })
+            showToast(res.data.msg, 'none', 1000)
           }
         } else {
-          showToast(res.data.msg, 'none', 1000)
+          let demands = res.data.data;
+          console.log(txt, demands, demands.length, 'page:', page);
+          let demand = [];
+          switch (list) {
+            case 'wholelist':
+              demand = this.data.wholelist;
+              break;
+            case 'sendlist':
+              demand = this.data.sendlist;
+              break;
+            case 'evaldemand':
+              demand = this.data.evaldemand;
+              break;
+            case 'inprolist':
+              demand = this.data.inprolist;
+              break;
+            default:
+              demand = [];
+          }
+          console.log('加载数据', txt, demand)
+          if (demands.length != 0) {
+            if (res.data.success) {
+              if (demands.length != 0) {
+                showToast('加载数据中...', 'none', 500);
+                demand.push(...demands)
+                this.setData({
+                  [list]: demand,
+                  [dataflag]: true,
+                  demandflag: false,
+                })
+              } else {
+                this.setData({
+                  demandflag: false,
+                  [dataflag]: false,
+                })
+              }
+            } else {
+              showToast(res.data.msg, 'none', 1000)
+            }
+          } else {
+            
+          }
+
+
         }
+
       }
     })
   },
 
+  request(page) {
+    let token = wx.getStorageSync('accessToken') || [];
+    let wholelist = 'wholelist';
+    let wholetxt = '全部列表wholelist:';
+    let wholewebsite = '/technology/mySendBusinessCard';
+    let dataflag1 = 'wholeflag';
+
+    let sendlist = 'sendlist';
+    let sendtxt = '待面试sendlist:';
+    let sendwebsite = '/invitation/myAcceptInvitation';
+    let dataflag2 = 'sendflag';
+
+    let evaldemand = 'evaldemand';
+    let evaltxt = '已评价evaldemand:';
+    let evalwebsite = '/invitation/alreadyEvaluation';
+    let dataflag3 = 'evalflag';
+
+    let inprolist = 'inprolist';
+    let inprotxt = '不合适 inprolist:';
+    let inprowebsite = '/technology/inappropriate';
+    let dataflag4 = 'inproflag';
+
+
+    setTimeout(() => {
+      this.demand(token, wholewebsite, wholelist, dataflag1, wholetxt, page);
+      this.demand(token, sendwebsite, sendlist, dataflag2, sendtxt, page);
+      //this.demand(token, evalwebsite, evaldemand, dataflag3, evaltxt, page);
+      this.demand(token, inprowebsite, inprolist, dataflag4, inprotxt, page);
+    }, 500)
+  },
+
   onLoad: function(options) {
     // 如果url中有id参数,跳转到对应的tab页
+    console.log(options)
     if (options.id) {
       let id = parseInt(options.id);
       this.setData({
@@ -227,24 +223,11 @@ Page({
         scrollLeft: (id - 1) * 60,
       })
     }
-
-    setTimeout(() => {
-      this.setData({
-        demandflag: false,
-      })
-    }, 1000)
-    this.request()
+    let page = this.data.page - 1;
+    this.request(page)
 
   },
 
-
-  request() {
-    let token = wx.getStorageSync('accessToken') || [];
-    this.interdemand(token)
-    this.evaluate(token)
-    this.wholelist(token)
-    this.inprolist(token)
-  },
 
 
   onReady: function() {
@@ -268,12 +251,16 @@ Page({
     this.setData({
       demandflag: true,
     })
-    this.onReady()
+    let options = {
+      id: this.data.TabCur
+    }
+    this.onLoad(options)
   },
 
 
   onReachBottom: function() {
-
+    let page = this.data.page++;
+    this.request(page)
   },
 
   onShareAppMessage: function() {

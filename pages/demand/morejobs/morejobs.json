@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "i-action-sheet": "../../../colorui/dist/action-sheet/index"
+  }
 }

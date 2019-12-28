@@ -24,7 +24,15 @@ Page({
     InputBottom: 0,
     scrollTop: 0,
     tranlist: app.globalData.tranlist,
-    swiperList: ['https://image.weilanwl.com/gif/loading-1.gif',]
+    swiperList: ['https://image.weilanwl.com/gif/loading-1.gif',],
+    visible1: false,
+    actions1: [
+      {
+        name: '去分享',
+        icon: 'share',
+        openType: 'share'
+      }
+    ],
   },
 
   //tab跳转
@@ -261,6 +269,23 @@ Page({
     }, 500)
   },
 
+  handleOpen1() {
+    this.setData({
+      visible1: true
+    });
+  },
+
+  handleCancel1() {
+    this.setData({
+      visible1: false
+    });
+  },
+
+
+  handleClickItem1({ detail }) {
+    const index = detail.index + 1;
+  },
+
   onLoad: function(options) {
     let demandId = options.demandId;
     this.setData({
@@ -299,11 +324,9 @@ Page({
   },
 
   onShareAppMessage() {
-    console.log('e12345')
     return {
-      title: '御材劳务平台',
-      imageUrl: '/images/YuCai.jpg',
-      path: '/pages/index/index'
-    }
+      title: '需求详情',
+      imageUrl: 'https://file.iviewui.com/iview-weapp-logo.png'
+    };
   }
 })

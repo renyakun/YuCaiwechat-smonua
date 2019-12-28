@@ -78,6 +78,17 @@ Page({
         CityBar: '',
         colflag: true,
       })
+    } else if (e.scrollTop > 1000) {
+      console.log('123456')
+      // let page = this.data.page++;
+      // let search = this.data.search;
+      // let TabCurs = this.data.TabCur;
+      // if (search == undefined) {
+      //   let search = '';
+      //   this.TabCur(page, search, TabCurs)
+      // } else {
+      //   this.TabCur(page, search, TabCurs)
+      // }
     }
   },
 
@@ -205,16 +216,20 @@ Page({
       let val = '';
       let fly = '';
       this.request(val, fly, search, page);
+      console.log('val:', val, 'fly:', fly, 'search:', search, 'page:', page)
     } else if (TabCurs == 2 && val == "不限") {
       let val = '';
       let fly = '1';
       this.request(val, fly, search, page);
-    } else if (TabCurs == 1) {
+      console.log('val:', val, 'fly:', fly, 'search:', search, 'page:', page)
+    } else if (TabCurs == 1 && val != "不限") {
       let fly = '0';
       this.request(val, fly, search, page);
-    } else if (TabCurs == 2) {
+      console.log('val:', val, 'fly:', fly, 'search:', search, 'page:', page)
+    } else if (TabCurs == 2 && val != "不限") {
       let fly = '1';
       this.request(val, fly, search, page);
+      console.log('val:', val, 'fly:', fly, 'search:', search, 'page:', page)
     }
   },
 
@@ -327,15 +342,97 @@ Page({
             tiptxt: '我也是有底线的',
             loadplay: true,
           })
-          showToast('我也是有底线的', 'none', 1000)
+          //showToast('我也是有底线的', 'none', 1000)
+          console.log('我也是有底线的')
         }
       },
+    })
+  },
+
+
+  //获取平台显示各用户发布的需求
+  demand(val, fly, search, page, token, website, list, txt) {
+    console.log('val:', val, 'fly:', fly, 'search:', search, 'page:', page, token, website, list, txt)
+    wx.request({
+      url: url + website,
+      data: {
+        accessToken: token,
+        city: val,
+        modifly: fly,
+        search: search,
+        page: page,
+      },
+      success: res => {
+        if (page <= 1) {
+          let demand = res.data.data;
+          console.log(txt, demand, demand.length, 'page:', page);
+          if (res.data.success) {
+            if (demand.length != 0) {
+              this.setData({
+                [list]: demand,
+                municipal: [],
+                demandflag: false,
+                loadflag: true
+              })
+            } else {
+              this.setData({
+                demandflag: false,
+                loadflag: false
+              })
+            }
+          } else {
+            showToast(res.data.msg, 'none', 1000)
+          }
+        } else {
+          let demands = res.data.data;
+          console.log(txt, demands, demands.length, 'page:', page);
+          let demand = this.data.demand;
+          console.log('加载数据', txt, demand)
+          if (demands.length != 0) {
+            if (res.data.success) {
+              if (demands.length != 0) {
+                showToast('加载数据中...', 'none', 500);
+                demand.push(...demands)
+                this.setData({
+                  [list]: demand,
+                  demandflag: false,
+                  municipal: [],
+                  loadflag: true,
+                  loadplay: false,
+                })
+              } else {
+                this.setData({
+                  demandflag: false,
+                  [dataflag]: false,
+                  //tiptxt: '我也是有底线的',
+                  //loadplay: true,
+                })
+
+              }
+            } else {
+              showToast(res.data.msg, 'none', 1000)
+            }
+          } else {
+            this.setData({
+              tiptxt: '我也是有底线的',
+              loadplay: true,
+            })
+            showToast('我也是有底线的', 'none', 1000)
+          }
+        }
+      }
     })
   },
 
   //平台显示各用户发布的需求
   request(val, fly, search, page) {
     let token = wx.getStorageSync('accessToken') || [];
+    // let demand = 'demand';
+    // let demandtxt = '已录取demand:';
+    // let demandwebsite = '/demand/getDemands';
+    // setTimeout(() => {
+    //   this.demand(val, fly, search, page, token, demandwebsite, demand, demandtxt)
+    // },500)
     if (page <= 1) {
       this.pageres1(val, fly, search, page, token)
     } else {
@@ -374,22 +471,30 @@ Page({
     this.setData({
       demandflag: true,
       demand: [],
+      municipal: [],
+      munitem: '区域',
       page: 2,
       loadplay: false,
     })
     this.TabCur(page, search, TabCurs)
+
+    wx.stopPullDownRefresh();
   },
 
   onReachBottom: function() {
-    let page = this.data.page++;
-    let search = this.data.search;
-    let TabCurs = this.data.TabCur;
-    if (search == undefined) {
-      let search = '';
-      this.TabCur(page, search, TabCurs)
-    } else {
-      this.TabCur(page, search, TabCurs)
+    let munitem = this.data.munitem;
+    if (munitem == '区域') {
+      let page = this.data.page++;
+      let search = this.data.search;
+      let TabCurs = this.data.TabCur;
+      if (search == undefined) {
+        let search = '';
+        this.TabCur(page, search, TabCurs)
+      } else {
+        this.TabCur(page, search, TabCurs)
+      }
     }
+
   },
 
   /* 用户点击右上角分享*/

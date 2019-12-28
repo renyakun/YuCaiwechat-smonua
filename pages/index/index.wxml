@@ -37,10 +37,10 @@
         </view>
       </scroll-view>
     </view>
-    <view class='action' style="color:{{colflag?'white':'black'}}" bindtap="showRegion">
+    <!-- <view class='action' style="color:{{colflag?'white':'black'}}" bindtap="showRegion">
       <text>{{munitem}}</text>
       <text class="cuIcon-{{regionicon}}"></text>
-    </view>
+    </view> -->
   </view>
 
   <block wx:if="{{Modalflag}}">

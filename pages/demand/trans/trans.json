@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "i-rate": "../../../colorui/dist/rate/index"
+    "i-rate": "../../../colorui/dist/rate/index",
+    "i-action-sheet": "../../../colorui/dist/action-sheet/index"
   }
 }

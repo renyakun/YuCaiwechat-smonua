@@ -168,6 +168,8 @@
     </view>
   </view>
 
+
+
 </scroll-view>
 
 <view class="cu-bar foot tabbar cur shop bgwhite" style="bottom:{{InputBottom}}px">
@@ -175,7 +177,7 @@
     <view class="cuIcon-home " style="color:#0081ff"></view>
     回首页
   </button>
-  <button class="action bgwhite" style="width:10vh" bindtap="tapshare">
+  <button class="action bgwhite" style="width:10vh" bindtap="handleOpen1">
     <view class="cuIcon-forward " style="color:#0081ff"></view>
     分享
   </button>
@@ -185,3 +187,5 @@
   </button>
   <view class="radius indigo shadow-blur flex justify-center align-center margin-right" style="width:15vh;height:5vh;color:white;font-size:2vh" bindtap="tappush">推送名片</view>
 </view>
+
+  <i-action-sheet visible="{{ visible1 }}" actions="{{ actions1 }}" show-cancel bind:cancel="handleCancel1" bind:click="handleClickItem1" />

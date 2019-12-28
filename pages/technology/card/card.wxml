@@ -11,7 +11,7 @@
 </view>
 
 <block wx:else>
-  <scroll-view scroll-y class="scrollPage" style="position:relative;margin-bottom:8vh">
+  <scroll-view scroll-y class="scrollPage bgwhite" style="position:relative;margin-bottom:8vh">
 
     <view class=" bgwhite" style="height:30vh;"></view>
 
@@ -26,11 +26,13 @@
           <view class="padding-left padding-top-sm" style="color:white;">期望职位：{{dreamPosition}}</view>
           <view class="padding-left padding-top-sm" style="color:white;display: {{label!=''?'':'none'}}">个人标签：{{label}}</view>
         </view>
-
+        <view class="margin-right margin-top" bindtap="techjump">
+          <text class="cuIcon-edit" style="color:white;font-size:3.5vh"></text>
+        </view>
       </view>
     </view>
 
-    <view class="radius padding-top-xl bgcyan" style="min-height:75vh;margin-top:-10vh;">
+    <view class="radius padding-top-xl bgcyan" style="min-height:80vh;margin-top:-10vh;">
 
       <view class="" style="margin-top:8vh;">
         <view class="bgwhite cu-card no-card shadow radius margin-left-xs margin-right-xs" style="display: {{profession==''&&education==''&&graduationTime==''&&school==''?'none':''}}">
@@ -102,9 +104,9 @@
 
   </scroll-view>
 
-  <view class="cu-bar foot tabbar cur shop bgwhite flex justify-around" style="bottom:{{InputBottom}}px;color:white">
+  <!-- <view class="cu-bar foot tabbar cur shop bgwhite flex justify-around" style="bottom:{{InputBottom}}px;color:white">
     <view class="radius indigo shadow-blur flex justify-center align-center margin-left" style="width:15vh;height:6vh;color:white;font-size:2vh" bindtap="techjump">编辑名片</view>
     <view class="radius indigo shadow-blur flex justify-center align-center margin-right" style="width:15vh;height:6vh;color:white;font-size:2vh" bindtap="tapjump">生成海报分享</view>
-  </view>
+  </view> -->
 
 </block>

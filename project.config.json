@@ -82,7 +82,7 @@
 					"id": 3,
 					"name": "需求",
 					"pathName": "pages/demand/trans/trans",
-					"query": "demandId=57",
+					"query": "demandId=60",
 					"scene": null
 				},
 				{
@@ -93,7 +93,7 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 5,
 					"name": "投递记录",
 					"pathName": "pages/record/record/record",
 					"query": "",

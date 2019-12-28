@@ -19,6 +19,10 @@ Page({
     loadplay: false,
   },
 
+  touchmove(){
+    return false;
+  },
+
   //关闭模拟框
   hideModal() {
     this.setData({
@@ -28,6 +32,7 @@ Page({
 
   //打开模态框
   tapjump(e) {
+    wx.stopPullDownRefresh();
     console.log(e.currentTarget.dataset.modal, e.currentTarget.dataset.message)
     let modalName = e.currentTarget.dataset.modal;
     let message = e.currentTarget.dataset.message;
@@ -37,101 +42,90 @@ Page({
     })
   },
 
-
-  //获取已录取列表 page:1
-  admission1(token, page) {
+  //获取已录取列表
+  demand(token, website, list, dataflag, txt, page) {
+    console.log(token, website, list, dataflag, txt, page)
     wx.request({
-      url: url + '/employment/workAdmission',
+      url: url + website,
       data: {
         accessToken: token,
-        page: page
+        page: page,
       },
       success: res => {
-        console.log('已录取列表:', res.data.data)
-        let demand = res.data.data;
-        if (res.data.success) {
-          if (demand.length != 0) {
-            setTimeout(() => {
-              this.setData({
-                admission: demand,
-                sionflag: true,
-                demandflag: false,
-                loadflag: true,
-              })
-            }, 500)
-          } else {
-            this.setData({
-              sionflag: false,
-              demandflag: true,
-              loadflag: false,
-            })
-          }
-        } else {
-          showToast(res.data.msg, 'none', 1000)
-        }
-      }
-    })
-  },
-
-  //获取已录取列表 page:++
-  admission2(token, page) {
-    wx.request({
-      url: url + '/employment/workAdmission',
-      data: {
-        accessToken: token,
-        page: page
-      },
-      success: res => {
-        let demands = res.data.data;
-        console.log('已录取列表:,page++', demands, page)
-        let demand = this.data.admission;
-        console.log('已录取列表:,page:1', demand)
-        if (res.data.data.length != 0) {
+        if (page <= 1) {
+          let demand = res.data.data;
+          console.log(txt, demand, demand.length, 'page:', page);
           if (res.data.success) {
-            if (demands.length != 0) {
-              showToast('加载数据中...', 'none', 800);
-              demand.push(...demands)
-              setTimeout(() => {
-                this.setData({
-                  admission: demand,
-                  sionflag: true,
-                  demandflag: false,
-                  loadflag: true,
-                  loadplay: false,
-                })
-              }, 1000)
+            if (demand.length != 0) {
+              this.setData({
+                [list]: demand,
+                [dataflag]: true,
+                demandflag: false,
+              })
             } else {
               this.setData({
-                sionflag: false,
-                demandflag: true,
+                demandflag: false,
+                [dataflag]: false,
               })
             }
           } else {
             showToast(res.data.msg, 'none', 1000)
           }
         } else {
-          this.setData({
-            tiptxt: '我也是有底线的',
-            loadplay: true,
-          })
-          showToast('我也是有底线的', 'none', 1000)
+          let demands = res.data.data;
+          console.log(txt, demands, demands.length, 'page:', page);
+          let demand = this.data.admission;
+          console.log('加载数据', txt, demand)
+          if (demands.length != 0) {
+            if (res.data.success) {
+              if (demands.length != 0) {
+                showToast('加载数据中...', 'none', 500);
+                demand.push(...demands)
+                this.setData({
+                  [list]: demand,
+                  [dataflag]: true,
+                  demandflag: false,
+                  loadplay: false,
+                })
+              } else {
+                this.setData({
+                  demandflag: false,
+                  [dataflag]: false,
+                })
+              }
+            } else {
+              showToast(res.data.msg, 'none', 1000)
+            }
+          } else {
+            this.setData({
+              tiptxt: '我也是有底线的',
+              loadplay: true,
+            })
+          }
+
+
         }
+
       }
     })
   },
 
+
   //获取已录取列表
   request(page) {
     let token = wx.getStorageSync('accessToken') || [];
-    if (page <= 1) {
-      this.admission1(token, page)
-    } else {
-      this.admission2(token, page)
-    }
+
+    let admission = 'admission';
+    let siontxt = '已录取admission:';
+    let sionwebsite = '/employment/workAdmission';
+    let dataflag = 'sionflag';
+    setTimeout(() => {
+      this.demand(token, sionwebsite, admission, dataflag, siontxt, page)
+    }, 500)
   },
 
   onLoad: function(options) {
-    let page = this.data.page-1;
+    let page = this.data.page - 1;
     this.request(page)
   },
 
@@ -167,8 +161,10 @@ Page({
       admission: [],
       demandflag: true,
     })
-    let page = this.data.page-1;
+    let page = this.data.page - 1;
     this.request(page)
+
+    wx.stopPullDownRefresh();
   },
 
   /**

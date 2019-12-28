@@ -4,7 +4,7 @@
   <view slot="content" class="margin-top-xs">录取消息</view>
 </cu-custom>
 <!--  -->
-<scroll-view scroll-y class="scrollPage {{loadplay?'':'padding-bottom'}} " scrollTop="{{scrollTop}}">
+<scroll-view scroll-y class="scrollPage {{loadplay?'':'padding-bottom'}} " scrollTop="{{scrollTop}}" >
 
   <!-- 加载动画 -->
   <view class="bg-white" style="" wx:if="{{demandflag}}" style="height:100vh">
@@ -33,19 +33,19 @@
       </view>
     </view>
 
-    <view class="margin-top-xl" wx:if="{{loadflag}}" style="display:{{loadplay?'':'none'}}">
-      <i-load-more tip="{{tiptxt}}" loading="{{ false }}" />
-    </view>
-
     <view class="padding-top-xl bgwhite flex justify-center" wx:else style="width:100%">
       <image src="http://www.yucai-sz.com:8079/imgs/front/images/nodata.jpg" mode="aspectFit"></image>
+    </view>
+
+    <view class="margin-top-xl" style="display:{{loadplay?'':'none'}}">
+      <i-load-more tip="{{tiptxt}}" loading="{{ false }}" />
     </view>
 
   </block>
 </scroll-view>
 
 
-<view class="cu-modal bottom-modal {{modalName=='showModal'?'show':''}}" bindtap="hideModal">
+<view class="cu-modal bottom-modal {{modalName=='showModal'?'show':''}}" bindtap="hideModal" catchtouchmove="touchmove">
   <view class="cu-dialog">
     <view class="cu-bar bgwhite justify-end">
       <view class="content">录取信息</view>
@@ -53,17 +53,13 @@
         <text class="cuIcon-close text-red"></text>
       </view>
     </view>
-
-    <form bindsubmit='formSubmit'>
-      <view class=" ">
-        <view class="cu-form-group bggray cu-card no-card" style="background:rgba(0,0,0,.1);">
-          <view class="flex align-end margin-bottom-xs " style="width:100%;">
-            <textarea auto-height name="message" value="{{message}}" maxlength="500" style="color:#8799a3;text-align:justify;word-spacing:20rpx;line-height:2vh"></textarea>
-          </view>
+    <view class=" ">
+      <view class="cu-form-group bggray cu-card no-card" style="background:rgba(0,0,0,.1);">
+        <view class="flex align-end margin-bottom-xs " style="width:100%;">
+          <textarea name="message" value="{{message}}" maxlength="500" style="color:#8799a3;text-align:justify;word-spacing:20rpx;line-height:2vh"></textarea>
         </view>
-
       </view>
 
-    </form>
+    </view>
   </view>
 </view>
