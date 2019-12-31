@@ -19,77 +19,35 @@ Page({
     let id = parseInt(e.currentTarget.dataset.id);
     console.log(id);
     switch (id) {
-      case 1:
-        //投递邀请
+      case 1: //投递邀请
         navigateTo('/pages/tidings/messageInfo/messageInfo?id=1')
-        return;
+        break;
       case 2: //面试邀请(待面试)
         navigateTo('/pages/record/record/record?id=2')
-        return;
+        break;
       case 3: //评论消息
         navigateTo('/pages/record/record/record?id=3')
-        return;
+        break;
       case 4: //录取消息
         navigateTo('/pages/tidings/admission/admission')
-        //showToast('即将上线，敬请期待!', 'none', 1000)
-        return;
+        break;
+      case 5: //完成消息
+        navigateTo('/pages/tidings/finish/finish')
+        break;
       default:
-        navigateTo('/pages/tidings/messageInfo/messageInfo?id=1')
+        break;
     }
   },
 
-  // 清空数据评论消息的数据
-  emptytap(e) {
-    let id = parseInt(e.currentTarget.dataset.target) - 1;
-    console.log(e.currentTarget.dataset.target);
-    let badge = `newslist[${id}].badge`;
-    let notice = `newslist[${id}].notice`;
-    this.setData({
-      [notice]: '',
-      [badge]: 0
-    })
-  },
 
-
-
-  // 请求投递邀请消息数据,设置消息条数显示
-  request() {
-    let accessToken = wx.getStorageSync('accessToken') || [];
-    // 发送请求,获取后台数据
-    wx.request({
-      url: url + '/technology/myAcceptDemands',
-      data: {
-        accessToken: accessToken,
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: (res) => {
-        // this.setData({
-        //   messageList: res.data.data
-        // })
-        console.log(res)
-        if (res.data.success) {
-          // let badge = 'newslist[4].badge';
-          // this.setData({
-          //   [badge]: res.data.data.length
-          // })
-        } else {
-          showToast(res.data.msg, 'none', 1000)
-        }
-      }
-    })
-  },
-
-  onLoad: function(options) {
-    
-  },
+  onLoad: function(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    this.request();
+
+
   },
 
   /**
@@ -118,6 +76,7 @@ Page({
    */
   onPullDownRefresh: function() {
     this.onLoad()
+    wx.stopPullDownRefresh();
   },
 
   /**

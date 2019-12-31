@@ -308,6 +308,7 @@ Page({
 
   onPullDownRefresh: function() {
     this.onReady()
+    wx.stopPullDownRefresh();
   },
 
 

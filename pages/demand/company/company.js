@@ -17,7 +17,7 @@ Page({
     loadflag: true, //没有数据图片显示标志 true不显示
     src: '../../../images/icon/company.png',
     tiptxt: '公司介绍',
-    swiperList: ['https://image.weilanwl.com/gif/loading-1.gif',]
+    swiperList: ['https://image.weilanwl.com/gif/loading-1.gif', ]
   },
 
   scale() {
@@ -128,7 +128,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    wx.stopPullDownRefresh();
   },
 
   /**

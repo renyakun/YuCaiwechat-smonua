@@ -165,27 +165,6 @@ App({
       id: 3,
       nav: '评论'
     }],
-    swiperList: [{
-      id: 0,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg',
-    }, {
-      id: 1,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
-    }, {
-      id: 2,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg',
-    }, {
-      id: 3,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg',
-    }, {
-      id: 4,
-      type: 'image',
-      url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg',
-    }],
     ctionList: [{
       id: 1,
       icon: 'service',
@@ -223,6 +202,10 @@ App({
     }, {
       id: 4,
       name: '录取消息通知',
+      icon: 'message',
+    }, {
+      id: 5,
+      name: '完成消息通知',
       icon: 'message',
     }],
     recordlist: [{

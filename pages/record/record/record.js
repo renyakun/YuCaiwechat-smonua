@@ -19,10 +19,17 @@ Page({
     TabCur: 1,
     scrollLeft: 0,
     scrollTop: 0,
+    spin: false,
     recordlist: app.globalData.recordlist,
     wholeflag: true,
     interflag: true,
     page: 2,
+    wholelist: [],
+    sendlist: [],
+    evaldemand: [],
+    inprolist: [],
+    sionlist: [],
+    finishlist: [],
   },
 
   //tab跳转
@@ -37,7 +44,6 @@ Page({
   //需求详情跳转
   Seedels(e) {
     let demandId = e.currentTarget.dataset.target;
-    //console.log(demandId);
     wx.navigateTo({
       url: '/pages/demand/trans/trans?demandId=' + demandId,
     });
@@ -72,39 +78,31 @@ Page({
     });
   },
 
-  //获取不合适列表
-  inprolist(token) {
-    wx.request({
-      url: url + '/technology/inappropriate',
-      data: {
-        accessToken: token
-      },
-      success: res => {
-        console.log('不合适:', res.data.data)
-        let demand = res.data.data;
-        if (res.data.success) {
-          if (demand.length != 0) {
-            this.setData({
-              inprolist: [...demand],
-              inproflag: true,
-              demandflag: false,
-            })
-          } else {
-            this.setData({
-              inproflag: false,
-              demandflag: false,
-            })
-          }
-        } else {
-          showToast(res.data.msg, 'none', 1000)
-        }
-      }
+  //刷新
+  btnspin() {
+    pageScrollTo(0, 500);
+    let spin = this.data.spin;
+    let page = 1;
+    this.setData({
+      spin: true,
+      demandflag: true,
+      page: 2
     })
+    let token = wx.getStorageSync('accessToken') || '';
+    setTimeout(() => {
+      this.request(page)
+      setTimeout(() => {
+        this.setData({
+          spin: false
+        })
+      }, 3900)
+
+    }, 1000)
+
   },
 
   //获取投递记录列表
   demand(token, website, list, dataflag, txt, page) {
-    console.log(token, website, list, dataflag, txt, page)
     wx.request({
       url: url + website,
       data: {
@@ -148,6 +146,12 @@ Page({
             case 'inprolist':
               demand = this.data.inprolist;
               break;
+            case 'sionlist':
+              demand = this.data.sionlist;
+              break;
+            case 'finishlist':
+              demand = this.data.finishlist;
+              break;
             default:
               demand = [];
           }
@@ -172,7 +176,7 @@ Page({
               showToast(res.data.msg, 'none', 1000)
             }
           } else {
-            
+
           }
 
 
@@ -183,7 +187,7 @@ Page({
   },
 
   request(page) {
-    let token = wx.getStorageSync('accessToken') || [];
+    let token = wx.getStorageSync('accessToken') || '';
     let wholelist = 'wholelist';
     let wholetxt = '全部列表wholelist:';
     let wholewebsite = '/technology/mySendBusinessCard';
@@ -193,6 +197,11 @@ Page({
     let sendtxt = '待面试sendlist:';
     let sendwebsite = '/invitation/myAcceptInvitation';
     let dataflag2 = 'sendflag';
+
+    // let finishlist = 'finishlist';
+    // let finishtxt = '已完成finishlist:';
+    // let finishwebsite = '/employment/workAFinish';
+    // let dataflag4 = 'finishflag';
 
     let evaldemand = 'evaldemand';
     let evaltxt = '已评价evaldemand:';
@@ -223,7 +232,7 @@ Page({
         scrollLeft: (id - 1) * 60,
       })
     }
-    let page = this.data.page - 1;
+    let page = 1;
     this.request(page)
 
   },
@@ -248,17 +257,13 @@ Page({
   },
 
   onPullDownRefresh: function() {
-    this.setData({
-      demandflag: true,
-    })
-    let options = {
-      id: this.data.TabCur
-    }
-    this.onLoad(options)
+    this.btnspin()
+    wx.stopPullDownRefresh();
   },
 
 
   onReachBottom: function() {
+
     let page = this.data.page++;
     this.request(page)
   },

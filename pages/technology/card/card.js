@@ -103,7 +103,6 @@ Page({
 
   },
 
-
   // 绘制画布实现
   canvansWrite(user) {
 
@@ -263,8 +262,6 @@ Page({
     }, 500)
   },
 
-
-  /* 生命周期函数--监听页面加载*/
   onLoad: function (options) {
     console.log(options);
     const scene = decodeURIComponent(options.scene);
@@ -321,6 +318,7 @@ Page({
 
   onPullDownRefresh: function () {
     this.onReady()
+    wx.stopPullDownRefresh();
   },
 
 })

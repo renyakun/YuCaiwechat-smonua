@@ -5,6 +5,7 @@
     "pages/tidings/tidings/tidings",
     "pages/tidings/messageInfo/messageInfo",
     "pages/tidings/admission/admission",
+    "pages/tidings/finish/finish",
     "pages/demand/trans/trans",
     "pages/demand/morejobs/morejobs",
     "pages/demand/company/company",
@@ -16,6 +17,7 @@
     "pages/record/details/details",
     "pages/logs/logs",
     "pages/tempf/tempf"
+    
   ],
   "permission": {
     "scope.userLocation": {

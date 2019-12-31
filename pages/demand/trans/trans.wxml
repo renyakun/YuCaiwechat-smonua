@@ -1,4 +1,9 @@
 <!-- pages/demand/trans/trans.wxml -->
+<!-- <canvas canvas-id="myCanvas" style='width:{{canvasWidth}}px; height:{{canvasHeight}}px;position:fixed;top: -10000px;'></canvas> -->
+
+<!-- <canvas class='myCanvas' canvas-id="myCanvas" disable_scroll/> -->
+
+
 <cu-custom isBack="{{true}}">
   <view slot="backText">返回</view>
   <view slot="content" class="margin-top-xs">需求详情</view>
@@ -177,7 +182,8 @@
     <view class="cuIcon-home " style="color:#0081ff"></view>
     回首页
   </button>
-  <button class="action bgwhite" style="width:10vh" bindtap="handleOpen1">
+  <!-- bindtap="onShareAppMessage" -->
+  <button class="action bgwhite" style="width:10vh"   bindtap="handleOpen">
     <view class="cuIcon-forward " style="color:#0081ff"></view>
     分享
   </button>
@@ -188,4 +194,4 @@
   <view class="radius indigo shadow-blur flex justify-center align-center margin-right" style="width:15vh;height:5vh;color:white;font-size:2vh" bindtap="tappush">推送名片</view>
 </view>
 
-  <i-action-sheet visible="{{ visible1 }}" actions="{{ actions1 }}" show-cancel bind:cancel="handleCancel1" bind:click="handleClickItem1" />
+  <i-action-sheet visible="{{ visible }}" actions="{{ actions }}" show-cancel bind:cancel="handleCancel" bind:click="handleClickItem" />

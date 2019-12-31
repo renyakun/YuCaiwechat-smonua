@@ -190,5 +190,6 @@ Page({
   //下拉刷新
   onPullDownRefresh: function() {
     this.onLoad()
+    wx.stopPullDownRefresh();
   },
 })

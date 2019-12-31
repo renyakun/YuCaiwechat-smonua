@@ -4,6 +4,10 @@
   <view slot="content" class="margin-top-xs">投递记录</view>
 </cu-custom>
 
+<button class="cu-btn indigo round shadow-blur" style="width:5.65vh;height:5vh;z-index:9; position: fixed;top:92.5%;left:85%" bindtap="btnspin">
+  <text class="cuIcon-loading1 {{spin?'iconfont-spin':''}}" style="color:white"></text>
+</button>
+
 <scroll-view scroll-y class="scrollPage" scrollTop="{{scrollTop}}">
 
   <view class="cu-bar search  fixed bgwhite shadow-blur" style="height:9vh;top:10vh;">
@@ -92,8 +96,38 @@
 
           </block>
 
-          <!-- 已评价 -->
+          <!-- 不合适 -->
           <block wx:elif="{{item.id== 3}}">
+
+            <view class="margin-top " wx:if="{{sionflag}}">
+              <view class="cu-bar cu-card no-card bg-blue radius shadow margin-top-sm margin-left-xs margin-right-xs flex justify-center" wx:for="{{sionlist}}" wx:key="id" data-id="{{item.id}}">
+                <view class="bg-white radius padding-top padding-bottom" style="width:99.5%;">
+                  <view class="flex flex-wrap align-end">
+                    <view class="padding-left text-bold text-blue">{{item.demandHistroy.jobName}}</view>
+                  </view>
+                  <view class="flex flex-wrap margin-top-sm">
+                    <view class="padding-left">{{item.demandHistroy.jobType}} | {{item.demandHistroy.ageRequire}} | {{item.demandHistroy.releaseType}}认证</view>
+                  </view>
+                  <view class="flex flex-wrap margin-top-sm">
+                    <view class="padding-left text-cut" style="width:90%">
+                      <text class="text-bold">
+                        <text class="cuIcon-locationfill text-blue text-df margin-right-xs">工作地点：</text>
+                      </text>
+                      {{item.demandHistroy.city}}
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+
+            <view class="padding-top-xl bgwhite flex justify-center" wx:else style="width:100%">
+              <image src="http://www.yucai-sz.com:8079/imgs/front/images/nodata.jpg" mode="aspectFit"></image>
+            </view>
+
+          </block>
+
+          <!-- 已评价 -->
+          <!-- <block wx:elif="{{item.id== 5}}">
 
             <view class="margin-top " wx:if="{{evalflag}}">
               <view class="cu-list menu-avatar comment solids-bottom" wx:for="{{evaldemand}}" wx:key="id">
@@ -110,24 +144,23 @@
                       </view>
                     </view>
                     <view class="text-black text-content text-df">{{item.message}}</view>
-                    <!-- if have show -->
                     <view class="bg-grey padding-sm radius margin-top-sm  text-sm" wx:if="{{item.replyMessage}}">
                       <view class="flex">
                         <view>{{item.acceptName}}：</view>
                         <view class="flex-sub">{{item.replyMessage}}</view>
                       </view>
                     </view>
-                    <!-- <view class="bg-grey padding-sm radius margin-top-sm  text-sm" wx:else>
+                     <view class="bg-grey padding-sm radius margin-top-sm  text-sm" wx:else>
                         <view class="flex">
                           <view>暂时没有回复</view>
                         </view>
-                      </view> -->
+                      </view> 
                     <view class="margin-top-sm flex justify-between">
                       <view class="text-gray text-df">{{item.createTime}}</view>
-                      <!-- <view>
+                      <view>
                           <text class="cuIcon-appreciatefill text-red"></text>
                           <text class="cuIcon-messagefill text-gray margin-left-sm"></text>
-                        </view> -->
+                        </view> 
                     </view>
                   </view>
                 </view>
@@ -138,10 +171,10 @@
               <image src="http://www.yucai-sz.com:8079/imgs/front/images/nodata.jpg" mode="aspectFit"></image>
             </view>
 
-          </block>
+          </block> -->
 
           <!-- 不合适 -->
-          <block wx:else>
+          <block wx:elif="{{item.id== 4}}">
 
             <view class="margin-top " wx:if="{{inproflag}}">
               <view class="cu-bar cu-card no-card bg-blue radius shadow margin-top-sm margin-left-xs margin-right-xs flex justify-center" wx:for="{{inprolist}}" wx:key="id" data-id="{{item.id}}">
