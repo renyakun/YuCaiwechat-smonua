@@ -17,7 +17,7 @@ Page({
   // 点击消息框,查看按钮,实现跳转
   cussjump(e) {
     let id = parseInt(e.currentTarget.dataset.id);
-    console.log(id);
+    //console.log(id);
     switch (id) {
       case 1: //投递邀请
         navigateTo('/pages/tidings/messageInfo/messageInfo?id=1')
@@ -26,13 +26,16 @@ Page({
         navigateTo('/pages/record/record/record?id=2')
         break;
       case 3: //评论消息
-        navigateTo('/pages/record/record/record?id=3')
+        //navigateTo('/pages/record/record/record?id=3')
+        showToast('即将上线，敬请期待!', 'none', 1000)
         break;
       case 4: //录取消息
-        navigateTo('/pages/tidings/admission/admission')
+        //navigateTo('/pages/tidings/admission/admission')
+        showToast('即将上线，敬请期待!', 'none', 1000)
         break;
       case 5: //完成消息
-        navigateTo('/pages/tidings/finish/finish')
+        //navigateTo('/pages/tidings/finish/finish')
+        showToast('即将上线，敬请期待!', 'none', 1000)
         break;
       default:
         break;

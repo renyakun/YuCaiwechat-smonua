@@ -62,7 +62,7 @@ Page({
             imgList: res.tempFilePaths
           })
         }
-        //console.log(res.tempFilePaths[0])
+        console.log(res.tempFilePaths[0])
         this.getFileSystemManager(res.tempFilePaths[0])
       }
     });
@@ -108,11 +108,17 @@ Page({
     let experience = e.detail.value.experience;
     let label = e.detail.value.label;
     let description = e.detail.value.description;
-    let avatar = this.data.imgbase;
+    let imgList = this.data.imgList;
+    let imgbase = this.data.imgbase;
+    let avatar ='';
+    if (imgbase != undefined){
+      avatar = imgbase;
+    }else{
+      avatar = imgList[0];
+    }
     //console.log(avatar, realName, age, sex, dreamPosition, mobile, email, profession, education, graduationTime, school, experience, label, description);
     console.log( realName, age, sex, dreamPosition, mobile, email);
-    console.log(typeof(age))
-    if (realName == "" || sex == "" || dreamPosition == "" || mobile == "" || email == "" || age == "" || avatar == undefined) {
+    if (realName == "" || age == ""  || sex == "" || dreamPosition == "" || mobile == "" || avatar == undefined) {
       showToast('请输入完整信息！', 'none', 1000)
     } else {
       wx.request({
@@ -191,15 +197,15 @@ Page({
 
 
   onReady: function() {
-    // showToast('正在获取头像...','loading',3000)
-    // setTimeout(() => {
-    //   let avatarUrl = wx.getStorageSync('unionId').avatarUrl || '';
-    //   //console.log(avatarUrl)
-    //   let img = 'imgList[0]'
-    //   this.setData({
-    //     [img]: avatarUrl
-    //   })
-    // }, 3500)
+   showToast('正在获取头像...','loading',500)
+    setTimeout(() => {
+      let avatarUrl = wx.getStorageSync('unionId').avatarUrl || '';
+      //console.log(avatarUrl)
+      let img = 'imgList[0]'
+      this.setData({
+        [img]: avatarUrl
+      })
+    }, 800)
   },
 
   /**

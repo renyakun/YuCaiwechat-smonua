@@ -93,7 +93,6 @@
         </view>
         <!--bindtap="teltap"  -->
         <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
-          <text class="bgorange padding-left-xs padding-right-xs radius shadow text-xs" style="color:white">必填</text>
           <view class="title margin-left-xs">邮箱</view>
           <input name="email"></input>
         </view>

@@ -35,24 +35,27 @@ Page({
       name: '生成海报分享',
       icon: 'share'
     }],
-    avatar:'/../../images/timg.jpg'
+    avatar: '/../../images/timg.jpg'
   },
 
+  touchmove() {
+    return false;
+  },
 
   // 获取屏幕宽高
   getDevInfo() {
     let that = this;
     wx.getSystemInfo({
-      success: function (res) {
+      success: function(res) {
         that.setData({
-          canvasWidth: res.windowWidth,//设置宽高为屏幕宽，高为屏幕高减去50
+          canvasWidth: res.windowWidth, //设置宽高为屏幕宽，高为屏幕高减去50
           canvasHeight: res.windowHeight
         })
       },
     })
   },
 
-  getBase64Data: function () {
+  getBase64Data: function() {
     let str = this.data.imgavatar.toString();
     let str1 = str.substring(22);
     return str1;
@@ -81,9 +84,12 @@ Page({
     });
     promise.then(res => {
       console.log(res);
-      let data = { user: userInfo, avarUrl: res }
+      let data = {
+        user: userInfo,
+        avarUrl: res
+      }
       this.canvansWrite(data);
-      setTimeout(function () {
+      setTimeout(function() {
         that.previewImg();
       }, 3500)
     }, err => {
@@ -131,8 +137,8 @@ Page({
     // 6.绘制用户名称
     let nickName = user.user.realName;
     console.log(nickName);
-    let nickLen = nickName.toString().length;// 用户名长度
-    let max_nickname_width = nickLen * 15;//一个汉字的宽度为15,获取文字总宽度
+    let nickLen = nickName.toString().length; // 用户名长度
+    let max_nickname_width = nickLen * 15; //一个汉字的宽度为15,获取文字总宽度
 
     ctx.setFillStyle('#ffffff'); // 文字颜色
     ctx.setFontSize(15); // 文字字号
@@ -142,8 +148,8 @@ Page({
     // 7.绘制描述文字
     let des = '扫码查看招聘需求';
     console.log(nickName);
-    let desLen = des.toString().length;// 用户名长度
-    let max_des_width = desLen * 15;//一个汉字的宽度为10,获取文字总宽度
+    let desLen = des.toString().length; // 用户名长度
+    let max_des_width = desLen * 15; //一个汉字的宽度为10,获取文字总宽度
 
     ctx.setFillStyle('#ffffff');
     ctx.setFontSize(15);
@@ -156,20 +162,20 @@ Page({
       twoImg_heigth = data.wid * 0.2, //绘制的二维码高度
       twoImg_x = data.wid / 2 - avatarurl_width / 2, //绘制的头像在画布上的位置
       twoImg_y = 36;
-    ctx.save();   //
+    ctx.save(); //
     ctx.beginPath();
 
     ctx.arc(avatarurl_width / 2 + avatarurl_x, data.height * 0.66 + twoImg_heigth / 2, avatarurl_width / 2, 0, Math.PI * 2, false);
     ctx.clip();
     ctx.drawImage('/images/TwoImg2.png', avatarurl_x, data.height * 0.66, avatarurl_width, avatarurl_heigth);
     ctx.restore();
-    ctx.draw(false, function () {
+    ctx.draw(false, function() {
       console.info('绘制成功');
-      setTimeout(function () {
+      setTimeout(function() {
         wx.canvasToTempFilePath({
           canvasId: 'myCanvas',
           quality: '1',
-          success: function (res) {
+          success: function(res) {
             let tempFilePath = res.tempFilePath;
             that.setData({
               imagePath: tempFilePath,
@@ -177,7 +183,7 @@ Page({
             });
             console.log("图片下载到临时文件夹了")
           },
-          fail: function (res) {
+          fail: function(res) {
             console.log(res);
           }
         }, that);
@@ -254,20 +260,88 @@ Page({
             navigateTo('/pages/record/record/record')
           }, 1000)
         } else {
-          showToast(res.data.msg, 'none', 800)
           if (res.data.msg == '您还未制作个人名片,立即制作专属名片，让更多人与您合作吧') {
             setTimeout(() => {
-              navigateTo('/pages/technology/add/add')
+              let falg = true;
+              this.tapjump(falg)
             }, 1000)
           } else if (res.data.msg == '您已经推送过了，【需求方】有意向会尽早联系您') {
+            showToast(res.data.msg, 'none', 800)
             setTimeout(() => {
               navigateTo('/pages/record/record/record')
+            }, 1000)
+          } else if (res.data.msg == '您的名片已关闭，开启后才能推送哦') {
+            setTimeout(() => {
+              let falg = false;
+              this.tapjump(falg)
             }, 1000)
           }
 
         }
 
       },
+    })
+  },
+
+  //打开模态框
+  tapjump(falg) {
+    let modalName = 'showModal';
+    this.setData({
+      modalName: modalName,
+      modalfalg: falg
+    })
+    if (falg) {
+      this.setData({
+        modalfalg:'addjump',
+        modaltxt: '您还未制作个人名片，制作名片后让更多人/企业发现您，获得更多合作机会',
+        btntxt: '确认'
+      })
+    } else {
+      this.setData({
+        modalfalg: 'checkflag',
+        modaltxt: '您的名片已关闭,是否要开启',
+        btntxt: '开启'
+      })
+    }
+  },
+
+  //关闭模拟框
+  hideModal() {
+    this.setData({
+      modalName: null
+    })
+  },
+
+  checkflag() {
+    console.log('已关闭，要开启');
+    this.reqchkflag(1);
+    this.hideModal();
+  },
+
+  addjump(){
+    navigateTo('/pages/technology/add/add')
+  },
+
+  //开启、关闭名片
+  reqchkflag(flagnum) {
+    let accessToken = wx.getStorageSync('accessToken') || [];
+    wx.request({
+      url: url + '/technology/changeMyBusinessCard',
+      data: {
+        accessToken: accessToken,
+        flag: flagnum
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      success: res => {
+        //console.log(res)
+        if (res.data.success) {
+          showToast(res.data.data, 'success', 1000)
+        } else {
+          showToast(res.data.msg, 'none', 1000)
+        }
+      }
     })
   },
 
@@ -314,10 +388,12 @@ Page({
           if (demanditem.label != '') {
             let label = demanditem.label.split(",")
             this.setData({
-              demanditem: demanditem,
               label: label
             })
           }
+          this.setData({
+            demanditem: demanditem,
+          })
         } else {
           showToast(res.data.msg, 'none', 1000)
         }
@@ -399,6 +475,10 @@ Page({
                 this.setData({
                   [oneImage]: details.oneImage,
                 })
+              }else{
+                this.setData({
+                  [oneImage]: 'http://www.yucai-sz.com:8079/imgs/front/images/nodata.jpg',
+                })
               }
               if (details.twoImage != null) {
                 this.setData({
@@ -421,6 +501,10 @@ Page({
                 })
               }
             }
+          }else{
+            this.setData({
+              [oneImage]: 'http://www.yucai-sz.com:8079/imgs/front/images/nodata.jpg',
+            })
           }
         }
       })
@@ -458,11 +542,14 @@ Page({
     });
   },
 
-  handleClickItem({detail}) {
+  handleClickItem({
+    detail
+  }) {
     const index = detail.index + 1;
-    if (index==2){
-      console.log('index:',index)
-      this.tapjump()
+    if (index == 2) {
+      //console.log('index:',index)
+      //this.tapjump()
+      showToast('即将上线，敬请期待!', 'none', 1000)
     }
 
   },
@@ -498,10 +585,10 @@ Page({
     // this.getFileSystemManager(url)
     var my_carvas = wx.createCanvasContext('myCanvas', this) //1.创建carvas实例对象，方便后续使用。
     my_carvas.setStrokeStyle('red') //设置边框颜色。
-    my_carvas.moveTo(20, 100)  //设置绘画路线的起点 （20,100）>>>（当前画布对象的 x 轴，当前画布对象的 y 轴）
-    my_carvas.lineTo(120, 100)  //增加一个新点，然后创建一条从上次指定点到目标点的线。（120,100）>>>（当前画布对象的 x 轴，当前画布对象的 y 轴)
-    my_carvas.stroke()  //画出当前路径的边框。默认颜色色为黑色。
-    my_carvas.draw()   //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
+    my_carvas.moveTo(20, 100) //设置绘画路线的起点 （20,100）>>>（当前画布对象的 x 轴，当前画布对象的 y 轴）
+    my_carvas.lineTo(120, 100) //增加一个新点，然后创建一条从上次指定点到目标点的线。（120,100）>>>（当前画布对象的 x 轴，当前画布对象的 y 轴)
+    my_carvas.stroke() //画出当前路径的边框。默认颜色色为黑色。
+    my_carvas.draw() //将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中。
 
   },
 

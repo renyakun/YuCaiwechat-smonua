@@ -23,47 +23,6 @@ Page({
     imgList: [],
   },
 
-  //获取名片详情
-  reqchkflag(flagnum) {
-    let accessToken = wx.getStorageSync('accessToken') || [];
-    wx.request({
-      url: url + '/technology/changeMyBusinessCard',
-      data: {
-        accessToken: accessToken,
-        flag: flagnum
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: res => {
-        //console.log(res)
-        if (res.data.success) {
-          showToast(res.data.data, 'success', 1000)
-        } else {
-          showToast(res.data.msg, 'none', 1000)
-        }
-      }
-    })
-  },
-
-  //名片开关
-  checkflag(e) {
-    let flag = e.detail.value;
-    if (flag) {
-      this.setData({
-        chkflag: flag,
-        flagtxt: '已开启'
-      })
-      this.reqchkflag(1);
-    } else {
-      this.setData({
-        chkflag: flag,
-        flagtxt: '已关闭'
-      })
-      this.reqchkflag(0);
-    }
-  },
-
   //更多信息
   dishow() {
     this.setData({
@@ -150,7 +109,7 @@ Page({
     let label = e.detail.value.label;
     let description = e.detail.value.description;
     let avatar = this.data.imgbase;
-    if (realName == "" || sex == "" || dreamPosition == "" || mobile == "" || email == "" || age == "") {
+    if (realName == "" || sex == "" || dreamPosition == "" || mobile == ""|| age == "") {
       showToast('请输入完整信息！', 'none', 1000)
     } else {
       console.log(realName, age, sex, dreamPosition, mobile, email, profession, education, graduationTime, school, experience, label, description);
@@ -254,34 +213,6 @@ Page({
             })
           } else {
             showToast(res.data.msg, 'none', 1000)
-          }
-        }
-      })
-      wx.request({
-        url: url + '/technology/checkMyBusinessCard',
-        data: {
-          accessToken: token,
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: res => {
-          //console.log(res)
-          if (res.data.success) {
-            wx.hideLoading();
-            if (res.data.data) {
-              this.setData({
-                chkflag: res.data.data,
-                flagtxt: '已开启'
-              })
-            } else {
-              this.setData({
-                chkflag: res.data.data,
-                flagtxt: '已关闭'
-              })
-            }
-          } else {
-            showToast(res.data.msg, 'none',1000)
           }
         }
       })

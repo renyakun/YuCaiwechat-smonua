@@ -12,11 +12,11 @@
 <scroll-view scroll-y class="scrollPage" style="position:relative;margin-bottom:8vh">
   <view class="cu-bar bgwhite solid-bottom">
     <view class='action'>
-      <text class='cuIcon-titles' style="color:#0081ff"></text>我的名片({{flagtxt}})
+      <text class='cuIcon-titles' style="color:#0081ff"></text>我的名片
     </view>
-    <view class='action'>
+    <!-- <view class='action'>({{flagtxt}})
       <switch class='sm' checked='{{chkflag}}' bindchange='checkflag'></switch>
-    </view>
+    </view> -->
   </view>
 
   <view class="margin-top-xs margin-left-xs margin-right-xs">
@@ -95,7 +95,6 @@
         </view>
         <!--bindtap="teltap"  -->
         <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
-          <text class="bgorange padding-left-xs padding-right-xs radius shadow text-xs" style="color:white">必填</text>
           <view class="title margin-left-xs">邮箱</view>
           <input name="email" value="{{email}}"></input>
         </view>

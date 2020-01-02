@@ -308,8 +308,8 @@ Page({
    */
   onShareAppMessage: function() {
     return {
-      title: '名片详情',
-      imageUrl: 'https://file.iviewui.com/iview-weapp-logo.png'
+      title: '需求详情',
+      imageUrl: '../../../images/123456.jpg'
     };
   }
 })

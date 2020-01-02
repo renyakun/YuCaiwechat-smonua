@@ -16,6 +16,18 @@ Page({
     txtput: 0
   },
 
+  touchmove() {
+    return false;
+  },
+
+  //需求详情跳转
+  Seedels() {
+    let demandId = this.data.demandId;
+    wx.navigateTo({
+      url: '/pages/demand/trans/trans?demandId=' + demandId,
+    });
+  },
+
   //关闭模拟框
   hideModal() {
     this.setData({

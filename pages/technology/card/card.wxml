@@ -1,6 +1,4 @@
 <!--pages/technology/mycard/card.wxml-->
-<canvas canvas-id="myCanvas" style='width:{{canvasWidth}}px; height:{{canvasHeight}}px;position:fixed;top: -10000px;'></canvas>
-
 <cu-custom isCustom="{{true}}" isBack="{{false}}">
   <view slot="backText">返回</view>
   <view slot="content" class="margin-top-xs">个人主页</view>
@@ -11,7 +9,7 @@
 </view>
 
 <block wx:else>
-  <scroll-view scroll-y class="scrollPage bgwhite" style="position:relative;margin-bottom:8vh">
+  <scroll-view scroll-y class="scrollPage bgwhite" style="position:relative;">
 
     <view class=" bgwhite" style="height:30vh;"></view>
 
@@ -21,18 +19,17 @@
           <view class="margin-top ">
             <image src='{{avatar}}' mode='aspectFit' class="cu-avatar round solids xl"></image>
           </view>
-          <view class="padding-left-xl padding-top-sm" style="color:white;">{{realName}}</view>
-          <view class="padding-left padding-top-sm" style="color:white;">{{sex}} | {{age}} | {{email}}</view>
+          <view class="padding-left-xl padding-top-sm" style="color:white;">{{realName}} | {{sex}} | {{age}}</view>
           <view class="padding-left padding-top-sm" style="color:white;">期望职位：{{dreamPosition}}</view>
           <view class="padding-left padding-top-sm" style="color:white;display: {{label!=''?'':'none'}}">个人标签：{{label}}</view>
         </view>
-        <view class="margin-right margin-top" bindtap="techjump">
+        <!-- <view class="" style="float:rigth" bindtap="techjump">
           <text class="cuIcon-edit" style="color:white;font-size:3.5vh"></text>
-        </view>
+        </view> -->
       </view>
     </view>
 
-    <view class="radius padding-top-xl bgcyan" style="min-height:80vh;margin-top:-10vh;">
+    <view class="radius padding-top-xl bgcyan" style="min-height:2vh;margin-top:-10vh;padding-bottom:2vh;margin-bottom:8vh">
 
       <view class="" style="margin-top:8vh;">
         <view class="bgwhite cu-card no-card shadow radius margin-left-xs margin-right-xs" style="display: {{profession==''&&education==''&&graduationTime==''&&school==''?'none':''}}">
@@ -102,11 +99,33 @@
 
     </view>
 
+
   </scroll-view>
 
-  <!-- <view class="cu-bar foot tabbar cur shop bgwhite flex justify-around" style="bottom:{{InputBottom}}px;color:white">
-    <view class="radius indigo shadow-blur flex justify-center align-center margin-left" style="width:15vh;height:6vh;color:white;font-size:2vh" bindtap="techjump">编辑名片</view>
-    <view class="radius indigo shadow-blur flex justify-center align-center margin-right" style="width:15vh;height:6vh;color:white;font-size:2vh" bindtap="tapjump">生成海报分享</view>
-  </view> -->
 
+  <view class="cu-bar foot tabbar cur shop bgwhite" style="bottom:{{InputBottom}}px">
+    <view class="radius indigo shadow-blur flex justify-center align-center margin-left" style="width:15vh;height:5vh;color:white;font-size:2vh" bindtap="techjump">编辑</view>
+    <view class="radius indigo shadow-blur flex justify-center align-center margin-right" style="width:15vh;height:5vh;color:white;font-size:2vh" data-modal="showModal" bindtap="tapjump" >{{flagtxt}}</view>
+  </view>
 </block>
+
+<view class="cu-modal {{modalName=='showModal'?'show':''}}" catchtouchmove="touchmove">
+  <view class="cu-dialog">
+    <view class="cu-bar bgwhite justify-end">
+      <view class="content">提示</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xs" >
+      <view class="margin-left-sm margin-right-sm" style="color:#8799a3;text-align:justify;height:5vh;">
+      <text style="word-spacing:20rpx;line-height:2vh">{{chktxt}}</text></view>
+    </view>
+
+    <view class="cu-bar bgwhite justify-around">
+      <view class="radius indigo shadow-blur flex justify-center align-center margin-left" style="width:15vh;height:5vh;color:white;font-size:2vh" bindtap="hideModal">取消</view>
+    <view class="radius indigo shadow-blur flex justify-center align-center margin-right" style="width:15vh;height:5vh;color:white;font-size:2vh" bindtap="checkflag">{{btntxt}}</view>
+    </view>
+
+  </view>
+</view>
