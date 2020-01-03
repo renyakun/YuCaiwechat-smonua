@@ -99,21 +99,38 @@
           <!-- 已评价 -->
           <block wx:elif="{{item.id== 3}}">
 
-            <view class="margin-top " wx:if="{{sionflag}}">
-              <view class="cu-bar cu-card no-card bg-blue radius shadow margin-top-sm margin-left-xs margin-right-xs flex justify-center" wx:for="{{sionlist}}" wx:key="id" data-id="{{item.id}}">
-                <view class="bg-white radius padding-top padding-bottom" style="width:99.5%;">
-                  <view class="flex flex-wrap align-end">
-                    <view class="padding-left text-bold text-blue">{{item.demandHistroy.jobName}}</view>
-                  </view>
-                  <view class="flex flex-wrap margin-top-sm">
-                    <view class="padding-left">{{item.demandHistroy.jobType}} | {{item.demandHistroy.ageRequire}} | {{item.demandHistroy.releaseType}}认证</view>
-                  </view>
-                  <view class="flex flex-wrap margin-top-sm">
-                    <view class="padding-left text-cut" style="width:90%">
-                      <text class="text-bold">
-                        <text class="cuIcon-locationfill text-blue text-df margin-right-xs">工作地点：</text>
-                      </text>
-                      {{item.demandHistroy.city}}
+            <view class="margin-top " wx:if="{{evalflag}}">
+              <view class="cu-list menu-avatar comment solids-bottom" wx:for="{{evaldemand}}" wx:key="id">
+                <view class="cu-item">
+                  <view class="cu-avatar round" style="background-image:url({{item.avatar}});top:30rpx"></view>
+                  <view class="content">
+                    <view class="text-blue" style="font-weight:700">{{item.evaluationName}}</view>
+                    <view class="text-black" style="font-weight:700">岗位:{{item.jobName}}</view>
+                    <view class="flex justify-start align-start">
+                      <view class="margin-top-xs">评分:</view>
+                      <view>
+                        <i-rate disabled="{{true}}" value="{{item.star}}" size="19">
+                        </i-rate>
+                      </view>
+                    </view>
+                    <view class="text-black text-content text-df"  data-id="{{item.id}}" data-modal="showModal" bindlongtap="delmessage">{{item.message}}</view>
+                    <view class="bggrey padding-sm radius margin-top-sm  text-sm" wx:if="{{item.replyMessage}}">
+                      <view class="flex" style="color:white">
+                        <view>{{item.acceptName}}：</view>
+                        <view class="flex-sub">{{item.replyMessage}}</view>
+                      </view>
+                    </view>
+                    <view class="bggrey padding-sm radius margin-top-sm  text-sm" wx:else>
+                      <view class="flex" style="color:white">
+                        <view>暂时没有回复</view>
+                      </view>
+                    </view>
+                    <view class="margin-top-sm flex justify-between">
+                      <view class="text-gray text-df">{{item.createTime}}</view>
+                      <view>
+                        <text class="cuIcon-appreciatefill text-gray" ></text>
+                        <text class="cuIcon-messagefill text-gray margin-left-sm" ></text>
+                      </view>
                     </view>
                   </view>
                 </view>
@@ -155,53 +172,8 @@
             </view>
 
           </block>
-          
-          <!-- 已评价 -->
-          <!-- <block wx:elif="{{item.id== 5}}">
 
-            <view class="margin-top " wx:if="{{evalflag}}">
-              <view class="cu-list menu-avatar comment solids-bottom" wx:for="{{evaldemand}}" wx:key="id">
-                <view class="cu-item">
-                  <view class="cu-avatar round" style="background-image:url({{item.avatar}});top:30rpx"></view>
-                  <view class="content">
-                    <view class="text-blue" style="font-weight:700">{{item.evaluationName}}</view>
-                    <view class="text-black" style="font-weight:700">岗位:{{item.jobName}}</view>
-                    <view class="flex justify-start align-start">
-                      <view class="margin-top-xs">评分:</view>
-                      <view>
-                        <i-rate disabled="{{true}}" value="{{item.star}}" size="19">
-                        </i-rate>
-                      </view>
-                    </view>
-                    <view class="text-black text-content text-df">{{item.message}}</view>
-                    <view class="bg-grey padding-sm radius margin-top-sm  text-sm" wx:if="{{item.replyMessage}}">
-                      <view class="flex">
-                        <view>{{item.acceptName}}：</view>
-                        <view class="flex-sub">{{item.replyMessage}}</view>
-                      </view>
-                    </view>
-                     <view class="bg-grey padding-sm radius margin-top-sm  text-sm" wx:else>
-                        <view class="flex">
-                          <view>暂时没有回复</view>
-                        </view>
-                      </view> 
-                    <view class="margin-top-sm flex justify-between">
-                      <view class="text-gray text-df">{{item.createTime}}</view>
-                      <view>
-                          <text class="cuIcon-appreciatefill text-red"></text>
-                          <text class="cuIcon-messagefill text-gray margin-left-sm"></text>
-                        </view> 
-                    </view>
-                  </view>
-                </view>
-              </view>
-            </view>
 
-            <view class="padding-top-xl bgwhite flex justify-center" wx:else style="width:100%">
-              <image src="http://www.yucai-sz.com:8079/imgs/front/images/nodata.jpg" mode="aspectFit"></image>
-            </view>
-
-          </block> -->
 
         </scroll-view>
 
@@ -211,3 +183,20 @@
 
   </block>
 </scroll-view>
+
+<view class="cu-modal {{modalName=='showModal'?'show':''}}" catchtouchmove="touchmove">
+  <view class="cu-dialog">
+    <view class="cu-bar bgwhite justify-end">
+      <view class="content">确认删除</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+
+    <view class="cu-bar bgwhite flex justify-around align-center">
+      <view class="cu-btn indigo margin-right" style="width:12vh;color:white" bindtap="hideModal">取消</view>
+      <view class="cu-btn indigo" style="width:12vh;color:white" bindtap="modalbtn">确认</view>
+    </view>
+
+  </view>
+</view>

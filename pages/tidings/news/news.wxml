@@ -1,0 +1,244 @@
+<!--pages/tidings/news/news.wxml-->
+<cu-custom isCustom="{{true}}" isBack="{{false}}">
+  <view slot="backText">返回</view>
+  <view slot="content" class="margin-top-xs">{{tidtxt}}</view>
+</cu-custom>
+
+<scroll-view scroll-y class="scrollPage {{loadplay?'':'padding-bottom'}} " scrollTop="{{scrollTop}}">
+
+  <!-- 加载动画 -->
+  <view class="bg-white" style="" wx:if="{{demandflag}}" style="height:100vh">
+    <image src="http://www.yucai-sz.com:8079/imgs/front/images/rhomb-white.gif" mode="aspectFit" class="gif-white response"></image>
+  </view>
+
+  <block wx:else>
+
+    <block wx:if="{{cur==1}}">
+
+      <view class="cu-list menu-avatar" wx:if="{{messageflag}}">
+
+        <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}} margin-top-sm margin-left-xs margin-right-xs  padding-top-xl padding-bottom-xl  bgwhite" style="height:13vh;border-left:0.3vh solid #0081ff;border-top-left-radius: 0.5vh;border-bottom-left-radius: 0.5vh;"
+          wx:for="{{messageList}}" wx:key="demandId" bindtouchstart="ListTouchStart" bindtouchmove="ListTouchMove" bindtouchend="ListTouchEnd" data-target="move-box-{{index}}">
+
+          <view class="content" style="margin-left:-8vh;width:35vh;" data-target="{{item}}" bindtap="Seedels">
+            <view class="text-bold text-df" style="color:#000">
+              <text class="text-cut" style="width:90%">{{item.jobName}}</text>
+            </view>
+            <view class="text-gray text-sm">
+              <text class="cuIcon-moneybag text-red"></text> 薪资:{{item.salary}} | 年龄:{{item.ageRequire}}
+            </view>
+            <view class=" flex-wrap ">
+              <view class="text-cut" style="width:100%">
+                <text class="text-bold"><text class="cuIcon-locationfill text-blue text-df margin-right-xs"></text>工作地点：</text>{{item.city}}
+              </view>
+            </view>
+
+
+          </view>
+
+          <view class="action" style="color:#000;height:10vh;line-height:10vh;" bindtap="listouch" data-target="move-box-{{index}}">
+            <view class="text-grey text-xs">{{item.createTime}}</view>
+          </view>
+
+          <view class="move bgwhite">
+
+            <view class="padding-xs">
+              <view class="cu-tag indigo round shadow shadow-lg padding-right-xs padding-left-xs" style="color:white" data-target="{{item}}" catchtap="tapPush">投递名片</view>
+            </view>
+            <view class="padding-xs">
+              <view class="cu-tag indigo round shadow shadow-lg padding-right-xs padding-left-xs" style="color:white" data-target="{{item}}" data-demandid="{{item.demandId}}" catchtap="Seedels">查看详情</view>
+            </view>
+            <view class="padding-xs">
+              <view class="cu-tag bggrey round" style="color:white;width:8vh" data-target="{{item}}" catchtap="Delete">删除</view>
+            </view>
+
+          </view>
+
+        </view>
+
+      </view>
+
+      <view class="padding-top-xl bgwhite flex justify-center" wx:else style="width:100%">
+        <image src="http://www.yucai-sz.com:8079/imgs/front/images/nodata.jpg" mode="aspectFit"></image>
+      </view>
+
+      <view class="margin-top-xl" style="display:{{loadplay?'':'none'}}">
+        <i-load-more tip="{{tiptxt}}" loading="{{ false }}" />
+      </view>
+
+    </block>
+
+    <block wx:elif="{{cur==2}}">
+
+      <view class="margin-top " wx:if="{{evalflag}}">
+        <view class="cu-list menu-avatar comment solids-bottom" wx:for="{{evaldemand}}" wx:key="id">
+          <view class="cu-item">
+            <view class="cu-avatar round" style="background-image:url({{item.avatar}});top:30rpx"></view>
+            <view class="content">
+              <view class="text-blue" style="font-weight:700">{{item.evaluationName}}</view>
+              <view class="text-black" style="font-weight:700">岗位:{{item.jobName}}</view>
+              <view class="flex justify-start align-start">
+                <view class="margin-top-xs">评分:</view>
+                <view>
+                  <i-rate disabled="{{true}}" value="{{item.star}}" size="19">
+                  </i-rate>
+                </view>
+              </view>
+              <view class="text-black text-content text-df" >{{item.message}}</view>
+              <view class="bggrey padding-sm radius margin-top-sm  text-sm" wx:if="{{item.replyMessage}}" >
+                <view class="flex" style="color:white">
+                  <view>{{item.acceptName}}：</view>
+                  <view class="flex-sub">{{item.replyMessage}}</view>
+                </view>
+              </view>
+              <view class="bggrey padding-sm radius margin-top-sm  text-sm" wx:else bindtap="replyModal" data-modal="replyModal" data-replyid="{{item.id}}">
+                <view class="flex" style="color:white">
+                  <view>暂时没有回复</view>
+                </view>
+              </view>
+              <view class="margin-top-sm flex justify-between">
+                <view class="text-gray text-df">{{item.createTime}}</view>
+                <view>
+                  <text class="cuIcon-appreciatefill text-gray"></text>
+                  <text class="cuIcon-messagefill text-gray margin-left-sm" bindtap="replyModal" data-modal="replyModal" data-replyid="{{item.id}}"></text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="padding-top-xl bgwhite flex justify-center" wx:else style="width:100%">
+        <image src="http://www.yucai-sz.com:8079/imgs/front/images/nodata.jpg" mode="aspectFit"></image>
+      </view>
+
+      <view class="margin-top-xl" style="display:{{loadplay?'':'none'}}">
+        <i-load-more tip="{{tiptxt}}" loading="{{ false }}" />
+      </view>
+
+    </block>
+
+    <block wx:elif="{{cur== 3}}">
+
+      <view class="margin-top " wx:if="{{sionflag}}">
+        <view class="cu-bar cu-card no-card bg-blue radius shadow margin-top-sm margin-left-xs margin-right-xs flex justify-center" wx:for="{{admission}}" wx:key="id" data-message="{{item.message}}" data-modal="showModal" bindtap="tapjump">
+          <view class="bg-white radius padding-top padding-bottom" style="width:99.5%;">
+            <view class="flex flex-wrap align-end">
+              <view class="padding-left text-bold text-blue">{{item.demandHistroy.jobName}}</view>
+            </view>
+            <view class="flex flex-wrap margin-top-sm">
+              <view class="padding-left">{{item.demandHistroy.jobType}} | {{item.demandHistroy.ageRequire}} | {{item.demandHistroy.releaseType}}认证</view>
+            </view>
+            <view class="flex flex-wrap margin-top-sm">
+              <view class="padding-left text-cut" style="width:90%">
+                <text class="text-bold">
+                        <text class="cuIcon-locationfill text-blue text-df margin-right-xs">工作地点：</text>
+                </text>
+                {{item.demandHistroy.city}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="padding-top-xl bgwhite flex justify-center" wx:else style="width:100%">
+        <image src="http://www.yucai-sz.com:8079/imgs/front/images/nodata.jpg" mode="aspectFit"></image>
+      </view>
+
+      <view class="margin-top-xl" style="display:{{loadplay?'':'none'}}">
+        <i-load-more tip="{{tiptxt}}" loading="{{ false }}" />
+      </view>
+
+    </block>
+
+    <block wx:elif="{{cur== 4}}">
+
+      <view class="margin-top " wx:if="{{finishflag}}">
+        <view class="cu-bar cu-card no-card bg-blue radius shadow margin-top-sm margin-left-xs margin-right-xs flex justify-center" wx:for="{{finishlist}}" wx:key="id" data-id="{{item.id}}" data-jobName="{{item.demandHistroy.jobName}}" bindtap="finishjump">
+          <view class="bg-white radius padding-top padding-bottom" style="width:99.5%;">
+            <view class="flex justify-end bgred " style="color:white;width:20vh;height:3vh; position: absolute;left:60%">
+              {{item.message}}
+            </view>
+            <view class="flex flex-wrap align-end">
+              <view class="padding-left text-bold text-blue">{{item.demandHistroy.jobName}}</view>
+            </view>
+            <view class="flex flex-wrap margin-top-sm">
+              <view class="padding-left">{{item.demandHistroy.jobType}} | {{item.demandHistroy.ageRequire}} | {{item.demandHistroy.releaseType}}认证</view>
+            </view>
+            <view class="flex flex-wrap margin-top-sm">
+              <view class="padding-left text-cut" style="width:90%">
+                <text class="text-bold">
+                        <text class="cuIcon-locationfill text-blue text-df margin-right-xs">工作地点：</text>
+                </text>
+                {{item.demandHistroy.city}}
+              </view>
+            </view>
+
+          </view>
+        </view>
+      </view>
+
+      <view class="padding-top-xl bgwhite flex justify-center" wx:else style="width:100%">
+        <image src="http://www.yucai-sz.com:8079/imgs/front/images/nodata.jpg" mode="aspectFit"></image>
+      </view>
+
+      <view class="margin-top-xl" style="display:{{loadplay?'':'none'}}">
+        <i-load-more tip="{{tiptxt}}" loading="{{ false }}" />
+      </view>
+
+    </block>
+
+
+
+  </block>
+</scroll-view>
+
+
+<view class="cu-modal bottom-modal {{modalName=='showModal'?'show':''}}" bindtap="hideModal" catchtouchmove="touchmove">
+  <view class="cu-dialog">
+    <view class="cu-bar bgwhite justify-end">
+      <view class="content">录取信息</view>
+      <view class="action">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class=" ">
+      <view class="cu-form-group bggray cu-card no-card" style="background:rgba(0,0,0,.1);">
+        <view class="flex align-end margin-bottom-xs " style="width:100%;">
+          <textarea name="message" value="{{message}}" maxlength="500" style="color:#8799a3;text-align:justify;word-spacing:20rpx;line-height:2vh"></textarea>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</view>
+
+<view class="cu-modal {{modalName=='replyModal'?'show':''}}" catchtouchmove="touchmove">
+    <view class="cu-dialog">
+      <view class="cu-bar bgwhite justify-end">
+        <view class="content">回复</view>
+        <view class="action" bindtap="hideModal">
+          <text class="cuIcon-close text-red"></text>
+        </view>
+      </view>
+
+      <form bindsubmit='formSubmit'>
+        <view class=" ">
+          <view class="cu-form-group bggray cu-card no-card" style="background:rgba(0,0,0,.1);">
+            <view class="title">回复内容</view>
+            <view class="flex align-end margin-bottom-xs " style="width:70%;">
+              <textarea auto-height name="replyMessage" value="{{modalName=='replyModal'?replyMessage:''}}" maxlength="500" style="color:#8799a3;text-align:justify;word-spacing:20rpx;line-height:2vh"></textarea>
+            </view>
+          </view>
+
+        </view>
+
+        <view class="cu-bar bgwhite flex justify-around align-center">
+          <button class="cu-btn indigo" style="width:12vh;color:white" formType="submit">回复</button>
+        </view>
+      </form>
+
+
+
+    </view>
+  </view>

@@ -96,7 +96,7 @@
 					"id": 5,
 					"name": "投递记录",
 					"pathName": "pages/record/record/record",
-					"query": "",
+					"query": "id=3",
 					"scene": null
 				},
 				{
@@ -138,6 +138,13 @@
 					"id": -1,
 					"name": "测试",
 					"pathName": "pages/tempf/tempf",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "完成",
+					"pathName": "pages/tidings/finish/finish",
 					"query": "",
 					"scene": null
 				}

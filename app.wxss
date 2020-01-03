@@ -123,6 +123,10 @@
   background: #8799a3;
 }
 
+.bggray {
+  background: #aaaaaa;
+}
+
 .bgblack {
   background: #000;
 }

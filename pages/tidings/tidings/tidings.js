@@ -20,22 +20,22 @@ Page({
     //console.log(id);
     switch (id) {
       case 1: //投递邀请
-        navigateTo('/pages/tidings/messageInfo/messageInfo?id=1')
+        navigateTo('/pages/tidings/news/news?tidtxt=投递邀请消息&cur=1')
         break;
       case 2: //面试邀请(待面试)
         navigateTo('/pages/record/record/record?id=2')
         break;
       case 3: //评论消息
-        //navigateTo('/pages/record/record/record?id=3')
-        showToast('即将上线，敬请期待!', 'none', 1000)
+        navigateTo('/pages/tidings/news/news?tidtxt=评论消息&cur=2')
+        //showToast('即将上线，敬请期待!', 'none', 1000)
         break;
       case 4: //录取消息
-        //navigateTo('/pages/tidings/admission/admission')
-        showToast('即将上线，敬请期待!', 'none', 1000)
+        navigateTo('/pages/tidings/news/news?tidtxt=录取消息&cur=3')
+        //showToast('即将上线，敬请期待!', 'none', 1000)
         break;
       case 5: //完成消息
-        //navigateTo('/pages/tidings/finish/finish')
-        showToast('即将上线，敬请期待!', 'none', 1000)
+        navigateTo('/pages/tidings/news/news?tidtxt=完成消息&cur=4')
+        //showToast('即将上线，敬请期待!', 'none', 1000)
         break;
       default:
         break;

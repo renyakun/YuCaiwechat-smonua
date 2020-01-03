@@ -109,6 +109,7 @@
     <button class="action bgwhite" bindtap="tapind" style="width:10vh;">
       <view class="cuIcon-home " style="color:#0081ff"></view>回首页
     </button>
+    <!--  -->
     <button class="action bgwhite" style="width:10vh;margin-right:20vh" bindtap="handleOpen1">
       <view class="cuIcon-forward text-blue" style="color:#0081ff">
       </view> 分享

@@ -4,13 +4,14 @@ const {
 } = require('../../../utils/url.js');
 import {
   showToast,
-  switchTab,
+  navigateTo
 } from '../../../utils/WeChatfction';
 Page({
   data: {
     star: 0,
     txtput: 0,
-    message: ''
+    message: '',
+    InputBottom: 0,
   },
   onChange(e) {
     const index = e.detail.index;
@@ -19,26 +20,22 @@ Page({
     })
   },
   formSubmit(e) {
-    let accessToken = wx.getStorageSync('accessToken') || [];
+    let token = wx.getStorageSync('accessToken') || [];
     let star = this.data.star;
     let message = e.detail.value.message;
-    let demandId = this.data.demandId;
-    let userId = this.data.userId;
-    let realName = this.data.realName;
+    let id = this.data.id;
     if (message == "" || star == 0) {
       showToast('请输入完整信息！', 'none', 1000)
     } else {
-      console.log(star, message);
+      console.log(id, star, message);
       wx.request({
-        url: url + '/invitation/evaluation',
+        url: url + '/evaluation/evaluation',
         method: 'post',
         data: {
           star: star,
           message: message,
-          demandId: demandId,
-          userId: userId,
-          realName: realName,
-          accessToken: accessToken,
+          id: id,
+          accessToken: token,
         },
         header: {
           'content-type': 'application/json'
@@ -48,17 +45,12 @@ Page({
           if (res.data.success) {
             showToast(res.data.data, 'success', 1000);
             setTimeout(() => {
-              switchTab('/pages/record/record/record?id=3');
+              navigateTo('/pages/record/record/record?id=3');
             }, 3500)
           } else {
             showToast(res.data.msg, 'none', 1000)
           }
-        },
-        complete:res=>{
-          wx.navigateTo({
-            url: '/pages/record/record/record?id=3',
-          })
-        }
+        },       
       })
     }
   },
@@ -75,12 +67,11 @@ Page({
   },
   onLoad: function(options) {
     this.setData({
-      demandId: options.demandId,
-      userId: options.userId,
-      realName: options.realName
+      id: options.id,
+      jobName: options.jobName
     })
 
-
+    console.log(options);
   },
 
   onReady: function() {

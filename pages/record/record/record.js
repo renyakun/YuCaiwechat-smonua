@@ -32,13 +32,22 @@ Page({
     finishlist: [],
   },
 
+  touchmove() {
+    return false;
+  },
+
   //tab跳转
   tabSelect(e) {
     pageScrollTo(0, 500);
+    let id = e.currentTarget.dataset.id;
     this.setData({
-      TabCur: e.currentTarget.dataset.id,
-      scrollLeft: (e.currentTarget.dataset.id - 1) * 60,
+      TabCur: id,
+      scrollLeft: (id - 1) * 60,
     })
+    setTimeout(()=>{
+      this.setData({ demandflag: true })
+    },100)
+    this.request(1, id)
   },
 
   //需求详情跳转
@@ -78,10 +87,91 @@ Page({
     });
   },
 
+  //关闭模拟框
+  hideModal() {
+    this.setData({
+      modalName: null
+    })
+  },
+
+  //彻底删除我评价过的需求
+  delmessage(e) {
+    console.log(e.currentTarget.dataset.modal);
+    let modalName = e.currentTarget.dataset.modal;
+    let modalid = e.currentTarget.dataset.id;
+    this.setData({
+      modalName: modalName,
+      modalid: modalid
+    })
+  },
+
+  modalbtn() {
+    let token = wx.getStorageSync('accessToken') || '';
+    let id = this.data.modalid;
+    wx.request({
+      url: url + '/evaluation/delAlreadyEvaluation',
+      data: {
+        accessToken: token,
+        id: id,
+      },
+      success: res => {
+        this.hideModal();
+        if (res.data.success) {
+          showToast(res.data.data, 'none', 1000);
+        } else {
+          showToast(res.data.msg, 'none', 1000)
+        }
+      }
+    })
+  },
+
+  replyModal(e) {
+    console.log(e.currentTarget.dataset.modal);
+    let modalName = e.currentTarget.dataset.modal;
+    let replyid = e.currentTarget.dataset.replyid;
+    this.setData({
+      modalName: modalName,
+      replyid: replyid
+    })
+  },
+
+  formSubmit(e) {
+    let token = wx.getStorageSync('accessToken') || [];
+    let id = this.data.replyid;
+    let replyMessage = e.detail.value.replyMessage;
+    if (replyMessage == "") {
+      showToast('请输入完整信息！', 'none', 1000)
+    } else {
+      console.log(id, replyMessage);
+      wx.request({
+        url: url + '/evaluation/userReply',
+        method: 'post',
+        data: {
+          accessToken: token,
+          id: id,
+          replyMessage: replyMessage
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success: res => {
+          console.log(res)
+          this.hideModal();
+          if (res.data.success) {
+            showToast(res.data.data, 'success', 800);
+          } else {
+            showToast(res.data.msg, 'none', 800);
+          }
+        }
+      })
+    }
+  },
+
   //刷新
   btnspin() {
     pageScrollTo(0, 500);
     let spin = this.data.spin;
+    let id = this.data.TabCur;
     let page = 1;
     this.setData({
       spin: true,
@@ -90,7 +180,7 @@ Page({
     })
     let token = wx.getStorageSync('accessToken') || '';
     setTimeout(() => {
-      this.request(page)
+      this.request(page,id)
       setTimeout(() => {
         this.setData({
           spin: false
@@ -186,7 +276,7 @@ Page({
     })
   },
 
-  request(page) {
+  request(page, id) {
     let token = wx.getStorageSync('accessToken') || '';
     let wholelist = 'wholelist';
     let wholetxt = '全部列表wholelist:';
@@ -198,14 +288,9 @@ Page({
     let sendwebsite = '/invitation/myAcceptInvitation';
     let dataflag2 = 'sendflag';
 
-    // let finishlist = 'finishlist';
-    // let finishtxt = '已完成finishlist:';
-    // let finishwebsite = '/employment/workAFinish';
-    // let dataflag4 = 'finishflag';
-
     let evaldemand = 'evaldemand';
     let evaltxt = '已评价evaldemand:';
-    let evalwebsite = '/invitation/alreadyEvaluation';
+    let evalwebsite = '/evaluation/alreadyEvaluation';
     let dataflag3 = 'evalflag';
 
     let inprolist = 'inprolist';
@@ -215,29 +300,34 @@ Page({
 
 
     setTimeout(() => {
-      this.demand(token, wholewebsite, wholelist, dataflag1, wholetxt, page);
-      this.demand(token, sendwebsite, sendlist, dataflag2, sendtxt, page);
-      //this.demand(token, evalwebsite, evaldemand, dataflag3, evaltxt, page);
-      this.demand(token, inprowebsite, inprolist, dataflag4, inprotxt, page);
+      if (id == 1) {
+        this.demand(token, wholewebsite, wholelist, dataflag1, wholetxt, page);
+      } else if (id == 2) {
+        this.demand(token, sendwebsite, sendlist, dataflag2, sendtxt, page);
+      } else if (id == 3) {
+        this.demand(token, evalwebsite, evaldemand, dataflag3, evaltxt, page);
+      } else if (id == 4) {
+        this.demand(token, inprowebsite, inprolist, dataflag4, inprotxt, page);
+      }
     }, 500)
   },
 
   onLoad: function(options) {
     // 如果url中有id参数,跳转到对应的tab页
     console.log(options)
+    let page = 1;
     if (options.id) {
       let id = parseInt(options.id);
       this.setData({
         TabCur: id,
         scrollLeft: (id - 1) * 60,
       })
+      this.request(page, id)
+    }else{
+      this.request(page, 1)
     }
-    let page = 1;
-    this.request(page)
 
   },
-
-
 
   onReady: function() {
 
@@ -263,9 +353,9 @@ Page({
 
 
   onReachBottom: function() {
-
+    let id = this.data.TabCur;
     let page = this.data.page++;
-    this.request(page)
+    this.request(page,id)
   },
 
   onShareAppMessage: function() {

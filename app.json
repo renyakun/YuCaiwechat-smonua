@@ -3,9 +3,7 @@
     "pages/index/index",
     "pages/user/user/user",
     "pages/tidings/tidings/tidings",
-    "pages/tidings/messageInfo/messageInfo",
-    "pages/tidings/admission/admission",
-    "pages/tidings/finish/finish",
+    "pages/tidings/news/news",
     "pages/demand/trans/trans",
     "pages/demand/morejobs/morejobs",
     "pages/demand/company/company",
@@ -15,8 +13,7 @@
     "pages/record/record/record",
     "pages/record/evaluate/evaluate",
     "pages/record/details/details",
-    "pages/logs/logs",
-    "pages/tempf/tempf"
+    "pages/logs/logs"
     
   ],
   "permission": {

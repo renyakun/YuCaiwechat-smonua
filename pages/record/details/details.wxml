@@ -86,7 +86,7 @@
         </view>
 
       </view>
-<!--  -->
+
       <view class="cu-bar bgwhite justify-around">
         <view class="action">
           <button class="cu-btn indigo" style="width:16vh;color:white" formType="submit">确认取消</button>

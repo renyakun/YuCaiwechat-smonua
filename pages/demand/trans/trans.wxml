@@ -182,8 +182,8 @@
     <view class="cuIcon-home " style="color:#0081ff"></view>
     回首页
   </button>
-  <!-- bindtap="onShareAppMessage" -->
-  <button class="action bgwhite" style="width:10vh"   bindtap="handleOpen">
+  <!--  -->
+  <button class="action bgwhite" style="width:10vh"  bindtap="handleOpen" >
     <view class="cuIcon-forward " style="color:#0081ff"></view>
     分享
   </button>

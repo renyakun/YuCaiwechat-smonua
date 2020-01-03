@@ -1,25 +1,73 @@
-// pages/messageInfo/messageInfo.js
+// pages/tidings/news/news.js
 const {
   url
 } = require('../../../utils/url.js');
 import {
   showToast,
   navigateTo,
-  relremovetag,
-  switchTab,
   showLoading,
+  pageScrollTo,
+  relremovetag
 } from '../../../utils/WeChatfction';
-
+const app = getApp();
 Page({
-
   data: {
+    CustomBar: app.globalData.CustomBar,
     demandflag: true,
-    loadflag: true,
-    messageList: [], //当前消息详情信息
-    pushBackInfo: [], //投递成功返回的数据
     page: 2,
     loadflag: true,
     loadplay: false,
+    admission: [],
+    finishlist: [],
+    evaldemand: [],
+  },
+
+  touchmove() {
+    return false;
+  },
+
+  //打开回复
+  replyModal(e) {
+    console.log(e.currentTarget.dataset.modal, e.currentTarget.dataset.replyid);
+    let modalName = e.currentTarget.dataset.modal;
+    let replyid = e.currentTarget.dataset.replyid;
+    this.setData({
+      modalName: modalName,
+      replyid: replyid
+    })
+  },
+
+  formSubmit(e) {
+    let token = wx.getStorageSync('accessToken') || [];
+    let id = this.data.replyid;
+    let replyMessage = e.detail.value.replyMessage;
+    if (replyMessage == "") {
+      showToast('请输入完整信息！', 'none', 1000)
+    } else {
+      console.log(id, replyMessage);
+      wx.request({
+        url: url + '/evaluation/userReply',
+        method: 'post',
+        data: {
+          accessToken: token,
+          id: id,
+          replyMessage: replyMessage
+        },
+        header: {
+          'content-type': 'application/json'
+        },
+        success: res => {
+          console.log(res)
+          this.hideModal();
+          if (res.data.success) {
+            showToast(res.data.data, 'success', 800);
+            this.request(1, 2)
+          } else {
+            showToast(res.data.msg, 'none', 800);
+          }
+        }
+      })
+    }
   },
 
   // 跳转到详情页
@@ -45,11 +93,6 @@ Page({
         'content-type': 'application/json'
       },
       success: (res) => {
-        // if (res.data.success) {
-        //   showToast('删除成功', 'none', 3000)
-        // } else {
-        //   showToast(res.data.msg, 'none', 3000)
-        // }
         console.log(res.data.data)
       }
     })
@@ -113,7 +156,6 @@ Page({
 
   },
 
-
   listouch(e) {
     this.ListTouchStart(e);
     this.ListTouchMove(e);
@@ -150,9 +192,35 @@ Page({
     })
   },
 
-  //获取已录取列表
-  demand(token, website, list, txt, page) {
-    console.log(token, website, list, txt, page)
+  //关闭模拟框
+  hideModal() {
+    this.setData({
+      modalName: null
+    })
+  },
+
+  //打开模态框
+  tapjump(e) {
+    console.log(e.currentTarget.dataset.modal, e.currentTarget.dataset.message)
+    let modalName = e.currentTarget.dataset.modal;
+    let message = e.currentTarget.dataset.message;
+    this.setData({
+      modalName: modalName,
+      message: message
+    })
+  },
+
+  //评论消息跳转
+  finishjump(e) {
+    console.log(e.currentTarget.dataset.id)
+    let id = e.currentTarget.dataset.id;
+    let jobName = e.currentTarget.dataset.jobname;
+    navigateTo('/pages/record/evaluate/evaluate?id=' + id + '&jobName=' + jobName)
+  },
+
+  //获取消息列表
+  demand(token, website, list, dataflag, txt, page) {
+    console.log(token, website, list, dataflag, txt, page)
     wx.request({
       url: url + website,
       data: {
@@ -160,6 +228,7 @@ Page({
         page: page,
       },
       success: res => {
+        console.log(res)
         if (page <= 1) {
           let demand = res.data.data;
           console.log(txt, demand, demand.length, 'page:', page);
@@ -167,13 +236,13 @@ Page({
             if (demand.length != 0) {
               this.setData({
                 [list]: demand,
-                dataflag: true,
+                [dataflag]: true,
                 demandflag: false,
               })
             } else {
               this.setData({
                 demandflag: false,
-                dataflag: false,
+                [dataflag]: false,
               })
             }
           } else {
@@ -182,7 +251,23 @@ Page({
         } else {
           let demands = res.data.data;
           console.log(txt, demands, demands.length, 'page:', page);
-          let demand = this.data.messageList;
+          let demand = [];
+          switch (list) {
+            case 'messageList':
+              demand = this.data.messageList;
+              break;
+            case 'admission':
+              demand = this.data.admission;
+              break;
+            case 'finishlist':
+              demand = this.data.finishlist;
+              break;
+            case 'evaldemand':
+              demand = this.data.evaldemand;
+              break;
+            default:
+              demand = [];
+          }
           console.log('加载数据', txt, demand)
           if (demands.length != 0) {
             if (res.data.success) {
@@ -191,14 +276,14 @@ Page({
                 demand.push(...demands)
                 this.setData({
                   [list]: demand,
-                  dataflag: true,
+                  [dataflag]: true,
                   demandflag: false,
                   loadplay: false,
                 })
               } else {
                 this.setData({
                   demandflag: false,
-                  dataflag: false,
+                  [dataflag]: false,
                 })
               }
             } else {
@@ -218,29 +303,62 @@ Page({
     })
   },
 
-  // 请求邀请消息数据
-  request(page) {
+
+  //获取已录取列表
+  request(page, cur) {
     let token = wx.getStorageSync('accessToken') || [];
+
     let messageList = 'messageList';
     let messagetxt = '请求邀请messageList:';
     let messagewebsite = '/technology/myAcceptDemands';
+    let dataflag1 = 'messageflag';
+
+    let evaldemand = 'evaldemand';
+    let evaltxt = '评价消息evaldemand:';
+    let evalwebsite = '/evaluation/userAcceptEvaluation';
+    let dataflag2 = 'evalflag';
+
+    let admission = 'admission';
+    let siontxt = '录取消息admission:';
+    let sionwebsite = '/employment/workAdmission';
+    let dataflag3 = 'sionflag';
+
+    let finishlist = 'finishlist';
+    let finishtxt = '完成消息finishlist:';
+    let finishwebsite = '/employment/workAFinish';
+    let dataflag4 = 'finishflag';
+
     setTimeout(() => {
-      this.demand(token, messagewebsite, messageList, messagetxt, page)
+      if (cur == 1) {
+        this.demand(token, messagewebsite, messageList, dataflag1, messagetxt, page);
+      } else if (cur == 2) {
+        this.demand(token, evalwebsite, evaldemand, dataflag2, evaltxt, page);
+      } else if (cur == 3) {
+        this.demand(token, sionwebsite, admission, dataflag3, siontxt, page);
+      } else if (cur == 4) {
+        this.demand(token, finishwebsite, finishlist, dataflag4, finishtxt, page);
+      }
     }, 500)
   },
 
-  onLoad: function(options) { },
-
-  onReady: function() {
+  onLoad: function(options) {
     let page = this.data.page - 1;
-    this.request(page);
+
+    this.setData({
+      tidtxt: options.tidtxt,
+      cur: options.cur
+    })
+    this.request(page, options.cur)
+    console.log(options)
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
+
+  onReady: function() {
+
+  },
+
   onShow: function() {
-    
+
   },
 
   /**
@@ -263,10 +381,12 @@ Page({
   onPullDownRefresh: function() {
     this.setData({
       page: 2,
-      messageList: [],
+      admission: [],
       demandflag: true,
     })
-    this.onReady()
+    let page = this.data.page - 1;
+    let cur = this.data.cur;
+    this.request(page, cur)
     wx.stopPullDownRefresh();
   },
 
@@ -275,7 +395,8 @@ Page({
    */
   onReachBottom: function() {
     let page = this.data.page++;
-    this.request(page)
+    let cur = this.data.cur;
+    this.request(page, cur)
   },
 
   /**
