@@ -5,6 +5,7 @@
     "pages/tidings/tidings/tidings",
     "pages/tidings/news/news",
     "pages/demand/trans/trans",
+    "pages/demand/search/search",
     "pages/demand/morejobs/morejobs",
     "pages/demand/company/company",
     "pages/technology/add/add",
@@ -59,9 +60,6 @@
   },
   "style": "v2",
   "debug": true,
-  "navigateToMiniProgramAppIdList": [
-    "wxef80070bd7008e35"
-  ],
   "sitemapLocation": "sitemap.json",
   "networkTimeout": {
     "request": 10000,

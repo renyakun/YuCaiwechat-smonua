@@ -70,9 +70,9 @@
     </view>
 
 
-    <view class="margin-xs margin-top-lg  flex bgwhite padding justify-center" bindtap="paegswitch">
+    <!-- <view class="margin-xs margin-top-lg  flex bgwhite padding justify-center" bindtap="paegswitch">
       <text class="text-black">切换至发布需求方</text>
-    </view>
+    </view> -->
 
   <view class="padding-xs flex align-center">
     <view class="flex-sub text-center">

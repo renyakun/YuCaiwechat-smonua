@@ -3,23 +3,20 @@
   <view slot="content" class="margin-top-xs">首页</view>
 </cu-custom>
 
-<scroll-view scroll-y class="scrollPage" scrollTop="{{scrollTop}}">
+<view class="">
 
   <view class="cu-bar search bgwhite fixed" style="top:{{SeaBar}};">
-    <view class="search-form round " style="background:rgba(0,0,0,.1);">
+    <view class="search-form round " style="background:rgba(0,0,0,.1);" bindtap="searchbtn">
       <text class="cuIcon-search"></text>
-      <input type="text" placeholder="输入搜索的关键词" confirm-type="search" value="{{searchval}}" bindinput="searchput">{{searchval}}</input>
+      <input type="text" placeholder="输入搜索的关键词" confirm-type="search" bindinput="searchput"></input>
       <text class="cuIcon-roundclose" bindtap="clearInput"></text>
-    </view>
-    <view class="action">
-      <text class="round indigo margin-left-xs flex justify-center align-center shadow-blur" bindtap="searchbtn" data-target="{{searchval}}" style="width:10vh;height:4.5vh;color:white;font-size:2vh">搜索</text>
     </view>
   </view>
 
   <view class="margin margin-left-sm margin-right-sm radius bgshadow" style="margin-top:10vh;">
-    <view class="cu-list grid col-4 {{gridBorder?'':'no-border'}}">
-      <view class="cu-item" wx:for="{{iconList}}" wx:key="name" wx:if="{{index<7}}" bindtap="sendjump" data-target="{{item}}">
-        <view class="cuIcon-{{item.icon}}" style="color:{{item.color}}">
+    <view class="cu-list grid col-2 {{gridBorder?'':'no-border'}}" style="">
+      <view class="cu-item" wx:for="{{iconList}}" wx:key="name" wx:if="{{index<7}}" bindtap="sendjump" data-target="{{item}}" style="">
+        <view class="cuIcon-{{item.icon}} " style="color:{{item.color}};">
           <view class="cu-tag badge" wx:if="{{item.badge!=0}}" style="color:white">
             <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
           </view>
@@ -29,87 +26,25 @@
     </view>
   </view>
 
-  <view class="cu-bar  {{colflag?'indigo':'bgwhite'}} solid-bottom {{fixedflag?'':'fixed'}} shadow-blur" style="top:{{CityBar}};">
-    <view class='action'>
-      <scroll-view scroll-x class=" nav text-center">
-        <view class="cu-item {{item.id==TabCur?'text-white cur':''}}" style="color:{{colflag?'white':'black'}}" wx:for="{{navlist}}" wx:key="id" bindtap="tabSelect" data-id="{{item.id}}">
-          {{item.nav}}
-        </view>
-      </scroll-view>
+  <view class="margin margin-left-sm margin-right-sm  bgshadow">
+    <view class="cu-list grid col-3 ">
+      <view class="cu-item" wx:for="{{lists}}" wx:key="name" wx:if="{{index<3}}" bindtap="sendjump" data-target="{{item}}" style="height:18vh">
+          <image src="{{item}}" mode="aspectFit" class="gif-black response"></image>
+      </view>
     </view>
-    <!-- <view class='action' style="color:{{colflag?'white':'black'}}" bindtap="showRegion">
-      <text>{{munitem}}</text>
-      <text class="cuIcon-{{regionicon}}"></text>
-    </view> -->
+    <!-- <image src="/images/imagesjpg1.jpg" mode="aspectFit" class="response" style="height:20vh;margin-left:-10vh"></image>
+    <image src="/images/imagesjpg2.jpg" mode="aspectFit" class="response" style="height:20vh"></image>
+    <image src="/images/imagesjpg3.jpg" mode="aspectFit" class="response" style="height:20vh;margin-left:10vh"></image> -->
   </view>
 
-  <block wx:if="{{Modalflag}}">
 
-    <view class="bgwhite margin-top" style="" wx:if="{{demandflag}}" style="height:800rpx;width:100%;">
-      <image src="http://www.yucai-sz.com:8079/imgs/front/images/rhomb-white.gif" mode="aspectFit" class="gif-white response margin-left"></image>
-    </view>
-
-    <block wx:else>
-      <view class="cu-card article no-card  margin-top margin-left-sm margin-right-sm margin-bottom  padding-top-xs padding-bottom-xs radius  bgwhite bgshadow" wx:for="{{demand}}" wx:key="demandId" bindtap="Seedels" data-target="{{item}}">
-        <view class="cu-item">
-          <view class="title">
-            <view class="text-cut">{{item.jobName}}</view>
-          </view>
-          <view class="content">
-            <view class="bgwhite" style="width:55%">
-              <view class="margin-top-xs">{{item.jobType}} | {{item.ageRequire}}岁</view>
-              <view class="margin-top-sm text-cut" style="width:20vh">
-                <text class="">{{item.city}}</text>
-              </view>
-              <view class="cu-tag bggreen round margin-top-lg" style="color:white;">{{item.releaseType}}认证</view>
-            </view>
-            <view class=" margin-left bgwhite" style="width:45%">
-              <view class="margin-top-xs flex justify-end">￥{{item.salary}}元/月</view>
-              <view class="flex justify-end margin-top-sm">{{item.createTime}}</view>
-              <view class="flex justify-end align-end margin-top-xl">
-                <text bindtap="Seedels" data-target="{{item}}">查看详情</text>
-                <text class="cuIcon-right"></text>
-              </view>
-            </view>
-
-          </view>
-
-        </view>
-
-      </view>
-
-      <view class="margin-top-xl" wx:if="{{loadflag}}" style="display:{{loadplay?'':'none'}}">
-        <i-load-more tip="{{tiptxt}}" loading="{{ false }}" />
-      </view>
-
-      <view class="padding-top-xl bgwhite flex justify-center" wx:else style="width:100%">
-        <image src="http://www.yucai-sz.com:8079/imgs/front/images/nodata.jpg" mode="aspectFit"></image>
-      </view>
-
-    </block>
-
-  </block>
-
-  <block wx:if="{{!Modalflag}}" class="">
-
-    <view class="" style="">
-      <view class=" bgwhite" style="height:100vh;">
-        <view class="bg-gray margin-left" style="z-index:999;">
-          <picker-view mode="region" indicator-style="height: 8vh;" style=" height: 40vh;" value="{{value}}" bindchange="bindChange">
-            <picker-view-column style="">
-              <view wx:for="{{provinces}}" wx:key="id" style="line-height: 8vh;" data-target="{{item}}" bindtap="proChange">{{item}}</view>
-            </picker-view-column>
-            <picker-view-column style="display:{{provinceflag? 'block':'none'}}">
-              <view wx:for="{{municipal}}" wx:key="item" style="line-height: 8vh;" bindtap="munChange" data-target="{{item}}">{{item}}</view>
-            </picker-view-column>
-          </picker-view>
-        </view>
-
-        <view class="padding-xl" style="height:10vh;z-index:-999;">
-
-        </view>
+  <view class="padding-xs flex align-center">
+    <view class="flex-sub text-center">
+      <view class="solid-bottom text-xs padding">
+        <text class="text-gray" style="color:#8799a3">御材科技官方客服热线400-123-456</text>
       </view>
     </view>
-  </block>
+  </view>
 
-</scroll-view>
+
+</view>

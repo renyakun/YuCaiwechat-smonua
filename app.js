@@ -1,5 +1,8 @@
 //app.js
 // "enablePullDownRefresh": true
+// "navigateToMiniProgramAppIdList": [
+//   "wxef80070bd7008e35"
+// ],
 const {
   url
 } = require('utils/url.js');
@@ -37,7 +40,7 @@ App({
             method: 'POST',
             data: {
               code: res.code,
-              flag: 1
+              flag: 3
             },
             header: {
               'content-type': 'application/json'
@@ -107,18 +110,20 @@ App({
         badge: 1,
         name: 'case',
         title: '成功案例'
-      }, {
-        icon: 'order',
-        color: '#8dc63f',
-        badge: 150,
-        title: '最新订单',
-        name: 'order',
-      }, {
+      }
+      // , {
+      //   icon: 'order',
+      //   color: '#8dc63f',
+      //   badge: 150,
+      //   title: '最新订单',
+      //   name: 'order',
+      // }
+      , {
         icon: 'news',
         color: '#1cbbb4',
         badge: 1,
         name: 'news',
-        title: '新闻资讯'
+        title: '最新资讯'
       }, {
         icon: 'sort',
         color: '#e54d42',
@@ -126,15 +131,29 @@ App({
         name: 'hot',
         title: '热门榜单'
       },
+      // {
+      //   title: '劳务政策',
+      //   name: 'policy',
+      //   color: '#a5673f',
+      //   badge: 0,
+      //   icon: 'file'
+      // },
+      // {
+      //   title: '平台培训',
+      //   name: 'train',
+      //   color: '#39b54a',
+      //   badge: 0,
+      //   icon: 'group'
+      // },
       {
-        title: '劳务政策',
-        name: 'policy',
-        color: '#a5673f',
+        title: '消息通知',
+        name: 'train',
+        color: '#39b54a',
         badge: 0,
-        icon: 'file'
+        icon: 'group'
       },
       {
-        title: '平台培训',
+        title: '关于我们',
         name: 'train',
         color: '#39b54a',
         badge: 0,
@@ -193,7 +212,7 @@ App({
       icon: 'message',
     }, {
       id: 2,
-      name: '面试邀请通知',
+      name: '合作邀请通知',
       icon: 'message',
     }, {
       id: 3,
@@ -213,7 +232,7 @@ App({
       flag: '全部',
     }, {
       id: 2,
-      flag: '待面试',
+      flag: '待合作',
     }, {
       id: 3,
       flag: '已评价',
