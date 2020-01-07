@@ -40,7 +40,7 @@ App({
             method: 'POST',
             data: {
               code: res.code,
-              flag: 3
+              flag: 1
             },
             header: {
               'content-type': 'application/json'
@@ -105,61 +105,42 @@ App({
   globalData: {
     userInfo: null,
     iconList: [{
+        id: 1,
         icon: 'newsfill',
         color: '#fbbd08',
         badge: 1,
         name: 'case',
-        title: '成功案例'
-      }
-      // , {
-      //   icon: 'order',
-      //   color: '#8dc63f',
-      //   badge: 150,
-      //   title: '最新订单',
-      //   name: 'order',
-      // }
-      , {
+        title: '邀请消息'
+      }, {
+        id: 2,
         icon: 'news',
         color: '#1cbbb4',
         badge: 1,
         name: 'news',
-        title: '最新资讯'
+        title: '合作消息'
       }, {
+        id: 3,
         icon: 'sort',
         color: '#e54d42',
         badge: 1,
         name: 'hot',
-        title: '热门榜单'
-      },
-      // {
-      //   title: '劳务政策',
-      //   name: 'policy',
-      //   color: '#a5673f',
-      //   badge: 0,
-      //   icon: 'file'
-      // },
-      // {
-      //   title: '平台培训',
-      //   name: 'train',
-      //   color: '#39b54a',
-      //   badge: 0,
-      //   icon: 'group'
-      // },
-      {
-        title: '消息通知',
+        title: '评论消息'
+      },{
+        id: 4,
+        title: '录用消息',
         name: 'train',
         color: '#39b54a',
         badge: 0,
         icon: 'group'
-      },
-      {
-        title: '关于我们',
+      },{
+        id: 5,
+        title: '完成消息',
         name: 'train',
         color: '#39b54a',
         badge: 0,
         icon: 'group'
-      },
-      {
+      },{
+        id: 6,
         title: '全部',
         name: 'whole',
         color: '#0081ff',

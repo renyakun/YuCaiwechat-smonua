@@ -20,7 +20,7 @@
             <image src='{{avatar}}' mode='aspectFit' class="cu-avatar round solids xl"></image>
           </view>
           <view class="padding-left-xl padding-top-sm" style="color:white;">{{realName}} | {{sex}} | {{age}}</view>
-          <view class="padding-left padding-top-sm" style="color:white;">期望职位：{{dreamPosition}}</view>
+          <view class="padding-left padding-top-sm" style="color:white;">期望合作：{{dreamPosition}}</view>
           <view class="padding-left padding-top-sm" style="color:white;display: {{label!=''?'':'none'}}">个人标签：{{label}}</view>
         </view>
         <!-- <view class="" style="float:rigth" bindtap="techjump">

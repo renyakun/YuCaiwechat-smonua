@@ -4,7 +4,7 @@ const app = getApp();
 
 const {
   url
-} = require('../../../utils/url.js');
+} = require('../../utils/url.js');
 
 import {
   showToast,
@@ -12,7 +12,7 @@ import {
   navigateTo,
   showLoading,
   pageScrollTo
-} from '../../../utils/WeChatfction';
+} from '../../utils/WeChatfction';
 
 Page({
   data: {

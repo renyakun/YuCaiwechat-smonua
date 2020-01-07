@@ -1,7 +1,7 @@
 <!--pages/demand/morejobs.wxml-->
 <cu-custom isCustom="{{true}}" isBack="{{false}}">
   <view slot="backText">返回</view>
-  <view slot="content" class="margin-top-xs">名片详情</view>
+  <view slot="content" class="margin-top-xs">他的主页</view>
 </cu-custom>
 
 <scroll-view scroll-y class="scrollPage" style=" " scrollTop="{{scrollTop}}">
@@ -61,7 +61,7 @@
       <view class="cu-bar" style="border-bottom:0.2vh solid #0081ff">
         <view class="action">
           <text class="cuIcon-titles text-blue" style="color:#0081ff"></text>
-          <text class="text-xl text-bold">Ta的招聘信息</text>
+          <text class="text-xl text-bold">Ta的需求信息</text>
         </view>
       </view>
 

@@ -35,7 +35,8 @@ Page({
       name: '生成海报分享',
       icon: 'share'
     }],
-    avatar: '/../../images/timg.jpg'
+    avatar: '/../../images/timg.jpg',
+    praiseRate:1
   },
 
   touchmove() {
@@ -438,11 +439,13 @@ Page({
       },
       success: res => {
         let publisherInfo = res.data.data;
+        let praiseRate = Math.round(res.data.data.praiseRate);
         console.log('发布者详情:', publisherInfo);
         if (res.data.success) {
           this.setData({
             publisherInfo: publisherInfo,
-            userId: res.data.data.userId
+            userId: res.data.data.userId,
+            praiseRate: praiseRate,
           })
         } else {
           showToast(res.data.msg, 'none', 1000)

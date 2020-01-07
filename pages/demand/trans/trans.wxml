@@ -32,8 +32,9 @@
         </view>
         <view class="content">
           <view class="" style="width:100%">
-            <view class="margin-top-xs">{{demanditem.jobType}} | {{demanditem.ageRequire}}岁
-              <text class="margin-left-xl">￥{{demanditem.salary}}元/月</text>
+            <!-- {{demanditem.jobType}} |  -->
+            <view class="margin-top-xs">{{demanditem.ageRequire}}岁
+              <text class="margin-left-xl">￥{{demanditem.salary}}</text>
             </view>
 
             <view class=" flex flex-wrap margin-top-sm" style="width:100%">
@@ -51,11 +52,13 @@
       <view class="cu-bar bgwhite ">
         <view class="action">
           <text class="cuIcon-titles text-blue" style="color:#0081ff"></text>
-          <text class="text-xl text-bold">岗位发布者</text>
+          <text class="text-xl text-bold">发布者</text>
         </view>
       </view>
       <view class="bgwhite padding" catchtap="toMoreJobs">
+
         <view slot="content" class="flex align-center justify-between">
+
           <view class="flex">
             <view class="flex align-center ">
               <!-- 头像 -->
@@ -77,9 +80,24 @@
                 </view>
               </view>
             </view>
+
           </view>
+
           <text class="cuIcon-right MoreJobs" catchtap="toMoreJobs"></text>
+
         </view>
+
+        <view class="padding-top-xs padding-bottom-xs margin-left flex justify-start">
+          <view class="margin-top-xs">评分:</view>
+          <view wx:if="{{praiseRate!='暂无评分'}}">
+            <i-rate disabled="{{true}}" value="{{praiseRate}}" size="19">
+            </i-rate>
+          </view>
+          <view wx:else class="margin-top-xs">
+            {{praiseRate}}
+          </view>
+        </view>
+
       </view>
     </view>
     <!-- 岗位要求详情区域 -->
@@ -87,7 +105,7 @@
       <view class="cu-bar bg-white">
         <view class="action">
           <text class="cuIcon-titles text-blue" style="color:#0081ff"></text>
-          <text class="text-xl text-bold">岗位要求</text>
+          <text class="text-xl text-bold">要求</text>
         </view>
       </view>
       <view class="cu-item">
@@ -103,7 +121,7 @@
       <view class="cu-bar bg-white">
         <view class="action">
           <text class="cuIcon-titles text-blue" style="color:#0081ff"></text>
-          <text class="text-xl text-bold">办公地址</text>
+          <text class="text-xl text-bold">地址</text>
         </view>
       </view>
       <view class="cu-item  ">
@@ -183,7 +201,7 @@
     回首页
   </button>
   <!--  -->
-  <button class="action bgwhite" style="width:10vh"  bindtap="handleOpen" >
+  <button class="action bgwhite" style="width:10vh" bindtap="handleOpen">
     <view class="cuIcon-forward " style="color:#0081ff"></view>
     分享
   </button>
@@ -194,7 +212,7 @@
   <view class="radius indigo shadow-blur flex justify-center align-center margin-right" style="width:15vh;height:5vh;color:white;font-size:2vh" bindtap="tappush">推送名片</view>
 </view>
 
-  <i-action-sheet visible="{{ visible }}" actions="{{ actions }}" show-cancel bind:cancel="handleCancel" bind:click="handleClickItem" />
+<i-action-sheet visible="{{ visible }}" actions="{{ actions }}" show-cancel bind:cancel="handleCancel" bind:click="handleClickItem" />
 
 <view class="cu-modal {{modalName=='showModal'?'show':''}}" catchtouchmove="touchmove">
   <view class="cu-dialog">
@@ -204,14 +222,15 @@
         <text class="cuIcon-close text-red"></text>
       </view>
     </view>
-    <view class="padding-xs" >
+    <view class="padding-xs">
       <view class="margin-left-sm margin-right-sm" style="color:#8799a3;text-align:justify;height:5vh;">
-      <text style="word-spacing:20rpx;line-height:2vh">{{modaltxt}}</text></view>
+        <text style="word-spacing:20rpx;line-height:2vh">{{modaltxt}}</text>
+      </view>
     </view>
 
     <view class="cu-bar bgwhite justify-around">
       <view class="radius indigo shadow-blur flex justify-center align-center margin-left" style="width:15vh;height:5vh;color:white;font-size:2vh" bindtap="hideModal">取消</view>
-    <view class="radius indigo shadow-blur flex justify-center align-center margin-right" style="width:15vh;height:5vh;color:white;font-size:2vh" bindtap="{{modalfalg}}">{{btntxt}}</view>
+      <view class="radius indigo shadow-blur flex justify-center align-center margin-right" style="width:15vh;height:5vh;color:white;font-size:2vh" bindtap="{{modalfalg}}">{{btntxt}}</view>
     </view>
 
   </view>

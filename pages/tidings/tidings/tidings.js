@@ -22,7 +22,7 @@ Page({
       case 1: //投递邀请
         navigateTo('/pages/tidings/news/news?tidtxt=投递邀请消息&cur=1')
         break;
-      case 2: //面试邀请(待面试)
+      case 2: //合作
         navigateTo('/pages/record/record/record?id=2')
         break;
       case 3: //评论消息

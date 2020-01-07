@@ -1,7 +1,7 @@
 <!--pages/record/details/details.wxml-->
 <cu-custom isCustom="{{true}}" isBack="{{false}}">
   <view slot="backText">返回</view>
-  <view slot="content" class="margin-top-xs">面试详情</view>
+  <view slot="content" class="margin-top-xs">合作详情</view>
 </cu-custom>
 
 <scroll-view scroll-y class="scrollPage" style="margin-bottom:10vh">
@@ -27,7 +27,7 @@
     <view class="cu-bar bg-white">
       <view class="action">
         <text class="cuIcon-titles text-blue"></text>
-        <text class="text-xl text-bold">面试地点</text>
+        <text class="text-xl text-bold">地点</text>
       </view>
     </view>
     <view class="cu-item  ">
@@ -43,7 +43,7 @@
     <view class="cu-bar bg-white">
       <view class="action">
         <text class="cuIcon-titles text-blue"></text>
-        <text class="text-xl text-bold">面试时间</text>
+        <text class="text-xl text-bold">时间</text>
       </view>
     </view>
     <view class="cu-item  ">
@@ -63,7 +63,7 @@
   <button class="action" bindtap="tapind" style="width:10vh;">
     <view class="cuIcon-home" style="color:#0081ff"></view>回首页
   </button>
-  <view class="radius indigo shadow-blur flex justify-center align-center margin-right-xl" style="width:15vh;height:5vh;color:white;font-size:2vh" data-modal="showModal" bindtap="tapjump">取消面试</view>
+  <view class="radius indigo shadow-blur flex justify-center align-center margin-right-xl" style="width:15vh;height:5vh;color:white;font-size:2vh" data-modal="showModal" bindtap="tapjump">取消合作</view>
   <!-- <view class="radius indigo shadow-blur flex justify-center align-center margin-right-xl" style="width:15vh;height:5vh;color:white;font-size:2vh" bindtap="tapeval">立即评价</view>  bindtap="tapcale"  -->
 </view>
 

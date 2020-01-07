@@ -18,9 +18,10 @@
       <switch class='sm' checked='{{chkflag}}' bindchange='checkflag'></switch>
     </view> -->
   </view>
+  <form bindsubmit='formSubmit' class="margin-top-xs  bgwhite">
 
-  <view class="margin-top-xs margin-left-xs margin-right-xs">
-    <form bindsubmit='formSubmit' class="margin-top-xs  bgwhite">
+    <view class="margin-top-xs margin-left-xs margin-right-xs">
+
 
       <view class="bgwhite margin-xs  cu-card no-card  shadow margin-bottom">
 
@@ -83,7 +84,7 @@
 
         <view class="cu-form-group  margin-xs bg-gray cu-card no-card">
           <text class="bgorange padding-left-xs padding-right-xs radius shadow text-xs" style="color:white">必填</text>
-          <view class="title margin-left-xs">期望职位</view>
+          <view class="title margin-left-xs">期望合作</view>
           <input name="dreamPosition" value="{{dreamPosition}}"></input>
         </view>
 
@@ -153,11 +154,13 @@
 
       </view>
 
-      <view class="cu-bar foot tabbar cur shop indigo flex justify-around" style="bottom:{{InputBottom}}px;color:white">
-        <button class="cu-btn" formType="submit" style="background:none;font-weight: normal;width:100%;height:100%;color:white">保存</button>
-      </view>
+    </view>
 
-    </form>
-  </view>
+    <view class="cu-bar foot tabbar cur shop indigo flex justify-around" style="bottom:{{InputBottom}}px;color:white">
+      <button class="cu-btn" formType="submit" style="background:none;font-weight: normal;width:100%;height:100%;color:white">保存</button>
+    </view>
+
+
+  </form>
 
 </scroll-view>

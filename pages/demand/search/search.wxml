@@ -46,14 +46,14 @@
             </view>
             <view class="content">
               <view class="bgwhite" style="width:55%">
-                <view class="margin-top-xs">{{item.jobType}} | {{item.ageRequire}}岁</view>
+                <view class="margin-top-xs">{{item.ageRequire}}岁</view>
                 <view class="margin-top-sm text-cut" style="width:20vh">
                   <text class="">{{item.city}}</text>
                 </view>
                 <view class="cu-tag bggreen round margin-top-lg" style="color:white;">{{item.releaseType}}认证</view>
               </view>
               <view class=" margin-left bgwhite" style="width:45%">
-                <view class="margin-top-xs flex justify-end">￥{{item.salary}}元/月</view>
+                <view class="margin-top-xs flex justify-end">￥{{item.salary}}</view>
                 <view class="flex justify-end margin-top-sm">{{item.createTime}}</view>
                 <view class="flex justify-end align-end margin-top-xl">
                   <text bindtap="Seedels" data-target="{{item}}">查看详情</text>

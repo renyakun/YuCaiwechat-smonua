@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/user/user/user",
+    "pages/user/user",
     "pages/tidings/tidings/tidings",
     "pages/tidings/news/news",
     "pages/demand/trans/trans",
@@ -51,7 +51,7 @@
         "text": "消息"
       },
       {
-        "pagePath": "pages/user/user/user",
+        "pagePath": "pages/user/user",
         "iconPath": "images/tabbar/user.png",
         "selectedIconPath": "images/tabbar/user_cur.png",
         "text": "我的"

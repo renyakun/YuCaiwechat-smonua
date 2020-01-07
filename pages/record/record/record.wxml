@@ -38,12 +38,13 @@
                     <view class="padding-left text-bold text-blue">{{item.demandHistroy.jobName}}</view>
                   </view>
                   <view class="flex flex-wrap margin-top-sm">
-                    <view class="padding-left">{{item.demandHistroy.jobType}} | {{item.demandHistroy.ageRequire}} | {{item.demandHistroy.releaseType}}认证</view>
+                  <!-- {{item.demandHistroy.jobType}} |  -->
+                    <view class="padding-left">{{item.demandHistroy.ageRequire}} | {{item.demandHistroy.releaseType}}认证</view>
                   </view>
                   <view class="flex flex-wrap margin-top-sm">
                     <view class="padding-left text-cut" style="width:90%">
                       <text class="text-bold">
-                        <text class="cuIcon-locationfill text-blue text-df margin-right-xs">工作地点：</text>
+                        <text class="cuIcon-locationfill text-blue text-df margin-right-xs">地点：</text>
                       </text>
                       {{item.demandHistroy.city}}
                     </view>
@@ -72,7 +73,7 @@
                   <view class="flex flex-wrap margin-top-sm">
                     <view class="padding-left text-cut" style="width:90%">
                       <text class="text-bold">
-                        <text class="cuIcon-locationfill text-blue text-df margin-right-xs">面试地点：</text>
+                        <text class="cuIcon-locationfill text-blue text-df margin-right-xs">地点：</text>
 
                       </text>
                       {{item.address}}
@@ -81,7 +82,7 @@
                   <view class="flex flex-wrap margin-top-sm">
                     <view class="padding-left">
                       <text class="text-bold">
-                        <text class="cuIcon-timefill text-blue text-df margin-right-xs">面试时间：</text>
+                        <text class="cuIcon-timefill text-blue text-df margin-right-xs">时间：</text>
                       </text>
                       {{item.invitationTime}}
                     </view>
@@ -105,7 +106,7 @@
                   <view class="cu-avatar round" style="background-image:url({{item.avatar}});top:30rpx"></view>
                   <view class="content">
                     <view class="text-blue" style="font-weight:700">{{item.evaluationName}}</view>
-                    <view class="text-black" style="font-weight:700">岗位:{{item.jobName}}</view>
+                    <view class="text-black" style="font-weight:700">需求:{{item.jobName}}</view>
                     <view class="flex justify-start align-start">
                       <view class="margin-top-xs">评分:</view>
                       <view>
@@ -158,7 +159,7 @@
                   <view class="flex flex-wrap margin-top-sm">
                     <view class="padding-left text-cut" style="width:90%">
                       <text class="text-bold">
-                        <text class="cuIcon-locationfill text-blue text-df margin-right-xs">工作地点：</text>
+                        <text class="cuIcon-locationfill text-blue text-df margin-right-xs">地点：</text>
                       </text>
                       {{item.demandHistroy.city}}
                     </view>
